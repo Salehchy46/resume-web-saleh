@@ -24,7 +24,7 @@ const LinkedInIcon = ({
   </svg>;
 
 const Footer = () => {
-  return <footer className="bg-linear-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black text-gray-900 dark:text-white py-12 px-4 font-inter border-t border-gray-200 dark:border-gray-800">
+  return <footer className="bg-linear-to-r bg-gray-900/80 text-gray-900 dark:text-white py-12 px-4 font-inter border-t border-gray-200 dark:border-gray-800">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="space-y-4">
           <div className="flex items-center space-x-2">

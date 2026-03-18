@@ -5,10 +5,10 @@ import Footer from '../shared/Footer';
 
 const Mainlayout = () => {
     return (
-        <div>
-            <Navbar></Navbar>
+        <div className=' bg-gray-900/80'>
+            <Navbar className="max-w-350 mx-auto"></Navbar>
             <Outlet></Outlet>
-            <Footer></Footer>
+            <Footer className="max-w-350 mx-auto"></Footer>
         </div>
     );
 };
