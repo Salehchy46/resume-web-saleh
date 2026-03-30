@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ExternalLink } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -24,22 +26,22 @@ const Navbar = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const navLinks = [{
-        href: "#work",
-        text: "Work"
-    }, {
-        href: "#about",
-        text: "About"
-    }, {
-        href: "#services",
-        text: "Services"
-    }, {
-        href: "#blog",
-        text: "Blog"
-    }, {
-        href: "#contact",
-        text: "Contact"
-    }];
+    const navLinks = (
+        <>
+            <ul>
+                <NavLink to="/">Home</NavLink>
+            </ul>
+            <ul>
+                <NavLink to="/">Home</NavLink>
+            </ul>
+            <ul>
+                <NavLink to="/">Home</NavLink>
+            </ul>
+            <ul>
+                <NavLink to="/">Home</NavLink>
+            </ul>
+        </>
+    );
 
     return <header className={`w-full transition-all duration-300 ${isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg' : 'bg-white/90 dark:bg-gray-900/80 backdrop-blur-md'} border-b border-gray-200 dark:border-gray-800`}>
         <div className="container mx-auto  px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl">
@@ -50,16 +52,13 @@ const Navbar = () => {
                         <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gray-900 dark:bg-gray-50 rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
                             <span className="text-white dark:text-gray-900 font-bold text-base sm:text-lg lg:text-xl">S</span>
                         </div>
-                        <span className="font-bold text-lg sm:text-xl lg:text-2xl text-gray-900 dark:text-gray-100">Mohammad Saleh</span>
+                        <span className="font-bold text-lg sm:text-xl lg:text-3xl text-gray-900 ml-5 dark:text-gray-100">Saleh</span>
                     </a>
                 </div>
 
                 { }
                 <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
-                    {navLinks.map(link => <a key={link.text} href={link.href} className="text-sm lg:text-base font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors relative group">
-                        {link.text}
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-gray-100 transition-all duration-300 group-hover:w-full"></span>
-                    </a>)}
+                    {navLinks}
                 </nav>
 
                 { }
@@ -83,9 +82,7 @@ const Navbar = () => {
             <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="py-4 border-t border-gray-200 dark:border-gray-800">
                     <div className="flex flex-col space-y-1">
-                        {navLinks.map(link => <a key={link.text} href={link.href} onClick={() => setIsMenuOpen(false)} className="px-3 py-2.5 text-sm sm:text-base font-medium text-gray-600 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                            {link.text}
-                        </a>)}
+                        {navLinks}
                         <div className="pt-4 mt-2 border-t border-gray-200 dark:border-gray-700 flex flex-col space-y-2">
                             <a href="#" className="flex items-center justify-center space-x-2 px-3 py-2.5 text-sm font-medium border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                                 <span>Resume</span>
