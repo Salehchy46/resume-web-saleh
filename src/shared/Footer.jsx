@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const GitHubIcon = ({
   size = 24,
@@ -55,14 +56,10 @@ const Footer = () => {
           </h3>
           <ul className="space-y-3">
             <li>
-              <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
-                Home
-              </a>
+              <NavLink to="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">Home</NavLink>
             </li>
             <li>
-              <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
-                About Us
-              </a>
+              <NavLink to="/about" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">About</NavLink>
             </li>
             <li>
               <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
