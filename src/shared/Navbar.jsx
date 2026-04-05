@@ -44,9 +44,9 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
                     {/* Logo */}
                     <div className="flex items-center">
-                        <a href="#" className="flex items-center space-x-2 group">
-                            <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gray-900 dark:bg-gray-50 rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
-                                <span className="text-white dark:text-gray-900 font-bold text-base sm:text-lg lg:text-xl">S</span>
+                        <a href="" className="flex items-center rounded-full">
+                            <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-full bg-gray-900 dark:bg-gray-50 flex items-center justify-center transition-transform group-hover:scale-110">
+                                <img className='rounded-full' src="https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png" alt="" />
                             </div>
                             <span className="font-bold text-lg sm:text-xl lg:text-3xl text-gray-900 ml-5 dark:text-gray-100">Saleh</span>
                         </a>
