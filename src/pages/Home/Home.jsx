@@ -4,11 +4,12 @@
 import { ArrowRight, Github, Linkedin, Mail, Code, Layout, Smartphone, Globe, Star, Users } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import '../Home/hero-animation.css';
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   // Phase: 'hello' or 'intro'
   const [phase, setPhase] = useState("hello");
-  
+
   // Typing animation states
   const [displayText, setDisplayText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
@@ -74,12 +75,20 @@ const Hero = () => {
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+              <Link
+                className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                to="/contact"
               >
-                Hire Me <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+                {/* Two shimmer layers for a more complex sparkle */}
+                <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                </span>
+
+                <span className="relative z-10 flex items-center gap-2">
+                  Hire Me <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
               <a
                 href="#projects"
                 className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
