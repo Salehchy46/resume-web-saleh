@@ -81,7 +81,7 @@ const Navbar = () => {
                             <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4" />
                         </a>
                         <Link
-                            className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                            className="relative i line-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
                             to="/contact"
                         >
                             {/* Two shimmer layers for a more complex sparkle */}

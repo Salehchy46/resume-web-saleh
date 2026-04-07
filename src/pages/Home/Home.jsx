@@ -1,7 +1,22 @@
 // src/pages/Home.jsx or src/components/Home.jsx
 "use client";
 
-import { ArrowRight, Github, Linkedin, Mail, Code, Layout, Smartphone, Globe, Star, Users } from "lucide-react";
+import {
+  ArrowRight,
+  Github,
+  Linkedin,
+  Mail,
+  Code,
+  Layout,
+  Globe,
+  Star,
+  Users,
+  Smartphone,
+  Rocket,
+  Code2,
+  Headphones,
+  CalendarCheck
+} from "lucide-react";
 import React, { useState, useEffect } from "react";
 import '../Home/hero-animation.css';
 import { Link } from "react-router-dom";
@@ -146,19 +161,30 @@ const About = () => {
             <p className="mt-4 text-gray-600 dark:text-gray-300">
               Beyond coding, I enjoy mentoring, contributing to open source, and constantly learning new technologies. Let's build something amazing together!
             </p>
-            <div className="mt-8 flex items-center gap-4">
-              <div className="flex items-center gap-2"><Star className="text-yellow-500" fill="currentColor" size={20} /><span className="text-gray-700 dark:text-gray-300">100+ projects delivered</span></div>
-              <div className="flex items-center gap-2"><Users className="text-blue-500" size={20} /><span className="text-gray-700 dark:text-gray-300">50+ happy clients</span></div>
-            </div>
           </div>
           <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Why work with me?</h3>
             <ul className="space-y-3 text-gray-600 dark:text-gray-300">
-              <li>✅ 100% responsive designs that work on all devices</li>
-              <li>✅ SEO optimized and fast loading</li>
-              <li>✅ Clean, maintainable code with modern tools</li>
-              <li>✅ Ongoing support and collaboration</li>
-              <li>✅ On‑time delivery and clear communication</li>
+              <li className="flex items-start gap-3">
+                <Smartphone className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>100% responsive designs that work on all devices</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Rocket className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>SEO optimized and fast loading</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Code2 className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>Clean, maintainable code with modern tools</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Headphones className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>Ongoing support and collaboration</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CalendarCheck className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>On‑time delivery and clear communication</span>
+              </li>
             </ul>
           </div>
         </div>
