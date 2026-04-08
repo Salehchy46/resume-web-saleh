@@ -91,27 +91,36 @@ const Hero = () => {
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
-                className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+    /* Light mode: grayish glass (translucent gray) */
+    border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
+    /* Dark mode: white glass (white translucent) */
+    dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
                 to="/contact"
               >
-                {/* Two shimmer layers for a more complex sparkle */}
+                {/* Shimmer / Sparkle overlay (same for both themes) */}
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                 </span>
 
                 <span className="relative z-10 flex items-center gap-2">
-                  Hire Me <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  Hire Me
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
               <Link
-                className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+    /* Light mode: grayish glass (translucent gray) */
+    border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
+    /* Dark mode: white glass (white translucent) */
+    dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
                 to="/work"
               >
-                {/* Two shimmer layers for a more complex sparkle */}
+                {/* Shimmer / Sparkle overlay (same for both themes) */}
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                 </span>
 
                 <span className="relative z-10 flex items-center gap-2">
@@ -193,12 +202,12 @@ const About = () => {
   );
 };
 
-const Services = () => {
+const Work = () => {
   const services = [
-    { icon: <Code size={40} />, title: "Custom Web Development", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
-    { icon: <Layout size={40} />, title: "WordPress Development", desc: "Custom themes, plugins, and full site management." },
-    { icon: <Smartphone size={40} />, title: "Responsive Design", desc: "Flawless experience on mobile, tablet, and desktop." },
-    { icon: <Globe size={40} />, title: "Wix & Website Builders", desc: "Professional Wix sites with advanced features." },
+    { icon: <Code size={40} />, title: "Custom Web Development", link: "https://www.w3schools.com/whatis/", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
+    { icon: <Layout size={40} />, title: "WordPress Development", link: "https://wordpress.com/", desc: "Custom themes, plugins, and full site management." },
+    { icon: <Smartphone size={40} />, title: "Responsive Design", link: "https://www.w3schools.com/html/html_responsive.asp", desc: "Flawless experience on mobile, tablet, and desktop." },
+    { icon: <Globe size={40} />, title: "Wix & Website Builders", link: "https://manage.wix.com/studio/sites?viewId=all-items-view", desc: "Professional Wix sites with advanced features." },
   ];
   return (
     <section id="services" className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
@@ -211,9 +220,13 @@ const Services = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, idx) => (
             <div key={idx} className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow text-center">
-              <div className="text-blue-600 mb-4 flex justify-center">{service.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{service.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400">{service.desc}</p>
+              <a href={service.link} target="_blank" rel="noopener noreferrer">
+                <div>
+                  <div className="text-blue-600 mb-4 flex justify-center">{service.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{service.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400">{service.desc}</p>
+                </div>
+              </a>
             </div>
           ))}
         </div>
@@ -292,7 +305,7 @@ const Home = () => {
       <main>
         <Hero />
         <About />
-        <Services />
+        <Work />
         <Projects />
         <Contact />
       </main>

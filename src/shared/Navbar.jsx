@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ExternalLink } from 'lucide-react';
+import { Menu, X, ExternalLink, ArrowRight } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 import './shared.css';
 
@@ -31,7 +31,7 @@ const Navbar = () => {
     const navLinks = [
         { text: "Home", to: "/" },
         { text: "About", to: "/about" },
-        { text: "Services", to: "/services" },
+        { text: "Work", to: "/work" },
         { text: "Contact", to: "/contact" }
     ];
 
@@ -81,13 +81,17 @@ const Navbar = () => {
                             <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4" />
                         </a>
                         <Link
-                            className="relative i line-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                            className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+                            /* Light mode: grayish glass (translucent gray) */
+                            border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
+                            /* Dark mode: white glass (white translucent) */
+                            dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
                             to="/contact"
                         >
-                            {/* Two shimmer layers for a more complex sparkle */}
+                            {/* Shimmer / Sparkle overlay (same for both themes) */}
                             <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                                <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                             </span>
 
                             <span className="relative z-10 flex items-center gap-2">
@@ -134,9 +138,20 @@ const Navbar = () => {
                                     <span>Resume</span>
                                     <ExternalLink className="h-4 w-4" />
                                 </a>
-                                <button className="px-3 py-2.5 text-sm font-medium bg-gray-900 text-white dark:bg-gray-50 dark:text-gray-900 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
-                                    Hire Me
-                                </button>
+                                <Link
+                                    className="relative i line-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                                    to="/contact"
+                                >
+                                    {/* Two shimmer layers for a more complex sparkle */}
+                                    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                                        <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                                    </span>
+
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        Hire Me
+                                    </span>
+                                </Link>
                             </div>
                         </div>
                     </div>
