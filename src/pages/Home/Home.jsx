@@ -238,8 +238,8 @@ const Work = () => {
 const Projects = () => {
   const projects = [
     { title: "E‑Commerce Store", tech: "React, Tailwind, MongoDB", image: "https://i.ibb.co.com/7d28nBhP/khela.webp", live: "https://sports-equipment99.netlify.app/", code: "https://github.com/Salehchy46/equipment-management-client" },
-    { title: "WordPress Agency Site", tech: "WordPress, Elementor, PHP", image: "https://i.ibb.co.com/vxj8w9bV/download.png", live: "https://www.hurrida.com/", code: "https://github.com/Salehchy46" },
-    { title: "Portfolio Dashboard", tech: "Next.js, Tailwind, Framer", image: "https://placehold.co/600x400/1e293b/ffffff?text=Project+3", live: "#", code: "#" },
+    { title: "WordPress Agency Site", tech: "WordPress, Elementor, PHP", image: "https://i.ibb.co.com/vxj8w9bV/download.png", live: "https://www.hurrida.com/", code: "https://github.com/Salehchy46/cookie-policy-hurrida" },
+    { title: "Portfolio Dashboard", tech: "Next.js, Tailwind, Framer", image: "https://i.ibb.co.com/MDdQR89t/download-1.png", live: "https://superlative-manatee-5fc69d.netlify.app/", code: "https://github.com/Salehchy46/tic-tac-toe" },
   ];
   return (
     <section id="projects" className="py-16 md:py-24 bg-white dark:bg-gray-900">
