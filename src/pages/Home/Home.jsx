@@ -237,8 +237,8 @@ const Work = () => {
 
 const Projects = () => {
   const projects = [
-    { title: "E‑Commerce Store", tech: "React, Tailwind, MongoDB", image: "https://placehold.co/600x400/1e293b/ffffff?text=Project+1", live: "#", code: "#" },
-    { title: "WordPress Agency Site", tech: "WordPress, Elementor, PHP", image: "https://placehold.co/600x400/1e293b/ffffff?text=Project+2", live: "#", code: "#" },
+    { title: "E‑Commerce Store", tech: "React, Tailwind, MongoDB", image: "https://i.ibb.co.com/7d28nBhP/khela.webp", live: "https://sports-equipment99.netlify.app/", code: "https://github.com/Salehchy46/equipment-management-client" },
+    { title: "WordPress Agency Site", tech: "WordPress, Elementor, PHP", image: "https://i.ibb.co.com/vxj8w9bV/download.png", live: "https://www.hurrida.com/", code: "https://github.com/Salehchy46" },
     { title: "Portfolio Dashboard", tech: "Next.js, Tailwind, Framer", image: "https://placehold.co/600x400/1e293b/ffffff?text=Project+3", live: "#", code: "#" },
   ];
   return (
@@ -257,7 +257,7 @@ const Projects = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">{project.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{project.tech}</p>
                 <div className="mt-4 flex gap-3">
-                  <a href={project.live} className="text-blue-600 hover:underline text-sm font-medium">Live Demo →</a>
+                  <a href={project.live} className="text-blue-600 hover:underline text-sm font-medium">Live</a>
                   <a href={project.code} className="text-gray-600 dark:text-gray-400 hover:underline text-sm">Code</a>
                 </div>
               </div>
