@@ -5,6 +5,8 @@ import { ArrowRight, Github, Linkedin, Mail, Code, Layout, Smartphone, Globe, St
 import React, { useState, useEffect } from "react";
 import '../Home/hero-animation.css';
 import { Link } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "motion/react"
 
 const Hero = () => {
   // Phase: 'hello' or 'intro'
@@ -132,7 +134,7 @@ const Hero = () => {
 const About = () => {
   return (
     <section id="about" className="py-16 md:py-24 bg-white dark:bg-gray-900">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">About Me</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
