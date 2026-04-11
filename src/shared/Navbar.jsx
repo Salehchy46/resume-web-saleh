@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ExternalLink } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { Menu, X, ExternalLink, ArrowRight } from 'lucide-react';
+import { Link, NavLink } from 'react-router-dom';
 import './shared.css';
 
 const Navbar = () => {
@@ -31,16 +31,15 @@ const Navbar = () => {
     const navLinks = [
         { text: "Home", to: "/" },
         { text: "About", to: "/about" },
-        { text: "Services", to: "/services" },
+        { text: "Work", to: "/work" },
         { text: "Contact", to: "/contact" }
     ];
 
     return (
-        <header className={`w-full transition-all duration-300 ${
-            isScrolled
-                ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg'
-                : 'bg-white/90 dark:bg-gray-900/80 backdrop-blur-md'
-        } border-b border-gray-200 dark:border-gray-800`}>
+        <header className={`w-full transition-all duration-300 ${isScrolled
+            ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg'
+            : 'bg-white/90 dark:bg-gray-900/80 backdrop-blur-md'
+            } border-b border-gray-200 dark:border-gray-800`}>
             <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-350">
                 <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
                     {/* Logo */}
@@ -60,10 +59,9 @@ const Navbar = () => {
                                 key={link.text}
                                 to={link.to}
                                 className={({ isActive }) =>
-                                    `text-sm lg:text-base font-medium transition-colors relative group ${
-                                        isActive
-                                            ? 'text-gray-900 dark:text-white'
-                                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                                    `text-sm lg:text-base font-medium transition-colors relative group ${isActive
+                                        ? 'text-gray-900 dark:text-white'
+                                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                                     }`
                                 }
                             >
@@ -82,9 +80,24 @@ const Navbar = () => {
                             <span>Resume</span>
                             <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4" />
                         </a>
-                        <button className="px-4 lg:px-6 py-1.5 lg:py-2 text-xs lg:text-sm font-medium bg-gray-900 text-white dark:bg-gray-50 dark:text-gray-900 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-all shadow-sm hover:shadow-lg transform hover:scale-105">
-                            Hire Me
-                        </button>
+                        <Link
+                            className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+                            /* Light mode: grayish glass (translucent gray) */
+                            border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
+                            /* Dark mode: white glass (white translucent) */
+                            dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
+                            to="/contact"
+                        >
+                            {/* Shimmer / Sparkle overlay (same for both themes) */}
+                            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                            </span>
+
+                            <span className="relative z-10 flex items-center gap-2">
+                                Hire Me
+                            </span>
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -98,9 +111,8 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Navigation Drawer */}
-                <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-                    isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                }`}>
+                <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}>
                     <div className="py-4 border-t border-gray-200 dark:border-gray-800">
                         <div className="flex flex-col space-y-1">
                             {navLinks.map(link => (
@@ -109,10 +121,9 @@ const Navbar = () => {
                                     to={link.to}
                                     onClick={() => setIsMenuOpen(false)}
                                     className={({ isActive }) =>
-                                        `px-3 py-2.5 text-sm sm:text-base font-medium rounded-md transition-colors ${
-                                            isActive
-                                                ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white'
-                                                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                        `px-3 py-2.5 text-sm sm:text-base font-medium rounded-md transition-colors ${isActive
+                                            ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white'
+                                            : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                                         }`
                                     }
                                 >
@@ -127,9 +138,20 @@ const Navbar = () => {
                                     <span>Resume</span>
                                     <ExternalLink className="h-4 w-4" />
                                 </a>
-                                <button className="px-3 py-2.5 text-sm font-medium bg-gray-900 text-white dark:bg-gray-50 dark:text-gray-900 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
-                                    Hire Me
-                                </button>
+                                <Link
+                                    className="relative i line-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                                    to="/contact"
+                                >
+                                    {/* Two shimmer layers for a more complex sparkle */}
+                                    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                                        <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                                    </span>
+
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        Hire Me
+                                    </span>
+                                </Link>
                             </div>
                         </div>
                     </div>

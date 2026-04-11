@@ -1,12 +1,27 @@
 // src/pages/Home.jsx or src/components/Home.jsx
 "use client";
 
-import { ArrowRight, Github, Linkedin, Mail, Code, Layout, Smartphone, Globe, Star, Users } from "lucide-react";
+import {
+  ArrowRight,
+  Github,
+  Linkedin,
+  Mail,
+  Code,
+  Layout,
+  Globe,
+  Star,
+  Users,
+  Smartphone,
+  Rocket,
+  Code2,
+  Headphones,
+  CalendarCheck
+} from "lucide-react";
 import React, { useState, useEffect } from "react";
 import '../Home/hero-animation.css';
 import { Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "motion/react"
+import * as motion from "motion/react-client";
 
 const Hero = () => {
   // Phase: 'hello' or 'intro'
@@ -78,27 +93,36 @@ const Hero = () => {
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
-                className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+    /* Light mode: grayish glass (translucent gray) */
+    border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
+    /* Dark mode: white glass (white translucent) */
+    dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
                 to="/contact"
               >
-                {/* Two shimmer layers for a more complex sparkle */}
+                {/* Shimmer / Sparkle overlay (same for both themes) */}
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                 </span>
 
                 <span className="relative z-10 flex items-center gap-2">
-                  Hire Me <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  Hire Me
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
               <Link
-                className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+    /* Light mode: grayish glass (translucent gray) */
+    border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
+    /* Dark mode: white glass (white translucent) */
+    dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
                 to="/work"
               >
-                {/* Two shimmer layers for a more complex sparkle */}
+                {/* Shimmer / Sparkle overlay (same for both themes) */}
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                 </span>
 
                 <span className="relative z-10 flex items-center gap-2">
@@ -148,19 +172,30 @@ const About = () => {
             <p className="mt-4 text-gray-600 dark:text-gray-300">
               Beyond coding, I enjoy mentoring, contributing to open source, and constantly learning new technologies. Let's build something amazing together!
             </p>
-            <div className="mt-8 flex items-center gap-4">
-              <div className="flex items-center gap-2"><Star className="text-yellow-500" fill="currentColor" size={20} /><span className="text-gray-700 dark:text-gray-300">100+ projects delivered</span></div>
-              <div className="flex items-center gap-2"><Users className="text-blue-500" size={20} /><span className="text-gray-700 dark:text-gray-300">50+ happy clients</span></div>
-            </div>
           </div>
           <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Why work with me?</h3>
             <ul className="space-y-3 text-gray-600 dark:text-gray-300">
-              <li>✅ 100% responsive designs that work on all devices</li>
-              <li>✅ SEO optimized and fast loading</li>
-              <li>✅ Clean, maintainable code with modern tools</li>
-              <li>✅ Ongoing support and collaboration</li>
-              <li>✅ On‑time delivery and clear communication</li>
+              <li className="flex items-start gap-3">
+                <Smartphone className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>100% responsive designs that work on all devices</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Rocket className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>SEO optimized and fast loading</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Code2 className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>Clean, maintainable code with modern tools</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Headphones className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>Ongoing support and collaboration</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CalendarCheck className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <span>On‑time delivery and clear communication</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -169,29 +204,60 @@ const About = () => {
   );
 };
 
-const Services = () => {
+
+const Work = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const services = [
-    { icon: <Code size={40} />, title: "Custom Web Development", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
-    { icon: <Layout size={40} />, title: "WordPress Development", desc: "Custom themes, plugins, and full site management." },
-    { icon: <Smartphone size={40} />, title: "Responsive Design", desc: "Flawless experience on mobile, tablet, and desktop." },
-    { icon: <Globe size={40} />, title: "Wix & Website Builders", desc: "Professional Wix sites with advanced features." },
+    { icon: <Code size={40} />, title: "Custom Web Development", link: "https://www.w3schools.com/whatis/", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
+    { icon: <Layout size={40} />, title: "WordPress Development", link: "https://wordpress.com/", desc: "Custom themes, plugins, and full site management." },
+    { icon: <Smartphone size={40} />, title: "Responsive Design", link: "https://www.w3schools.com/html/html_responsive.asp", desc: "Flawless experience on mobile, tablet, and desktop." },
+    { icon: <Globe size={40} />, title: "Wix & Website Builders", link: "https://manage.wix.com/studio/sites?viewId=all-items-view", desc: "Professional Wix sites with advanced features." },
   ];
+
+  const cardVariants = {
+    offscreen: { y: 80, scale: 0.6, opacity: 0, originY: 1, originX: 0.5 },
+    onscreen: { y: 0, scale: 1, opacity: 1, transition: { type: "spring", bounce: 0.4, duration: 0.8 } },
+  };
+
   return (
     <section id="services" className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">What I Offer</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">End‑to‑end solutions to bring your website vision to life.</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Hover over a card to spotlight it</p>
         </div>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, idx) => (
-            <div key={idx} className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow text-center">
-              <div className="text-blue-600 mb-4 flex justify-center">{service.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{service.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400">{service.desc}</p>
-            </div>
-          ))}
+          {services.map((service, idx) => {
+            const isHovered = hoveredIndex === idx;
+            const isOtherHovered = hoveredIndex !== null && hoveredIndex !== idx;
+
+            return (
+              <motion.div
+                key={idx}
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={cardVariants}
+                onMouseEnter={() => setHoveredIndex(idx)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md transition-all duration-300 text-center cursor-pointer
+                  ${isOtherHovered ? "opacity-0 pointer-events-none" : "opacity-100"}
+                  ${isHovered ? "scale-105 shadow-2xl z-10" : "scale-100"}
+                `}
+              >
+                <a href={service.link} target="_blank" rel="noopener noreferrer" className="block">
+                  <div className="text-blue-600 mb-4 flex justify-center transition-transform group-hover:scale-110">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{service.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400">{service.desc}</p>
+                </a>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -200,9 +266,9 @@ const Services = () => {
 
 const Projects = () => {
   const projects = [
-    { title: "E‑Commerce Store", tech: "React, Tailwind, MongoDB", image: "https://placehold.co/600x400/1e293b/ffffff?text=Project+1", live: "#", code: "#" },
-    { title: "WordPress Agency Site", tech: "WordPress, Elementor, PHP", image: "https://placehold.co/600x400/1e293b/ffffff?text=Project+2", live: "#", code: "#" },
-    { title: "Portfolio Dashboard", tech: "Next.js, Tailwind, Framer", image: "https://placehold.co/600x400/1e293b/ffffff?text=Project+3", live: "#", code: "#" },
+    { title: "E‑Commerce Store", tech: "React, Tailwind, MongoDB", image: "https://i.ibb.co.com/7d28nBhP/khela.webp", live: "https://sports-equipment99.netlify.app/", code: "https://github.com/Salehchy46/equipment-management-client" },
+    { title: "WordPress Agency Site", tech: "WordPress, Elementor, PHP", image: "https://i.ibb.co.com/vxj8w9bV/download.png", live: "https://www.hurrida.com/", code: "https://github.com/Salehchy46/cookie-policy-hurrida" },
+    { title: "Portfolio Dashboard", tech: " Tailwind, React", image: "https://i.ibb.co.com/MDdQR89t/download-1.png", live: "https://superlative-manatee-5fc69d.netlify.app/", code: "https://github.com/Salehchy46/tic-tac-toe" },
   ];
   return (
     <section id="projects" className="py-16 md:py-24 bg-white dark:bg-gray-900">
@@ -220,7 +286,7 @@ const Projects = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">{project.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{project.tech}</p>
                 <div className="mt-4 flex gap-3">
-                  <a href={project.live} className="text-blue-600 hover:underline text-sm font-medium">Live Demo →</a>
+                  <a href={project.live} className="text-blue-600 hover:underline text-sm font-medium">Live</a>
                   <a href={project.code} className="text-gray-600 dark:text-gray-400 hover:underline text-sm">Code</a>
                 </div>
               </div>
@@ -268,7 +334,7 @@ const Home = () => {
       <main>
         <Hero />
         <About />
-        <Services />
+        <Work />
         <Projects />
         <Contact />
       </main>
