@@ -211,9 +211,10 @@ const Hero = () => {
   }, [displayText, isDeleting, wordIndex, phase, words]);
 
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
       {/* Fireflies */}
       <Fireflies />
+
       {/* Animated Blue Blurry Balls */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl opacity-30 animate-float1" />
@@ -227,13 +228,13 @@ const Hero = () => {
           <div className="flex-1 text-center lg:text-left">
             {/* Animated Heading */}
             {phase === "hello" ? (
-              <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white">
                 Hello World
               </h1>
             ) : (
-              <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white">
                 I'm{" "}
-                <span className="text-blue-600 dark:text-blue-400">
+                <span className="text-blue-400">
                   {displayText}
                   <span className="animate-pulse">|</span>
                 </span>
@@ -241,45 +242,37 @@ const Hero = () => {
             )}
 
             {/* Rest of the hero content */}
-            <p className="mt-4 text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto lg:mx-0">
+            <p className="mt-4 text-gray-300 text-base md:text-lg max-w-2xl mx-auto lg:mx-0">
               I craft responsive, high‑performance websites that help you connect with your audience.
               Whether it’s a custom React app, a WordPress site, or a Wix design — I bring ideas to life.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
-                className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
-    /* Light mode: grayish glass (translucent gray) */
-    border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
-    /* Dark mode: white glass (white translucent) */
-    dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
+                className="relative inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+              border border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white/15"
                 to="/contact"
               >
-                {/* Shimmer / Sparkle overlay (same for both themes) */}
+                {/* Shimmer overlay */}
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                 </span>
-
                 <span className="relative z-10 flex items-center gap-2">
                   Hire Me
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
               <Link
-                className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
-    /* Light mode: grayish glass (translucent gray) */
-    border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
-    /* Dark mode: white glass (white translucent) */
-    dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
+                className="relative inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+              border border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white/15"
                 to="/work"
               >
-                {/* Shimmer / Sparkle overlay (same for both themes) */}
+                {/* Shimmer overlay */}
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                 </span>
-
                 <span className="relative z-10 flex items-center gap-2">
                   View Projects
                 </span>
@@ -287,9 +280,15 @@ const Hero = () => {
             </div>
 
             <div className="mt-8 flex justify-center lg:justify-start space-x-5">
-              <a href="https://github.com/Salehchy46" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 dark:hover:text-white transition"><Github size={24} /></a>
-              <a href="https://www.linkedin.com/in/mohammad-saleh-830389226/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition"><Linkedin size={24} /></a>
-              <a href="mailto:Salehchyctg@gmail.com" className="text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition"><Mail size={24} /></a>
+              <a href="https://github.com/Salehchy46" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
+                <Github size={24} />
+              </a>
+              <a href="https://www.linkedin.com/in/mohammad-saleh-830389226/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition">
+                <Linkedin size={24} />
+              </a>
+              <a href="mailto:Salehchyctg@gmail.com" className="text-gray-400 hover:text-red-400 transition">
+                <Mail size={24} />
+              </a>
             </div>
           </div>
 
@@ -300,7 +299,7 @@ const Hero = () => {
               <img
                 src="https://i.ibb.co.com/BVCWm6zh/saleh.jpg"
                 alt="Mohammad Saleh - Frontend Developer"
-                className="relative rounded-full object-cover w-full h-full border-4 border-white dark:border-gray-700 shadow-2xl"
+                className="relative rounded-full object-cover w-full h-full border-4 border-gray-700 shadow-2xl"
               />
             </div>
           </div>

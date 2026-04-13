@@ -23,30 +23,28 @@ const LinkedInIcon = ({ size = 24, className = "" }) => (
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <footer className="w-full bg-gray-900 border-t border-gray-800">
       {/* Container with max width 1400px and padding matching the navbar */}
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-350 py-12 font-inter">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-[1400px] py-12 font-inter">
         {/* Grid layout – responsive columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand column */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Saleh
-              </h3>
+              <h3 className="text-3xl font-bold text-white">Saleh</h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed">
               Innovating for a better tomorrow. We are committed to delivering
               high-quality solutions that empower businesses and individuals.
             </p>
             <div className="flex space-x-5 pt-2">
-              <a href="#" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-teal-400 transition-transform transform hover:scale-110">
+              <a href="#" className="text-gray-400 hover:text-teal-400 transition-transform transform hover:scale-110">
                 <GitHubIcon size={28} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-teal-400 transition-transform transform hover:scale-110">
+              <a href="#" className="text-gray-400 hover:text-teal-400 transition-transform transform hover:scale-110">
                 <TwitterIcon size={28} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-teal-400 transition-transform transform hover:scale-110">
+              <a href="#" className="text-gray-400 hover:text-teal-400 transition-transform transform hover:scale-110">
                 <LinkedInIcon size={28} />
               </a>
             </div>
@@ -54,32 +52,30 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-              Quick Links
-            </h3>
+            <h3 className="text-xl font-bold text-gray-100">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <NavLink to="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/about" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/about" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   About
                 </NavLink>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Services
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Portfolio
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Blog
                 </a>
               </li>
@@ -88,32 +84,30 @@ const Footer = () => {
 
           {/* Resources */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-              Resources
-            </h3>
+            <h3 className="text-xl font-bold text-gray-100">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Support
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   FAQs
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors duration-300">
+                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Careers
                 </a>
               </li>
@@ -122,23 +116,21 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-              Contact Us
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">
+            <h3 className="text-xl font-bold text-gray-100">Contact Us</h3>
+            <p className="text-gray-300">
               Arkan Society Road no. 1, Bohaddarhar, Chattogram
             </p>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-300">
               Email: Salehchyctg@gmail.com
             </p>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-300">
               Phone: +88 018 35 - 06 99 46
             </p>
           </div>
         </div>
 
         {/* Copyright section */}
-        <div className="text-center text-gray-500 dark:text-gray-400 text-sm pt-10 mt-10 border-t border-gray-200 dark:border-gray-700">
+        <div className="text-center text-gray-400 text-sm pt-10 mt-10 border-t border-gray-800">
           <p>All rights reserved &copy; {new Date().getFullYear()}</p>
           <p className="mt-1">Designed by Mohammad Saleh</p>
         </div>
