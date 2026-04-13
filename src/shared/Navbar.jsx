@@ -27,7 +27,6 @@ const Navbar = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Navigation links as an array – easy to extend
     const navLinks = [
         { text: "Home", to: "/" },
         { text: "About", to: "/about" },
@@ -37,18 +36,18 @@ const Navbar = () => {
 
     return (
         <header className={`w-full transition-all duration-300 ${isScrolled
-            ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg'
-            : 'bg-white/90 dark:bg-gray-900/80 backdrop-blur-md'
-            } border-b border-gray-200 dark:border-gray-800`}>
+                ? 'bg-gray-900/95 backdrop-blur-lg shadow-lg'
+                : 'bg-gray-900/80 backdrop-blur-md'
+            } border-b border-gray-800`}>
             <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-350">
                 <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
                     {/* Logo */}
                     <div className="flex items-center">
-                        <a href="" className="flex items-center ">
-                            <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 hexagon bg-gray-900 dark:bg-gray-50 flex items-center justify-center transition-transform group-hover:scale-110">
-                                <img className='' src="https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png" alt="" />
+                        <a href="/" className="flex items-center group">
+                            <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 hexagon bg-gray-800 flex items-center justify-center transition-transform group-hover:scale-110">
+                                <img className="w-full h-full object-contain" src="https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png" alt="Logo" />
                             </div>
-                            <span className="font-bold text-lg sm:text-xl lg:text-3xl text-gray-900 ml-5 dark:text-gray-100">Saleh</span>
+                            <span className="font-bold text-lg sm:text-xl lg:text-3xl text-white ml-5">Saleh</span>
                         </a>
                     </div>
 
@@ -59,14 +58,12 @@ const Navbar = () => {
                                 key={link.text}
                                 to={link.to}
                                 className={({ isActive }) =>
-                                    `text-sm lg:text-base font-medium transition-colors relative group ${isActive
-                                        ? 'text-gray-900 dark:text-white'
-                                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                                    `text-sm lg:text-base font-medium transition-colors relative group ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'
                                     }`
                                 }
                             >
                                 {link.text}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-gray-100 transition-all duration-300 group-hover:w-full"></span>
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                             </NavLink>
                         ))}
                     </nav>
@@ -75,27 +72,23 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center space-x-2 lg:space-x-3">
                         <a
                             href="#"
-                            className="flex items-center space-x-1.5 lg:space-x-2 px-3 lg:px-4 py-1.5 lg:py-2 text-xs lg:text-sm font-medium text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-all hover:shadow-md"
+                            className="flex items-center space-x-1.5 lg:space-x-2 px-3 lg:px-4 py-1.5 lg:py-2 text-xs lg:text-sm font-medium text-gray-200 border border-gray-700 rounded-md hover:bg-gray-800 transition-all hover:shadow-md"
                         >
                             <span>Resume</span>
                             <ExternalLink className="h-3 w-3 lg:h-4 lg:w-4" />
                         </a>
                         <Link
-                            className="relative inline-flex items-center border-2 justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
-                            /* Light mode: grayish glass (translucent gray) */
-                            border border-gray-400/50 text-gray-800 bg-gray-200/40 backdrop-blur-sm hover:bg-gray-300/60
-                            /* Dark mode: white glass (white translucent) */
-                            dark:border-white/30 dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:hover:bg-white/15"
+                            className="relative inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+                                border border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white/15"
                             to="/contact"
                         >
-                            {/* Shimmer / Sparkle overlay (same for both themes) */}
                             <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                                <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                                <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                             </span>
-
                             <span className="relative z-10 flex items-center gap-2">
                                 Hire Me
+                                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </span>
                         </Link>
                     </div>
@@ -103,7 +96,7 @@ const Navbar = () => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+                        className="md:hidden p-2 text-gray-300 hover:bg-gray-800 rounded-md transition-colors"
                         aria-label="Toggle menu"
                     >
                         {isMenuOpen ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
@@ -113,7 +106,7 @@ const Navbar = () => {
                 {/* Mobile Navigation Drawer */}
                 <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                     }`}>
-                    <div className="py-4 border-t border-gray-200 dark:border-gray-800">
+                    <div className="py-4 border-t border-gray-800">
                         <div className="flex flex-col space-y-1">
                             {navLinks.map(link => (
                                 <NavLink
@@ -122,32 +115,30 @@ const Navbar = () => {
                                     onClick={() => setIsMenuOpen(false)}
                                     className={({ isActive }) =>
                                         `px-3 py-2.5 text-sm sm:text-base font-medium rounded-md transition-colors ${isActive
-                                            ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white'
-                                            : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                            ? 'bg-gray-800 text-white'
+                                            : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                                         }`
                                     }
                                 >
                                     {link.text}
                                 </NavLink>
                             ))}
-                            <div className="pt-4 mt-2 border-t border-gray-200 dark:border-gray-700 flex flex-col space-y-2">
+                            <div className="pt-4 mt-2 border-t border-gray-800 flex flex-col space-y-2">
                                 <a
                                     href="#"
-                                    className="flex items-center justify-center space-x-2 px-3 py-2.5 text-sm font-medium border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                    className="flex items-center justify-center space-x-2 px-3 py-2.5 text-sm font-medium border border-gray-700 rounded-md hover:bg-gray-800 transition-colors text-gray-200"
                                 >
                                     <span>Resume</span>
                                     <ExternalLink className="h-4 w-4" />
                                 </a>
                                 <Link
-                                    className="relative i line-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                                    className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
                                     to="/contact"
                                 >
-                                    {/* Two shimmer layers for a more complex sparkle */}
                                     <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                                         <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                                     </span>
-
                                     <span className="relative z-10 flex items-center gap-2">
                                         Hire Me
                                     </span>
