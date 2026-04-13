@@ -65,9 +65,17 @@ const Hero = () => {
 
 
   return (
-    <section className="relative bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 md:py-24 lg:py-32">
-      <div className="max-w-350 mx-auto px-4 sm:px-2 lg:px-6 xl:px-12 2xl:px-16">
-        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+    <section className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+      
+      {/* Animated Blue Blurry Balls */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl opacity-30 animate-float1" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-25 animate-float2" />
+        <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />
+      </div>
+
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left">
             {/* Animated Heading */}
@@ -177,23 +185,23 @@ const About = () => {
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Why work with me?</h3>
             <ul className="space-y-3 text-gray-600 dark:text-gray-300">
               <li className="flex items-start gap-3">
-                <Smartphone className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <Smartphone className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                 <span>100% responsive designs that work on all devices</span>
               </li>
               <li className="flex items-start gap-3">
-                <Rocket className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <Rocket className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                 <span>SEO optimized and fast loading</span>
               </li>
               <li className="flex items-start gap-3">
-                <Code2 className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <Code2 className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                 <span>Clean, maintainable code with modern tools</span>
               </li>
               <li className="flex items-start gap-3">
-                <Headphones className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <Headphones className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                 <span>Ongoing support and collaboration</span>
               </li>
               <li className="flex items-start gap-3">
-                <CalendarCheck className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                <CalendarCheck className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                 <span>On‑time delivery and clear communication</span>
               </li>
             </ul>
