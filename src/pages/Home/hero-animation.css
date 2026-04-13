@@ -3,5 +3,6 @@
   50% { opacity: 0; }
 }
 .animate-pulse {
-  animation: blink 0.7s step-end infinite;
+  animation: blink 0.9s step-end infinite;
 }
+

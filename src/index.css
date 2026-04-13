@@ -22,3 +22,43 @@
 .animate-float1 { animation: float1 12s ease-in-out infinite; }
 .animate-float2 { animation: float2 15s ease-in-out infinite; }
 .animate-float3 { animation: float3 14s ease-in-out infinite; }
+
+/* Firefly container */
+.firefly-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Individual firefly */
+.firefly {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #60a5fa; /* blue-400 */
+  border-radius: 50%;
+  filter: blur(2px);
+  box-shadow: 0 0 6px 2px rgba(96, 165, 250, 0.6);
+  opacity: 0;
+  animation: floatFirefly linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes floatFirefly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(var(--dx, 100px), var(--dy, -80px)) scale(0.5);
+    opacity: 0;
+  }
+}

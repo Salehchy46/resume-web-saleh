@@ -17,11 +17,158 @@ import {
   Headphones,
   CalendarCheck
 } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import '../Home/hero-animation.css';
 import { Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import * as motion from "motion/react-client";
+
+const Fireflies = () => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let animationId;
+    let fireflies = [];
+
+    const resize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    };
+    window.addEventListener("resize", resize);
+    resize();
+
+    // eslint-disable-next-line react-hooks/unsupported-syntax
+    class Firefly {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.angle = Math.random() * Math.PI * 2;
+        this.speed = 0.15 + Math.random() * 0.4;   // slower, more natural
+        this.radius = 2 + Math.random() * 3;
+        this.baseBrightness = 0.4 + Math.random() * 0.6;
+        this.flickerSpeed = 0.01 + Math.random() * 0.03;
+        this.flickerOffset = Math.random() * Math.PI * 2;
+        // Random colour: warm yellow/green (real fireflies)
+        const hue = 45 + Math.random() * 35; // 45–80
+        this.color = `hsl(${hue}, 85%, 65%)`;
+        // Lifetime: very long (3000–6000 frames at 60fps = 50–100 seconds)
+        this.life = 1.0;
+        this.decay = 0.0003 + Math.random() * 0.0007; // extremely slow fading
+        // Random "off" behaviour: each firefly randomly goes dark for a short period
+        this.offTimer = 0;
+        this.isOff = false;
+        this.offDuration = 0;
+      }
+      update() {
+        // Random walk – change direction gently
+        if (Math.random() < 0.01) {
+          this.angle += (Math.random() - 0.5) * 0.6;
+        }
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+
+        // Wrap around edges
+        if (this.x < -30) this.x = width + 30;
+        if (this.x > width + 30) this.x = -30;
+        if (this.y < -30) this.y = height + 30;
+        if (this.y > height + 30) this.y = -30;
+
+        // Natural flicker: brightness oscillates
+        const time = Date.now() * this.flickerSpeed;
+        let flicker = 0.5 + 0.5 * Math.sin(time + this.flickerOffset);
+        // Make flicker more erratic: random spikes
+        if (Math.random() < 0.005) flicker = Math.random(); // occasional random dim/bright
+
+        // Random "off" state: firefly turns off completely for a random duration
+        if (!this.isOff) {
+          // 1% chance per frame to go off (≈ every 1–2 seconds)
+          if (Math.random() < 0.008) {
+            this.isOff = true;
+            this.offDuration = 0.5 + Math.random() * 1.5; // off for 0.5–2 seconds
+            this.offTimer = 0;
+          }
+        } else {
+          this.offTimer += 1 / 60; // assume ~60fps
+          if (this.offTimer >= this.offDuration) {
+            this.isOff = false;
+          }
+        }
+
+        let brightness = this.baseBrightness * (0.4 + flicker * 0.6);
+        if (this.isOff) brightness = 0.05; // almost off but still faint (or set to 0)
+
+        // Slowly fade out over very long life, then respawn fresh
+        this.life -= this.decay;
+        if (this.life <= 0) {
+          this.reset();
+          this.life = 1.0;
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          // also reset off state
+          this.isOff = false;
+        }
+
+        this.currentBrightness = brightness * this.life;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = this.color;
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = Math.min(this.currentBrightness, 0.9);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    const fireflyCount = 20; // you can increase to 70–80 for denser effect
+    for (let i = 0; i < fireflyCount; i++) {
+      fireflies.push(new Firefly());
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+      fireflies.forEach((fly) => {
+        fly.update();
+        fly.draw();
+      });
+      animationId = requestAnimationFrame(animate);
+    };
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+        zIndex: 5,
+      }}
+    />
+  );
+};
 
 const Hero = () => {
   // Phase: 'hello' or 'intro'
@@ -63,10 +210,10 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, wordIndex, phase, words]);
 
-
   return (
     <section className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
-      
+      {/* Fireflies */}
+      <Fireflies />
       {/* Animated Blue Blurry Balls */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl opacity-30 animate-float1" />
