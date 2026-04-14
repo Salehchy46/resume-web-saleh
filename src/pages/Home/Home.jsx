@@ -20,8 +20,6 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 import '../Home/hero-animation.css';
 import { Link } from "react-router-dom";
-// eslint-disable-next-line no-unused-vars
-import * as motion from "motion/react-client";
 
 const Fireflies = () => {
   const canvasRef = useRef(null);
@@ -31,21 +29,27 @@ const Fireflies = () => {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+    let container = canvas.parentElement;
+    let width = container.clientWidth;
+    let height = container.clientHeight;
     let animationId;
     let fireflies = [];
 
     const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      if (!container) container = canvas.parentElement;
+      width = container.clientWidth;
+      height = container.clientHeight;
       canvas.width = width;
       canvas.height = height;
     };
+
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+    });
+    resizeObserver.observe(container);
     window.addEventListener("resize", resize);
     resize();
 
-    // eslint-disable-next-line react-hooks/unsupported-syntax
     class Firefly {
       constructor() {
         this.reset();
@@ -54,68 +58,57 @@ const Fireflies = () => {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
         this.angle = Math.random() * Math.PI * 2;
-        this.speed = 0.15 + Math.random() * 0.4;   // slower, more natural
-        this.radius = 2 + Math.random() * 3;
-        this.baseBrightness = 0.4 + Math.random() * 0.6;
+        this.speed = 0.15 + Math.random() * 0.3;
+        this.radius = 1.5 + Math.random() * 2.5;   // smaller: 1.5–4px
+        this.baseBrightness = 0.5 + Math.random() * 0.5;
         this.flickerSpeed = 0.01 + Math.random() * 0.03;
         this.flickerOffset = Math.random() * Math.PI * 2;
-        // Random colour: warm yellow/green (real fireflies)
-        const hue = 45 + Math.random() * 35; // 45–80
+        const hue = 45 + Math.random() * 35;
         this.color = `hsl(${hue}, 85%, 65%)`;
-        // Lifetime: very long (3000–6000 frames at 60fps = 50–100 seconds)
         this.life = 1.0;
-        this.decay = 0.0003 + Math.random() * 0.0007; // extremely slow fading
-        // Random "off" behaviour: each firefly randomly goes dark for a short period
+        this.decay = 0.0003 + Math.random() * 0.0007;
         this.offTimer = 0;
         this.isOff = false;
         this.offDuration = 0;
       }
       update() {
-        // Random walk – change direction gently
         if (Math.random() < 0.01) {
           this.angle += (Math.random() - 0.5) * 0.6;
         }
         this.x += Math.cos(this.angle) * this.speed;
         this.y += Math.sin(this.angle) * this.speed;
 
-        // Wrap around edges
         if (this.x < -30) this.x = width + 30;
         if (this.x > width + 30) this.x = -30;
         if (this.y < -30) this.y = height + 30;
         if (this.y > height + 30) this.y = -30;
 
-        // Natural flicker: brightness oscillates
         const time = Date.now() * this.flickerSpeed;
         let flicker = 0.5 + 0.5 * Math.sin(time + this.flickerOffset);
-        // Make flicker more erratic: random spikes
-        if (Math.random() < 0.005) flicker = Math.random(); // occasional random dim/bright
+        if (Math.random() < 0.005) flicker = Math.random();
 
-        // Random "off" state: firefly turns off completely for a random duration
         if (!this.isOff) {
-          // 1% chance per frame to go off (≈ every 1–2 seconds)
           if (Math.random() < 0.008) {
             this.isOff = true;
-            this.offDuration = 0.5 + Math.random() * 1.5; // off for 0.5–2 seconds
+            this.offDuration = 0.5 + Math.random() * 1.5;
             this.offTimer = 0;
           }
         } else {
-          this.offTimer += 1 / 60; // assume ~60fps
+          this.offTimer += 1 / 60;
           if (this.offTimer >= this.offDuration) {
             this.isOff = false;
           }
         }
 
         let brightness = this.baseBrightness * (0.4 + flicker * 0.6);
-        if (this.isOff) brightness = 0.05; // almost off but still faint (or set to 0)
+        if (this.isOff) brightness = 0.05;
 
-        // Slowly fade out over very long life, then respawn fresh
         this.life -= this.decay;
         if (this.life <= 0) {
           this.reset();
           this.life = 1.0;
           this.x = Math.random() * width;
           this.y = Math.random() * height;
-          // also reset off state
           this.isOff = false;
         }
 
@@ -124,16 +117,16 @@ const Fireflies = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 8;
         ctx.shadowColor = this.color;
         ctx.fillStyle = this.color;
-        ctx.globalAlpha = Math.min(this.currentBrightness, 0.9);
+        ctx.globalAlpha = Math.min(this.currentBrightness, 0.8);
         ctx.fill();
         ctx.shadowBlur = 0;
       }
     }
 
-    const fireflyCount = 20; // you can increase to 70–80 for denser effect
+    const fireflyCount = 50;
     for (let i = 0; i < fireflyCount; i++) {
       fireflies.push(new Firefly());
     }
@@ -151,6 +144,7 @@ const Fireflies = () => {
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
+      resizeObserver.disconnect();
     };
   }, []);
 
@@ -163,12 +157,14 @@ const Fireflies = () => {
         left: 0,
         width: "100%",
         height: "100%",
+        display: "block",
         pointerEvents: "none",
-        zIndex: 5,
+        zIndex: 30,
       }}
     />
   );
 };
+
 
 const Hero = () => {
   // Phase: 'hello' or 'intro'
@@ -212,8 +208,7 @@ const Hero = () => {
 
   return (
     <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
-      {/* Fireflies */}
-      <Fireflies />
+
 
       {/* Animated Blue Blurry Balls */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -305,49 +300,51 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+
     </section>
   );
 };
 
 const About = () => {
   return (
-    <section id="about" className="py-16 md:py-24 bg-white dark:bg-gray-900">
-      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+    <section id="about" className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">About Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">About Me</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
         </div>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-              I'm <span className="font-semibold text-gray-900 dark:text-white">Mohammad Saleh</span>, a passionate frontend developer with 3+ years of experience building modern, responsive websites.
+            <p className="text-gray-300 text-lg leading-relaxed">
+              I'm <span className="font-semibold text-white">Mohammad Saleh</span>, a passionate frontend developer with 3+ years of experience building modern, responsive websites.
               I love turning ideas into reality through clean code and intuitive design. I work with both <strong>React</strong> and <strong>WordPress</strong>, ensuring fast, SEO‑friendly, and user‑centric results.
             </p>
-            <p className="mt-4 text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-gray-300">
               Beyond coding, I enjoy mentoring, contributing to open source, and constantly learning new technologies. Let's build something amazing together!
             </p>
           </div>
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Why work with me?</h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+          <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
+            <h3 className="text-2xl font-bold text-white mb-4">Why work with me?</h3>
+            <ul className="space-y-3 text-gray-300">
               <li className="flex items-start gap-3">
-                <Smartphone className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                <Smartphone className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
                 <span>100% responsive designs that work on all devices</span>
               </li>
               <li className="flex items-start gap-3">
-                <Rocket className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                <Rocket className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
                 <span>SEO optimized and fast loading</span>
               </li>
               <li className="flex items-start gap-3">
-                <Code2 className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                <Code2 className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
                 <span>Clean, maintainable code with modern tools</span>
               </li>
               <li className="flex items-start gap-3">
-                <Headphones className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                <Headphones className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
                 <span>Ongoing support and collaboration</span>
               </li>
               <li className="flex items-start gap-3">
-                <CalendarCheck className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                <CalendarCheck className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
                 <span>On‑time delivery and clear communication</span>
               </li>
             </ul>
@@ -369,18 +366,14 @@ const Work = () => {
     { icon: <Globe size={40} />, title: "Wix & Website Builders", link: "https://manage.wix.com/studio/sites?viewId=all-items-view", desc: "Professional Wix sites with advanced features." },
   ];
 
-  const cardVariants = {
-    offscreen: { y: 80, scale: 0.6, opacity: 0, originY: 1, originX: 0.5 },
-    onscreen: { y: 0, scale: 1, opacity: 1, transition: { type: "spring", bounce: 0.4, duration: 0.8 } },
-  };
-
   return (
-    <section id="services" className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
+    <section id="services" className="py-16 md:py-24 bg-gray-800">
+
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">What I Offer</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">What I Offer</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Hover over a card to spotlight it</p>
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">Hover over a card to spotlight it</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -389,27 +382,23 @@ const Work = () => {
             const isOtherHovered = hoveredIndex !== null && hoveredIndex !== idx;
 
             return (
-              <motion.div
+              <div
                 key={idx}
-                initial="offscreen"
-                whileInView="onscreen"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={cardVariants}
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md transition-all duration-300 text-center cursor-pointer
+                className={`bg-gray-900 p-6 rounded-xl shadow-md transition-all duration-300 text-center cursor-pointer
                   ${isOtherHovered ? "opacity-0 pointer-events-none" : "opacity-100"}
                   ${isHovered ? "scale-105 shadow-2xl z-10" : "scale-100"}
                 `}
               >
                 <a href={service.link} target="_blank" rel="noopener noreferrer" className="block">
-                  <div className="text-blue-600 mb-4 flex justify-center transition-transform group-hover:scale-110">
+                  <div className="text-blue-400 mb-4 flex justify-center">
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{service.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">{service.desc}</p>
+                  <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+                  <p className="text-gray-300">{service.desc}</p>
                 </a>
-              </motion.div>
+              </div>
             );
           })}
         </div>
@@ -482,10 +471,13 @@ const Contact = () => {
   );
 };
 
+// Home.jsx – updated structure
+
 const Home = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
-      <main>
+    <div className="min-h-screen bg-gray-900 relative overflow-hidden">
+      <Fireflies />
+      <main>   {/* no z-index, or keep lower than canvas */}
         <Hero />
         <About />
         <Work />

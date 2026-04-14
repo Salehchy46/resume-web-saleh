@@ -36,8 +36,8 @@ const Navbar = () => {
 
     return (
         <header className={`w-full transition-all duration-300 ${isScrolled
-                ? 'bg-gray-900/95 backdrop-blur-lg shadow-lg'
-                : 'bg-gray-900/80 backdrop-blur-md'
+            ? 'bg-gray-900/95 backdrop-blur-lg shadow-lg'
+            : 'bg-gray-900/80 backdrop-blur-md'
             } border-b border-gray-800`}>
             <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-350">
                 <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
