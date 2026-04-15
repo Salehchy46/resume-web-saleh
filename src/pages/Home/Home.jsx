@@ -2,24 +2,18 @@
 "use client";
 
 import {
-  ArrowRight,
-  Github,
-  Linkedin,
-  Mail,
-  Code,
-  Layout,
-  Globe,
-  Star,
-  Users,
-  Smartphone,
-  Rocket,
-  Code2,
-  Headphones,
-  CalendarCheck
+  ArrowRight, Github, Linkedin, Mail,
+  Code, Layout, Globe, Star,
+  Users, Smartphone, Rocket, Code2,
+  Headphones, CalendarCheck
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import '../Home/hero-animation.css';
 import { Link } from "react-router-dom";
+import DevloperLottie from "../../assets/lotties/Developer.json";
+import Coding from "../../assets/lotties/Coding.json";
+import Lottie from "lottie-react";
+// import { useLottie, useLottieInteractivity } from "lottie-react";
 
 const Fireflies = () => {
   const canvasRef = useRef(null);
@@ -127,7 +121,7 @@ const Fireflies = () => {
       }
     }
 
-    const fireflyCount = 50;
+    const fireflyCount = 80;
     for (let i = 0; i < fireflyCount; i++) {
       fireflies.push(new Firefly());
     }
@@ -208,7 +202,7 @@ const Hero = () => {
   }, [displayText, isDeleting, wordIndex, phase, words]);
 
   return (
-    <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
 
 
       {/* Animated Blue Blurry Balls */}
@@ -218,7 +212,7 @@ const Hero = () => {
         <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left">
@@ -238,7 +232,7 @@ const Hero = () => {
             )}
 
             {/* Rest of the hero content */}
-            <p className="mt-4 text-gray-300 text-base md:text-lg max-w-2xl mx-auto lg:mx-0">
+            <p className="mt-4 text-gray-300 md:text-lg max-w-2xl mx-auto lg:mx-0">
               I craft responsive, high‑performance websites that help you connect with your audience.
               Whether it’s a custom React app, a WordPress site, or a Wix design — I bring ideas to life.
             </p>
@@ -251,8 +245,8 @@ const Hero = () => {
               >
                 {/* Shimmer overlay */}
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                 </span>
                 <span className="relative z-10 flex items-center gap-2">
                   Hire Me
@@ -266,8 +260,8 @@ const Hero = () => {
               >
                 {/* Shimmer overlay */}
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
                 </span>
                 <span className="relative z-10 flex items-center gap-2">
                   View Projects
@@ -309,13 +303,16 @@ const Hero = () => {
 
 const About = () => {
   return (
-    <section id="about" className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
+    <section id="about" className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">About Me</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
         </div>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+          <div className="lottie-tint">
+            <Lottie animationData={DevloperLottie} loop={true} className="w-full h-auto" />
+          </div>
           <div>
             <p className="text-gray-300 text-lg leading-relaxed">
               I'm <span className="font-semibold text-white">Mohammad Saleh</span>, a passionate frontend developer with 3+ years of experience building modern, responsive websites.
@@ -324,7 +321,12 @@ const About = () => {
             <p className="mt-4 text-gray-300">
               Beyond coding, I enjoy mentoring, contributing to open source, and constantly learning new technologies. Let's build something amazing together!
             </p>
+            <p className="mt-6 text-gray-300 italic">
+              "When I'm not coding, you'll find me exploring new tech trends, contributing to open source, or mentoring aspiring developers. I believe in continuous learning and sharing knowledge."
+            </p>
           </div>
+        </div>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
             <h3 className="text-2xl font-bold text-white mb-4">Why work with me?</h3>
             <ul className="space-y-3 text-gray-300">
@@ -349,6 +351,9 @@ const About = () => {
                 <span>On‑time delivery and clear communication</span>
               </li>
             </ul>
+          </div>
+          <div>
+            <Lottie animationData={Coding} loop={true} className="w-full h-auto" />
           </div>
         </div>
       </div>
