@@ -2,24 +2,17 @@
 "use client";
 
 import {
-  ArrowRight,
-  Github,
-  Linkedin,
-  Mail,
-  Code,
-  Layout,
-  Globe,
-  Star,
-  Users,
-  Smartphone,
-  Rocket,
-  Code2,
-  Headphones,
-  CalendarCheck
+  ArrowRight, Github, Linkedin, Mail,
+  Code, Layout, Globe, Star,
+  Users, Smartphone, Rocket, Code2,
+  Headphones, CalendarCheck
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import '../Home/hero-animation.css';
 import { Link } from "react-router-dom";
+import DevloperLottie from "../../assets/lotties/Developer.json";
+import Lottie from "lottie-react";
+import { useLottie, useLottieInteractivity } from "lottie-react";
 
 const Fireflies = () => {
   const canvasRef = useRef(null);
@@ -126,7 +119,7 @@ const Fireflies = () => {
       }
     }
 
-    const fireflyCount = 50;
+    const fireflyCount = 40;
     for (let i = 0; i < fireflyCount; i++) {
       fireflies.push(new Firefly());
     }
@@ -315,6 +308,9 @@ const About = () => {
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
         </div>
         <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="lottie-tint">
+            <Lottie animationData={DevloperLottie} loop={true} className="w-full h-auto" />
+          </div>
           <div>
             <p className="text-gray-300 text-lg leading-relaxed">
               I'm <span className="font-semibold text-white">Mohammad Saleh</span>, a passionate frontend developer with 3+ years of experience building modern, responsive websites.
@@ -324,6 +320,7 @@ const About = () => {
               Beyond coding, I enjoy mentoring, contributing to open source, and constantly learning new technologies. Let's build something amazing together!
             </p>
           </div>
+
           <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
             <h3 className="text-2xl font-bold text-white mb-4">Why work with me?</h3>
             <ul className="space-y-3 text-gray-300">

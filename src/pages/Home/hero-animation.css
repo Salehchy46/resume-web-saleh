@@ -6,3 +6,6 @@
   animation: blink 0.9s step-end infinite;
 }
 
+.lottie-tint {
+  filter: brightness(0.0) contrast(0.0) saturate(0.0) hue-rotate(195deg) drop-shadow(0 0 8px rgb(11, 107, 224));
+}
