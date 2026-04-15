@@ -50,6 +50,7 @@ const Fireflies = () => {
     window.addEventListener("resize", resize);
     resize();
 
+    // eslint-disable-next-line react-hooks/unsupported-syntax
     class Firefly {
       constructor() {
         this.reset();
