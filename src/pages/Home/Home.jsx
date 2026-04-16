@@ -5,7 +5,8 @@ import {
   ArrowRight, Github, Linkedin, Mail,
   Code, Layout, Globe, Star,
   Users, Smartphone, Rocket, Code2,
-  Headphones, CalendarCheck
+  Headphones, CalendarCheck, DollarSign, Shield,
+  MessageCircle, Layers
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import '../Home/hero-animation.css';
@@ -349,6 +350,22 @@ const About = () => {
               <li className="flex items-start gap-3">
                 <CalendarCheck className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
                 <span>On‑time delivery and clear communication</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <DollarSign className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
+                <span>Competitive & transparent pricing – no hidden fees</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Shield className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
+                <span>Secure, reliable code with best practices</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MessageCircle className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
+                <span>24/7 communication & quick turnaround</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Layers className="h-5 w-5 text-blue-400 mt-0.5 shrink-0" />
+                <span>Custom solutions tailored to your business needs</span>
               </li>
             </ul>
           </div>
