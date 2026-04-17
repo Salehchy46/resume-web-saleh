@@ -380,8 +380,6 @@ const About = () => {
 
 
 const Work = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   const services = [
     { icon: <Code size={40} />, title: "Custom Web Development", link: "https://www.w3schools.com/whatis/", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
     { icon: <Layout size={40} />, title: "WordPress Development", link: "https://wordpress.com/", desc: "Custom themes, plugins, and full site management." },
@@ -391,41 +389,85 @@ const Work = () => {
 
   return (
     <section id="services" className="py-16 md:py-24 bg-gray-800">
-
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">What I Offer</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">Hover over a card to spotlight it</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, idx) => {
-            const isHovered = hoveredIndex === idx;
-            const isOtherHovered = hoveredIndex !== null && hoveredIndex !== idx;
-
-            return (
-              <div
-                key={idx}
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={`bg-gray-900 p-6 rounded-xl shadow-md transition-all duration-300 text-center cursor-pointer
-                  ${isOtherHovered ? "opacity-0 pointer-events-none" : "opacity-100"}
-                  ${isHovered ? "scale-105 shadow-2xl z-10" : "scale-100"}
-                `}
-              >
-                <a href={service.link} target="_blank" rel="noopener noreferrer" className="block">
-                  <div className="text-blue-400 mb-4 flex justify-center">
+          {services.map((service, idx) => (
+            <div
+              key={idx}
+              className="flip-card group"
+              style={{ perspective: "1000px" }}
+            >
+              <div className="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                {/* Front */}
+                <div className="flip-card-front absolute inset-0 backface-hidden bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 shadow-md border border-white/10 flex flex-col items-center text-center">
+                  <div className="text-blue-400 mb-4 transition-transform duration-300 group-hover:scale-110">
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
-                  <p className="text-gray-300">{service.desc}</p>
-                </a>
+                  <p className="text-gray-300 text-sm">{service.desc}</p>
+                  {/* Shimmer overlay */}
+                  <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                  </div>
+                </div>
+
+                {/* Back */}
+                <div className="flip-card-back absolute inset-0 backface-hidden bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 shadow-md border border-blue-400/30 rotate-y-180 flex flex-col items-center justify-center text-center">
+                  <div className="text-blue-400 mb-4">
+                    <Globe size={40} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                  <a
+                    href={service.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-lg hover:bg-white/20 transition-all hover:shadow-lg hover:scale-105"
+                  >
+                    Visit Site <ArrowRight size={16} />
+                  </a>
+                  {/* Glass glow on back */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 pointer-events-none" />
+                </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Custom CSS for 3D flip (add to your global CSS or use style tag) */}
+      <style jsx>{`
+        .transform-style-preserve-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        .group:hover .group-hover\\:rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        .flip-card {
+          height: auto;
+          min-height: 320px;
+        }
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 320px;
+        }
+        .flip-card-front, .flip-card-back {
+          width: 100%;
+          height: 100%;
+        }
+      `}</style>
     </section>
   );
 };
@@ -434,33 +476,38 @@ const Projects = () => {
   const projects = [
     { title: "E‑Commerce Store", tech: "React, Tailwind, MongoDB", image: "https://i.ibb.co.com/7d28nBhP/khela.webp", live: "https://sports-equipment99.netlify.app/", code: "https://github.com/Salehchy46/equipment-management-client" },
     { title: "WordPress Agency Site", tech: "WordPress, Elementor, PHP", image: "https://i.ibb.co.com/vxj8w9bV/download.png", live: "https://www.hurrida.com/", code: "https://github.com/Salehchy46/cookie-policy-hurrida" },
-    { title: "Portfolio Dashboard", tech: " Tailwind, React", image: "https://i.ibb.co.com/MDdQR89t/download-1.png", live: "https://superlative-manatee-5fc69d.netlify.app/", code: "https://github.com/Salehchy46/tic-tac-toe" },
+    { title: "Portfolio Dashboard", tech: "Tailwind, React", image: "https://i.ibb.co.com/MDdQR89t/download-1.png", live: "https://superlative-manatee-5fc69d.netlify.app/", code: "https://github.com/Salehchy46/tic-tac-toe" },
   ];
+
   return (
-    <section id="projects" className="py-16 md:py-24 bg-white dark:bg-gray-900">
+    <section id="projects" className="py-16 md:py-24 bg-gray-900">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Recent Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">Recent Projects</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Some of my best work – live links available.</p>
+          <p className="mt-4 text-gray-400">Some of my best work – live links available.</p>
         </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
-            <div key={idx} className="bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+            <div key={idx} className="bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
               <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
               <div className="p-5">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{project.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{project.tech}</p>
-                <div className="mt-4 flex gap-3">
-                  <a href={project.live} className="text-blue-600 hover:underline text-sm font-medium">Live</a>
-                  <a href={project.code} className="text-gray-600 dark:text-gray-400 hover:underline text-sm">Code</a>
+                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                <p className="text-gray-400 text-sm">{project.tech}</p>
+                <div className="mt-4 flex gap-4">
+                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm font-medium transition">Live</a>
+                  <a href={project.code} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-300 text-sm transition">Code</a>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
         <div className="text-center mt-10">
-          <a href="#" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium">View all projects <ArrowRight size={16} /></a>
+          <a href="#" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition">
+            View all projects <ArrowRight size={16} />
+          </a>
         </div>
       </div>
     </section>
