@@ -381,15 +381,20 @@ const About = () => {
 
 const Work = () => {
   const services = [
-    { icon: <Code size={40} />, title: "Custom Web Development", link: "https://www.w3schools.com/whatis/", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
-    { icon: <Layout size={40} />, title: "WordPress Development", link: "https://wordpress.com/", desc: "Custom themes, plugins, and full site management." },
-    { icon: <Smartphone size={40} />, title: "Responsive Design", link: "https://www.w3schools.com/html/html_responsive.asp", desc: "Flawless experience on mobile, tablet, and desktop." },
+    { icon: <Code size={40} />, title: "Custom Web Development", link: "https://github.com/Salehchy46", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
+    { icon: <Layout size={40} />, title: "WordPress Development", link: "https://github.com/Salehchy46", desc: "Custom themes, plugins, and full site management." },
+    { icon: <Smartphone size={40} />, title: "Responsive Design", link: "https://github.com/Salehchy46", desc: "Flawless experience on mobile, tablet, and desktop." },
     { icon: <Globe size={40} />, title: "Wix & Website Builders", link: "https://manage.wix.com/studio/sites?viewId=all-items-view", desc: "Professional Wix sites with advanced features." },
   ];
 
   return (
     <section id="services" className="py-16 md:py-24 bg-gray-800">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl opacity-30 animate-float1" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-25 animate-float2" />
+          <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />
+        </div>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">What I Offer</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
@@ -505,9 +510,21 @@ const Projects = () => {
         </div>
 
         <div className="text-center mt-10">
-          <a href="#" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition">
-            View all projects <ArrowRight size={16} />
-          </a>
+          <Link
+            className="relative inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
+              border border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white/15"
+            to="/work"
+          >
+            {/* Shimmer overlay */}
+            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 delay-150 ease-out" />
+            </span>
+            <span className="relative z-10 flex items-center gap-2">
+              View All Projects
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </span>
+          </Link>
         </div>
       </div>
     </section>
