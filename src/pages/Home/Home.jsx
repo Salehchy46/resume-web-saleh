@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import DevloperLottie from "../../assets/lotties/Developer.json";
 import Coding from "../../assets/lotties/Coding.json";
 import Lottie from "lottie-react";
+import CodeDarkLottie from "../../assets/lotties/code-dark.json";
 // import { useLottie, useLottieInteractivity } from "lottie-react";
 
 const Fireflies = () => {
@@ -459,17 +460,22 @@ const Contact = () => {
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">Have a project in mind? I'd love to hear about it.</p>
         </div>
-        <div className="max-w-3xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 md:p-8">
-          <form action="https://formspree.io/f/yourformid" method="POST" className="space-y-6">
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Name</label><input type="text" name="name" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white" /></div>
-              <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Email</label><input type="email" name="email" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white" /></div>
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="max-w-3xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 md:p-8">
+            <form action="https://formspree.io/f/yourformid" method="POST" className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Name</label><input type="text" name="name" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white" /></div>
+                <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Email</label><input type="email" name="email" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white" /></div>
+              </div>
+              <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Message</label><textarea name="message" rows="5" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"></textarea></div>
+              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-medium">Send Message</button>
+            </form>
+            <div className="mt-8 text-center text-gray-600 dark:text-gray-400">
+              <p>Or reach me directly: <a href="mailto:Salehchyctg@gmail.com" className="text-blue-600">Salehchyctg@gmail.com</a> | +88 01835‑069946</p>
             </div>
-            <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Message</label><textarea name="message" rows="5" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"></textarea></div>
-            <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-medium">Send Message</button>
-          </form>
-          <div className="mt-8 text-center text-gray-600 dark:text-gray-400">
-            <p>Or reach me directly: <a href="mailto:Salehchyctg@gmail.com" className="text-blue-600">Salehchyctg@gmail.com</a> | +88 01835‑069946</p>
+          </div>
+          <div className="">
+            <Lottie animationData={CodeDarkLottie} loop={true} className="w-full h-auto" />
           </div>
         </div>
       </div>
