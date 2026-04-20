@@ -390,12 +390,7 @@ const Work = () => {
 
   return (
     <section id="services" className="py-16 md:py-24 bg-gray-800">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl opacity-30 animate-float1" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-25 animate-float2" />
-          <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />
-        </div>
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">What I Offer</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
@@ -418,7 +413,7 @@ const Work = () => {
                   <p className="text-gray-300 text-sm">{service.desc}</p>
                   {/* Shimmer overlay */}
                   <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
-                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12" />
                   </div>
                 </div>
 
@@ -437,7 +432,7 @@ const Work = () => {
                     Visit Site <ArrowRight size={16} />
                   </a>
                   {/* Glass glow on back */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-xl bg-linear-to-br from-blue-500/10 to-purple-500/10 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -481,13 +476,13 @@ const Work = () => {
 const Projects = () => {
   const projects = [
     { title: "E‑Commerce Store", tech: "React, Tailwind, MongoDB", image: "https://i.ibb.co.com/7d28nBhP/khela.webp", live: "https://sports-equipment99.netlify.app/", code: "https://github.com/Salehchy46/equipment-management-client" },
-    { title: "WordPress Agency Site", tech: "WordPress, Elementor, PHP", image: "https://i.ibb.co.com/vxj8w9bV/download.png", live: "https://www.hurrida.com/", code: "https://github.com/Salehchy46/cookie-policy-hurrida" },
-    { title: "Portfolio Dashboard", tech: "Tailwind, React", image: "https://i.ibb.co.com/MDdQR89t/download-1.png", live: "https://superlative-manatee-5fc69d.netlify.app/", code: "https://github.com/Salehchy46/tic-tac-toe" },
+    { title: "WordPress Site", tech: "WordPress, Elementor, PHP", image: "https://i.ibb.co.com/vxj8w9bV/download.png", live: "https://www.hurrida.com/", code: "https://github.com/Salehchy46/cookie-policy-hurrida" },
+    { title: "React Tic-Tac-Toe", tech: "Tailwind, React", image: "https://i.ibb.co.com/MDdQR89t/download-1.png", live: "https://superlative-manatee-5fc69d.netlify.app/", code: "https://github.com/Salehchy46/tic-tac-toe" },
   ];
 
   return (
     <section id="projects" className="py-16 md:py-24 bg-gray-900">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Recent Projects</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
@@ -534,29 +529,44 @@ const Projects = () => {
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+    <section id="contact" className="py-16 md:py-24 bg-gray-900">
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Let's Work Together</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">Let's Work Together</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">Have a project in mind? I'd love to hear about it.</p>
+          <p className="mt-4 text-gray-400 max-w-xl mx-auto">Have a project in mind? I'd love to hear about it.</p>
         </div>
+
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="max-w-3xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 md:p-8">
+          {/* Contact Form */}
+          <div className="max-w-3xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8">
             <form action="https://formspree.io/f/yourformid" method="POST" className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
-                <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Name</label><input type="text" name="name" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white" /></div>
-                <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Email</label><input type="email" name="email" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white" /></div>
+                <div>
+                  <label className="block text-gray-300 mb-2">Name</label>
+                  <input type="text" name="name" required className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition" />
+                </div>
+                <div>
+                  <label className="block text-gray-300 mb-2">Email</label>
+                  <input type="email" name="email" required className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition" />
+                </div>
               </div>
-              <div><label className="block text-gray-700 dark:text-gray-300 mb-2">Message</label><textarea name="message" rows="5" required className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"></textarea></div>
-              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-medium">Send Message</button>
+              <div>
+                <label className="block text-gray-300 mb-2">Message</label>
+                <textarea name="message" rows="5" required className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition"></textarea>
+              </div>
+              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-medium shadow-md hover:shadow-lg">
+                Send Message
+              </button>
             </form>
-            <div className="mt-8 text-center text-gray-600 dark:text-gray-400">
-              <p>Or reach me directly: <a href="mailto:Salehchyctg@gmail.com" className="text-blue-600">Salehchyctg@gmail.com</a> | +88 01835‑069946</p>
+            <div className="mt-8 text-center text-gray-400">
+              <p>Or reach me directly: <a href="mailto:Salehchyctg@gmail.com" className="text-blue-400 hover:text-blue-300 transition">Salehchyctg@gmail.com</a> | +88 01835‑069946</p>
             </div>
           </div>
-          <div className="">
-            <Lottie animationData={CodeDarkLottie} loop={true} className="w-full h-auto" />
+
+          {/* Lottie Animation */}
+          <div className="flex justify-center">
+            <Lottie animationData={CodeDarkLottie} loop={true} className="w-full max-w-md h-auto" />
           </div>
         </div>
       </div>
