@@ -6,7 +6,8 @@ import {
   Code, Layout, Globe, Star,
   Users, Smartphone, Rocket, Code2,
   Headphones, CalendarCheck, DollarSign, Shield,
-  MessageCircle, Layers
+  MessageCircle, Layers,
+  ExternalLink
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import '../Home/hero-animation.css';
@@ -162,7 +163,6 @@ const Fireflies = () => {
     />
   );
 };
-
 
 const Hero = () => {
   // Phase: 'hello' or 'intro'
@@ -381,7 +381,6 @@ const About = () => {
   );
 };
 
-
 const Work = () => {
   const services = [
     { icon: <Code size={40} />, title: "Custom Web Development", link: "https://github.com/Salehchy46", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
@@ -477,9 +476,30 @@ const Work = () => {
 
 const Projects = () => {
   const projects = [
-    { title: "E‑Commerce Store", tech: "React, Tailwind, MongoDB", image: "https://i.ibb.co.com/7d28nBhP/khela.webp", live: "https://sports-equipment99.netlify.app/", code: "https://github.com/Salehchy46/equipment-management-client" },
-    { title: "WordPress Site", tech: "WordPress, Elementor, PHP", image: "https://i.ibb.co.com/vxj8w9bV/download.png", live: "https://www.hurrida.com/", code: "https://github.com/Salehchy46/cookie-policy-hurrida" },
-    { title: "React Tic-Tac-Toe", tech: "Tailwind, React", image: "https://i.ibb.co.com/MDdQR89t/download-1.png", live: "https://superlative-manatee-5fc69d.netlify.app/", code: "https://github.com/Salehchy46/tic-tac-toe" },
+    {
+      title: "E‑Commerce Store",
+      tech: "React, Tailwind, MongoDB",
+      image: "https://i.ibb.co.com/7d28nBhP/khela.webp",
+      live: "https://sports-equipment99.netlify.app/",
+      code: "https://github.com/Salehchy46/equipment-management-client",
+      desc: "Full‑featured sports equipment store with cart and checkout."
+    },
+    {
+      title: "WordPress Site",
+      tech: "WordPress, Elementor, PHP",
+      image: "https://i.ibb.co.com/vxj8w9bV/download.png",
+      live: "https://www.hurrida.com/",
+      code: "https://github.com/Salehchy46/cookie-policy-hurrida",
+      desc: "Professional agency website with custom theme and plugins."
+    },
+    {
+      title: "React Tic-Tac-Toe",
+      tech: "Tailwind, React",
+      image: "https://i.ibb.co.com/MDdQR89t/download-1.png",
+      live: "https://superlative-manatee-5fc69d.netlify.app/",
+      code: "https://github.com/Salehchy46/tic-tac-toe",
+      desc: "Classic game with modern UI and smooth animations."
+    },
   ];
 
   return (
@@ -488,19 +508,54 @@ const Projects = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Recent Projects</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-          <p className="mt-4 text-gray-400">Some of my best work – live links available.</p>
+          <p className="mt-4 text-gray-400">Some of my best work – hover to flip the card ✨</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
-            <div key={idx} className="bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-              <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
-              <div className="p-5">
-                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-gray-400 text-sm">{project.tech}</p>
-                <div className="mt-4 flex gap-4">
-                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm font-medium transition">Live</a>
-                  <a href={project.code} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-300 text-sm transition">Code</a>
+            <div
+              key={idx}
+              className="flip-card group"
+              style={{ perspective: "1000px" }}
+            >
+              <div className="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                {/* Front side */}
+                <div className="flip-card-front absolute inset-0 backface-hidden bg-gray-800 rounded-xl overflow-hidden shadow-md flex flex-col">
+                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+                  <div className="p-5 flex-1">
+                    <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-gray-400 text-sm">{project.tech}</p>
+                  </div>
+                  {/* Glass shimmer overlay (front) */}
+                  <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                  </div>
+                </div>
+
+                {/* Back side */}
+                <div className="flip-card-back absolute inset-0 backface-hidden bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-md border border-blue-400/30 rotate-y-180 flex flex-col items-center justify-center p-6 text-center">
+                  <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
+                  <p className="text-gray-300 text-sm mb-4">{project.desc}</p>
+                  <div className="flex gap-4 mt-2">
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-lg hover:bg-white/20 transition-all hover:shadow-lg hover:scale-105 text-sm"
+                    >
+                      Live <ExternalLink size={14} />
+                    </a>
+                    <a
+                      href={project.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-lg hover:bg-white/20 transition-all hover:shadow-lg hover:scale-105 text-sm"
+                    >
+                      Code <Github size={14} />
+                    </a>
+                  </div>
+                  {/* Glass glow on back */}
+                  <div className="absolute inset-0 rounded-xl bg-linear-to-br from-blue-500/10 to-purple-500/10 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -525,6 +580,36 @@ const Projects = () => {
           </Link>
         </div>
       </div>
+
+      {/* Custom CSS for 3D flip – add to your global stylesheet */}
+      <style jsx>{`
+        .transform-style-preserve-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        .group:hover .group-hover\\:rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        .flip-card {
+          height: auto;
+          min-height: 380px;
+        }
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 380px;
+        }
+        .flip-card-front, .flip-card-back {
+          width: 100%;
+          height: 100%;
+        }
+      `}</style>
     </section>
   );
 };
@@ -540,9 +625,18 @@ const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Contact Form */}
-          <div className="max-w-3xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8">
-            <form action="https://formspree.io/f/yourformid" method="POST" className="space-y-6">
+          {/* Lottie Animation */}
+          <div className="flex justify-center">
+            <Lottie animationData={CodeDarkLottie} loop={true} className="w-full max-w-md h-auto" />
+          </div>
+          {/* Contact Form with glass reflection on hover */}
+          <div className="group/form-card relative max-w-3xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 overflow-hidden transition-all duration-300 hover:shadow-xl">
+            {/* Shimmer overlay that sweeps on hover */}
+            <div className="absolute inset-0 -translate-x-full group-hover/form-card:translate-x-full transition-transform duration-1000 ease-out pointer-events-none">
+              <div className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+            </div>
+
+            <form action="https://formspree.io/f/yourformid" method="POST" className="space-y-6 relative z-10">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-gray-300 mb-2">Name</label>
@@ -557,19 +651,25 @@ const Contact = () => {
                 <label className="block text-gray-300 mb-2">Message</label>
                 <textarea name="message" rows="5" required className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition"></textarea>
               </div>
-              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-medium shadow-md hover:shadow-lg">
-                Send Message
+
+              {/* Glassy submit button with its own shimmer */}
+              <button
+                type="submit"
+                className="relative w-full bg-blue-600 text-white py-3 rounded-lg font-medium shadow-md hover:shadow-lg overflow-hidden group/btn transition-all duration-300"
+              >
+                <span className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-out">
+                  <span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+                </span>
+                <span className="relative z-10">Send Message</span>
               </button>
             </form>
-            <div className="mt-8 text-center text-gray-400">
+
+            <div className="mt-8 text-center text-gray-400 relative z-10">
               <p>Or reach me directly: <a href="mailto:Salehchyctg@gmail.com" className="text-blue-400 hover:text-blue-300 transition">Salehchyctg@gmail.com</a> | +88 01835‑069946</p>
             </div>
           </div>
 
-          {/* Lottie Animation */}
-          <div className="flex justify-center">
-            <Lottie animationData={CodeDarkLottie} loop={true} className="w-full max-w-md h-auto" />
-          </div>
+
         </div>
       </div>
     </section>
