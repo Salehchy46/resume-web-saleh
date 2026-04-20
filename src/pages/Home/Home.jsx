@@ -15,6 +15,7 @@ import DevloperLottie from "../../assets/lotties/Developer.json";
 import Coding from "../../assets/lotties/Coding.json";
 import Lottie from "lottie-react";
 import CodeDarkLottie from "../../assets/lotties/code-dark.json";
+// import DesignerLottie from "../../assets/lotties/web-design.json";
 // import { useLottie, useLottieInteractivity } from "lottie-react";
 
 const Fireflies = () => {
@@ -287,12 +288,13 @@ const Hero = () => {
           {/* Image */}
           <div className="flex-1 flex justify-center lg:justify-end">
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-              <div className="absolute inset-0 bg-blue-500 rounded-full opacity-20 blur-2xl"></div>
+              <div className="absolute inset-0 bg-blue-500 rounded-full opacity-20 blur-2xl "></div>
               <img
                 src="https://i.ibb.co.com/BVCWm6zh/saleh.jpg"
                 alt="Mohammad Saleh - Frontend Developer"
                 className="relative rounded-full object-cover w-full h-full border-4 border-gray-700 shadow-2xl"
               />
+              {/* <Lottie animationData={DesignerLottie} loop={true} className="relative w-full h-full" /> */}
             </div>
           </div>
         </div>
