@@ -449,7 +449,7 @@ const Exploration = () => {
         </div>
 
         {/* First marquee (left to right) */}
-        <Marquee gradient={false} speed={500} pauseOnHover={true} className="py-4">
+        <Marquee gradient={false} speed={300} pauseOnHover={true} className="py-4">
           {techImages.map((src, idx) => (
             <div key={idx} className="mx-3">
               <img
