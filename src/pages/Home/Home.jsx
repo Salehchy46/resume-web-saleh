@@ -9,6 +9,7 @@ import {
   MessageCircle, Layers,
   ExternalLink
 } from "lucide-react";
+import Marquee from "react-fast-marquee";
 import React, { useState, useEffect, useRef } from "react";
 import '../Home/hero-animation.css';
 import { Link } from "react-router-dom";
@@ -125,7 +126,7 @@ const Fireflies = () => {
       }
     }
 
-    const fireflyCount = 80;
+    const fireflyCount = 50;
     for (let i = 0; i < fireflyCount; i++) {
       fireflies.push(new Firefly());
     }
@@ -305,14 +306,23 @@ const Hero = () => {
   );
 };
 
+
 const About = () => {
   return (
     <section id="about" className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+      {/* Animated Blue Blurry Balls – same as Hero */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-25 animate-float2" />
+        <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />
+      </div>
+
       <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">About Me</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+          <div className="w-30 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
         </div>
+
+        {/* Row 1: Lottie + Introduction */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
           <div className="lottie-tint">
             <Lottie animationData={DevloperLottie} loop={true} className="w-full h-auto" />
@@ -330,6 +340,8 @@ const About = () => {
             </p>
           </div>
         </div>
+
+        {/* Row 2: Why work with me + second Lottie */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
             <h3 className="text-2xl font-bold text-white mb-4">Why work with me?</h3>
@@ -381,6 +393,91 @@ const About = () => {
   );
 };
 
+
+
+const Exploration = () => {
+  const techImages = [
+    "https://i.ibb.co.com/VpYqXNLN/html.jpg",
+    "https://i.ibb.co.com/YBzYD4fR/css.jpg",
+    "https://i.ibb.co.com/JWrcnbrd/js.jpg",
+    "https://i.ibb.co.com/1JGNdGSP/tailwind.jpg",
+    "https://i.ibb.co.com/wFMTF9sB/bootstrap.jpg",
+    "https://i.ibb.co.com/PGF8QFx5/git.jpg",
+    "https://i.ibb.co.com/0pB2KSQX/github.jpg",
+    "https://i.ibb.co.com/N2RVSNCM/daisyui.jpg",
+    "https://i.ibb.co.com/NXv9RHB/vscode.jpg",
+    "https://i.ibb.co.com/xq07JyQM/responsive.jpg",
+    "https://i.ibb.co.com/6RJ4xjxX/react.jpg",
+    "https://i.ibb.co.com/ynLWgkPT/seraui.png",
+    "https://i.ibb.co.com/84BvbFMf/wix.jpg",
+    "https://i.ibb.co.com/LhNS9pZb/figma.jpg",
+    "https://i.ibb.co.com/GvqxBq8g/restapi.jpg",
+    "https://i.ibb.co.com/TDKCD6Gj/node.jpg",
+    "https://i.ibb.co.com/GQNzvSsX/npm.jpg",
+    "https://i.ibb.co.com/q3nSbwGR/firebase.jpg",
+    "https://i.ibb.co.com/DH747rVF/mongodb.jpg",
+    "https://i.ibb.co.com/rfm5hz4F/woocommerce.jpg",
+    "https://i.ibb.co.com/0jLrjxxt/wordpress.jpg",
+    "https://i.ibb.co.com/rK7kQNjd/elementor.jpg",
+    "https://i.ibb.co.com/m55VTzcQ/vercel.jpg",
+    "https://i.ibb.co.com/SwHpmKS7/canve.jpg",
+    "https://i.ibb.co.com/Z125RLqG/photoshop.jpg",
+    "https://i.ibb.co.com/V0M5GMgn/powerpoint.jpg",
+    "https://i.ibb.co.com/nNhnRgxv/Illustrator.jpg",
+    "https://i.ibb.co.com/LdcrgP6M/excel.jpg",
+    "https://i.ibb.co.com/kn77vQd/netlify.jpg",
+    "https://i.ibb.co.com/PGs0bm0F/access.jpg",
+    "https://i.ibb.co.com/mVgG1Cmx/word.jpg",
+  ];
+
+  return (
+    <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+      {/* Animated Blue Blurry Balls */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl opacity-30 animate-float1" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-25 animate-float2" />
+        <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />
+      </div>
+
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">Always Learning</h2>
+          <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+            A glimpse into my journey and the technologies I've been exploring.
+          </p>
+        </div>
+
+        {/* First marquee (left to right) */}
+        <Marquee gradient={false} speed={500} pauseOnHover={true} className="py-4">
+          {techImages.map((src, idx) => (
+            <div key={idx} className="mx-3">
+              <img
+                src={src}
+                alt={`Tech ${idx + 1}`}
+                className="h-24 md:h-28 lg:h-36 w-auto rounded-xl shadow-lg border border-gray-700 transition-transform hover:scale-105 duration-300"
+              />
+            </div>
+          ))}
+        </Marquee>
+
+        {/* Second marquee (right to left) for extra dynamism */}
+        <Marquee gradient={false} speed={150} direction="right" pauseOnHover={true} className="py-4 mt-4">
+          {[...techImages].reverse().map((src, idx) => (
+            <div key={idx} className="mx-3">
+              <img
+                src={src}
+                alt={`Tech ${idx + 1}`}
+                className="h-24 md:h-28 lg:h-36 w-auto rounded-xl shadow-lg border border-gray-700 transition-transform hover:scale-105 duration-300"
+              />
+            </div>
+          ))}
+        </Marquee>
+      </div>
+    </section>
+  );
+};
+
 const Work = () => {
   const services = [
     { icon: <Code size={40} />, title: "Custom Web Development", link: "https://github.com/Salehchy46", desc: "React, Next.js, Tailwind, and more – tailored to your needs." },
@@ -394,7 +491,7 @@ const Work = () => {
       <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">What I Offer</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+          <div className="w-30 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -477,7 +574,7 @@ const Work = () => {
 const Projects = () => {
   const projects = [
     {
-      title: "E‑Commerce Store",
+      title: "Equipment Management",
       tech: "React, Tailwind, MongoDB",
       image: "https://i.ibb.co.com/7d28nBhP/khela.webp",
       live: "https://sports-equipment99.netlify.app/",
@@ -485,7 +582,7 @@ const Projects = () => {
       desc: "Full‑featured sports equipment store with cart and checkout."
     },
     {
-      title: "WordPress Site",
+      title: "Hurrida",
       tech: "WordPress, Elementor, PHP",
       image: "https://i.ibb.co.com/vxj8w9bV/download.png",
       live: "https://www.hurrida.com/",
@@ -507,8 +604,8 @@ const Projects = () => {
       <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Recent Projects</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-          <p className="mt-4 text-gray-400">Some of my best work – hover to flip the card ✨</p>
+          <div className="w-30 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+          <p className="mt-4 text-gray-400">Some of my best work</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -616,11 +713,11 @@ const Projects = () => {
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-16 md:py-24 bg-gray-900">
+    <section id="contact" className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 lg:py-32 overflow-hiddenpy-16 md:py-24 bg-gray-900">
       <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Let's Work Together</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+          <div className="w-30 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
           <p className="mt-4 text-gray-400 max-w-xl mx-auto">Have a project in mind? I'd love to hear about it.</p>
         </div>
 
@@ -685,6 +782,7 @@ const Home = () => {
       <main>   {/* no z-index, or keep lower than canvas */}
         <Hero />
         <About />
+        <Exploration />
         <Work />
         <Projects />
         <Contact />
