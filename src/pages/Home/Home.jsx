@@ -310,12 +310,6 @@ const Hero = () => {
 const About = () => {
   return (
     <section id="about" className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
-      {/* Animated Blue Blurry Balls – same as Hero */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-25 animate-float2" />
-        <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />
-      </div>
-
       <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">About Me</h2>
@@ -332,10 +326,10 @@ const About = () => {
               I'm <span className="font-semibold text-white">Mohammad Saleh</span>, a passionate frontend developer with 3+ years of experience building modern, responsive websites.
               I love turning ideas into reality through clean code and intuitive design. I work with both <strong>React</strong> and <strong>WordPress</strong>, ensuring fast, SEO‑friendly, and user‑centric results.
             </p>
-            <p className="mt-4 text-gray-300">
+            <p className="mt-4 text-lg text-gray-300">
               Beyond coding, I enjoy mentoring, contributing to open source, and constantly learning new technologies. Let's build something amazing together!
             </p>
-            <p className="mt-6 text-gray-300 italic">
+            <p className="mt-6 text-lg text-gray-300 italic">
               "When I'm not coding, you'll find me exploring new tech trends, contributing to open source, or mentoring aspiring developers. I believe in continuous learning and sharing knowledge."
             </p>
           </div>
@@ -600,7 +594,13 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-16 md:py-24 bg-gray-900">
+    <section id="projects" className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+      {/* Animated Blue Blurry Balls */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl opacity-30 animate-float1" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-25 animate-float2" />
+        <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />
+      </div>
       <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Recent Projects</h2>

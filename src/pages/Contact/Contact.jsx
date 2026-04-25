@@ -18,8 +18,10 @@ import {
   User,
   Sparkles,
 } from "lucide-react";
+import SupportLottie from "../../assets/lotties/Support.json";
+import Lottie from "lottie-react";
 
-// ── AI CHATBOT HOOK ──────────────────────────────────────────────────────────
+// ── AI CHATBOT HOOK ─────────────────────────────────────────────────────────
 function useChat() {
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -31,7 +33,7 @@ function useChat() {
   const SYSTEM = `You are Saleh's warm and professional AI assistant on his frontend developer portfolio contact page. Your role is to chat with potential clients, understand their project, and encourage them to work with Saleh.
 
 Saleh's expertise:
-- React, Next.js, TypeScript — scalable, production-grade apps
+- React, TypeScript — scalable, production-grade apps
 - Tailwind CSS — utility-first, beautiful, responsive UIs
 - Animations — Framer Motion, GSAP, CSS transitions and keyframes
 - Landing pages — high-converting, cinematic, pixel-perfect
@@ -61,7 +63,6 @@ Your style:
 - Never invent specific project details
 - Use plain conversational text — no markdown, no asterisks, no bullets, no headers`;
 
-  // Init session with backend (if available), otherwise run client-side
   useEffect(() => {
     const sessionId =
       sessionStorage.getItem("chat_sid") ||
@@ -101,7 +102,7 @@ Your style:
     };
 
     setTimeout(init, 600);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const greet = () => {
@@ -122,7 +123,6 @@ Your style:
       let reply;
 
       if (conversationId && BACKEND) {
-        // Use backend (saves data, uses server-side API key)
         const r = await fetch(`${BACKEND}/api/chat`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -135,7 +135,6 @@ Your style:
         const d = await r.json();
         reply = d.reply;
       } else {
-        // Fallback: call Anthropic directly (requires VITE_ANTHROPIC_KEY)
         const apiKey = import.meta.env.VITE_ANTHROPIC_KEY || "";
         const r = await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
@@ -198,110 +197,124 @@ function ChatBot() {
   };
 
   return (
-    <div className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden flex flex-col">
-      {/* Chat header */}
-      <div className="flex items-center gap-3 px-5 py-4 bg-gray-900 border-b border-gray-700">
-        <div className="relative">
-          <div className="w-9 h-9 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center">
-            <Bot size={18} className="text-blue-400" />
-          </div>
-          <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-400 border-2 border-gray-900" />
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-white leading-none">Saleh's Assistant</p>
-          <p className="text-xs text-green-400 mt-0.5 flex items-center gap-1">
-            <Sparkles size={10} /> Online · replies instantly
-          </p>
-        </div>
-      </div>
+    <div className=" rounded-2xl shadow-xl overflow-hidden">
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[320px] max-h-[380px]">
-        {messages.map((m) => (
-          <div
-            key={m.id}
-            className={`flex items-end gap-2 ${m.role === "user" ? "flex-row-reverse" : ""}`}
-          >
-            {/* Avatar */}
-            <div
-              className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold
-                ${m.role === "bot"
-                  ? "bg-blue-600/20 border border-blue-500/30 text-blue-400"
-                  : "bg-gray-600/40 border border-gray-500/30 text-gray-300"
-                }`}
-            >
-              {m.role === "bot" ? <Bot size={13} /> : <User size={13} />}
+      {/* ── LEFT: Chatbot ── */}
+      <div className="flex-1 min-w-0 flex flex-col p-2 bg-gray-800">
+        {/* Chat header */}
+        <div className="flex items-center gap-3 px-5 py-4 bg-gray-900 border-b border-gray-700">
+          <div className="relative">
+            <div className="w-9 h-9 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center">
+              <Bot size={18} className="text-blue-400" />
             </div>
-            {/* Bubble */}
-            <div
-              className={`max-w-[76%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed
-                ${m.role === "bot"
-                  ? "bg-gray-700 text-gray-100 rounded-bl-sm"
-                  : "bg-blue-600 text-white rounded-br-sm"
-                }`}
-              style={{ animation: "fadeUp .25s ease" }}
-            >
-              {m.text}
-            </div>
+            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-400 border-2 border-gray-900" />
           </div>
-        ))}
+          <div>
+            <p className="text-sm font-semibold text-white leading-none">Saleh's Assistant</p>
+            <p className="text-xs text-green-400 mt-0.5 flex items-center gap-1">
+              <Sparkles size={10} /> Online · replies instantly
+            </p>
+          </div>
+        </div>
 
-        {/* Typing indicator */}
-        {isTyping && (
-          <div className="flex items-end gap-2">
-            <div className="w-7 h-7 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center">
-              <Bot size={13} className="text-blue-400" />
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-80 max-h-96">
+          {messages.map((m) => (
+            <div
+              key={m.id}
+              className={`flex items-end gap-2 ${m.role === "user" ? "flex-row-reverse" : ""}`}
+            >
+              <div
+                className={`w-7 h-7 rounded-full shrink-0 flex items-center justify-center text-xs font-bold
+                    ${m.role === "bot"
+                    ? "bg-blue-600/20 border border-blue-500/30 text-blue-400"
+                    : "bg-gray-600/40 border border-gray-500/30 text-gray-300"
+                  }`}
+              >
+                {m.role === "bot" ? <Bot size={13} /> : <User size={13} />}
+              </div>
+              <div
+                className={`max-w-[76%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed
+                    ${m.role === "bot"
+                    ? "bg-gray-700 text-gray-100 rounded-bl-sm"
+                    : "bg-blue-600 text-white rounded-br-sm"
+                  }`}
+                style={{ animation: "fadeUp 0.25s ease" }}
+              >
+                {m.text}
+              </div>
             </div>
-            <div className="bg-gray-700 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1">
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className="w-1.5 h-1.5 rounded-full bg-gray-400"
-                  style={{ animation: `typingBounce 1.2s ${i * 0.2}s infinite` }}
-                />
-              ))}
+          ))}
+          {isTyping && (
+            <div className="flex items-end gap-2">
+              <div className="w-7 h-7 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center">
+                <Bot size={13} className="text-blue-400" />
+              </div>
+              <div className="bg-gray-700 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1">
+                {[0, 1, 2].map((i) => (
+                  <span
+                    key={i}
+                    className="w-1.5 h-1.5 rounded-full bg-gray-400"
+                    style={{ animation: `typingBounce 1.2s ${i * 0.2}s infinite` }}
+                  />
+                ))}
+              </div>
             </div>
+          )}
+          <div ref={bottomRef} />
+        </div>
+
+        {/* Quick replies */}
+        {suggestionsVisible && messages.length <= 1 && (
+          <div className="px-4 pb-2 flex flex-wrap gap-2">
+            {SUGGESTIONS.map((s) => (
+              <button
+                key={s}
+                onClick={() => handleSuggestion(s)}
+                className="text-xs px-3 py-1.5 rounded-full border border-gray-600 text-gray-400
+                         hover:border-blue-500 hover:text-blue-400 transition-colors"
+              >
+                {s}
+              </button>
+            ))}
           </div>
         )}
-        <div ref={bottomRef} />
-      </div>
 
-      {/* Quick replies */}
-      {suggestionsVisible && messages.length <= 1 && (
-        <div className="px-4 pb-2 flex flex-wrap gap-2">
-          {SUGGESTIONS.map((s) => (
-            <button
-              key={s}
-              onClick={() => handleSuggestion(s)}
-              className="text-xs px-3 py-1.5 rounded-full border border-gray-600 text-gray-400
-                         hover:border-blue-500 hover:text-blue-400 transition-colors"
-            >
-              {s}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* Input bar */}
-      <div className="px-4 py-3 border-t border-gray-700 bg-gray-900 flex gap-2">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          placeholder="Describe your project…"
-          className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm text-white
+        {/* Input bar */}
+        <div className="px-4 py-3 border-t border-gray-700 bg-gray-900 flex gap-2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+            placeholder="Describe your project…"
+            className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm text-white
                      placeholder-gray-500 outline-none focus:border-blue-500 transition-colors"
-        />
-        <button
-          onClick={handleSend}
-          disabled={isTyping || !input.trim()}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed
+          />
+          <button
+            onClick={handleSend}
+            disabled={isTyping || !input.trim()}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed
                      rounded-lg text-white transition-colors flex items-center gap-1.5"
-        >
-          <Send size={15} />
-        </button>
+          >
+            <Send size={15} />
+          </button>
+        </div>
       </div>
+
+
+
+
+      <style jsx>{`
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes typingBounce {
+          0%, 60%, 100% { transform: translateY(0); }
+          30% { transform: translateY(-5px); }
+        }
+      `}</style>
     </div>
   );
 }
@@ -363,10 +376,10 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-blue-500/5 blur-3xl" />
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             Get In Touch
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -377,7 +390,7 @@ const Contact = () => {
 
       {/* ── AI CHATBOT BANNER ── */}
       <section className="py-12 bg-gray-900 border-b border-gray-800">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="animate-on-scroll">
             <div className="flex items-center gap-2 mb-3">
               <Bot size={18} className="text-blue-400" />
@@ -391,8 +404,19 @@ const Contact = () => {
             <p className="text-gray-400 mb-6 max-w-xl">
               Chat with my AI assistant to scope your project. I'll follow up within 24 hours.
             </p>
-            <div className="max-w-2xl">
-              <ChatBot />
+            {/*FIXED: w-full instead of max-w-2xl */}
+            <div className="w-full flex flex-col md:flex-row bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+              <div className="flex-1">
+                <ChatBot />
+              </div>
+              <div className="flex-1 flex items-center justify-center p-6 border-t border-gray-700 md:border-t-0 md:border-l md:border-gray-700">
+                <Lottie
+                  animationData={SupportLottie}
+                  loop={true}
+                  autoplay={true}
+                  className="w-full max-w-xs h-auto"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -400,7 +424,7 @@ const Contact = () => {
 
       {/* Main Contact Section */}
       <section className="py-16 md:py-24 bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
 
             {/* Left: Contact Form */}
@@ -457,7 +481,7 @@ const Contact = () => {
                     type="submit" disabled={isSubmitting}
                     className="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 group overflow-hidden"
                   >
-                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent" />
                     <span className="relative z-10 flex items-center gap-2">
                       {isSubmitting ? "Sending..." : "Send Message"}
                       <Send size={18} className="group-hover:translate-x-1 transition" />
@@ -527,23 +551,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-8 border-t border-gray-800 bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Mohammad Saleh. All rights reserved.
-            </div>
-            <div className="flex gap-6 text-gray-400 text-sm">
-              <Link to="/" className="hover:text-blue-400 transition">Home</Link>
-              <Link to="/about" className="hover:text-blue-400 transition">About</Link>
-              <Link to="/work" className="hover:text-blue-400 transition">Work</Link>
-              <Link to="/contact" className="hover:text-blue-400 transition">Contact</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
 
       {/* Animations */}
       <style>{`

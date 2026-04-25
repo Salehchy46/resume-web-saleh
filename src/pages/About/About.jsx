@@ -90,15 +90,15 @@ const About = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-blue-500/5 blur-3xl" />
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <div className="text-center animate-on-scroll">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               About Me
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Problem solver | Web creator | Lifelong learner
+               Web creator | Lifelong learner
             </p>
           </div>
         </div>
@@ -106,13 +106,13 @@ const About = () => {
 
       {/* Profile Section with Hexagon Image */}
       <section className="py-16 md:py-20 bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Hexagon Image */}
-            <div className="flex-shrink-0 animate-on-scroll">
-              <div className="hexagon-wrapper w-64 h-64 md:w-80 md:h-80">
-                <div className="hexagon relative w-full h-full bg-gradient-to-br from-blue-500 to-cyan-500 p-1">
-                  <div className="hexagon-inner w-full h-full overflow-hidden bg-gray-800">
+            <div className="shrink-0 animate-on-scroll">
+              <div className="rounded-full w-64 h-64 md:w-80 md:h-80">
+                <div className="rounded-full relative w-full h-full bg-linear-to-br from-blue-500 to-cyan-500 p-1">
+                  <div className="rounded-full w-full h-full overflow-hidden bg-gray-800">
                     <img
                       src="https://i.ibb.co.com/BVCWm6zh/saleh.jpg"
                       alt="Mohammad Saleh"
