@@ -1,12 +1,15 @@
-// src/components/CustomCursor.jsx
+// src/components/TargetCursor.jsx
 import React, { useEffect, useRef, useState } from "react";
 
-const CustomCursor = () => {
+const TargetCursor = () => {
   const canvasRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const mousePos = useRef({ x: 0, y: 0 });
   const trail = useRef([]);
   const animationId = useRef(null);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeout = useRef(null);
+
   const MAX_TRAIL_LENGTH = 24;
   const TRAIL_LIFE = 0.9;
   const TRAIL_DISTANCE_THRESHOLD = 8;
@@ -54,9 +57,15 @@ const CustomCursor = () => {
       trail.current = [];
     };
 
-    // When scrolling, clear the trail to prevent "stretching" effect
+    // ── SCROLL EVENT: trigger cursor animation ──────────────────────────────
     const onScroll = () => {
-      trail.current = [];
+      // Clear previous timeout
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      setIsScrolling(true);
+      // Reset after scrolling stops (300ms)
+      scrollTimeout.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 300);
     };
 
     window.addEventListener("mousemove", onMouseMove);
@@ -75,10 +84,8 @@ const CustomCursor = () => {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Remove expired trail points
+      // ── TRAIL (same as before) ─────────────────────────────────────────────
       trail.current = trail.current.filter((p) => now - p.createdAt < TRAIL_LIFE);
-
-      // Draw trail (blue, fading)
       for (let i = 0; i < trail.current.length; i++) {
         const p = trail.current[i];
         const age = now - p.createdAt;
@@ -96,32 +103,60 @@ const CustomCursor = () => {
         ctx.fill();
       }
 
-      // Main cursor (large, blurry, blue)
+      // ── MAIN CURSOR ───────────────────────────────────────────────────────
       if (mousePos.current.x) {
-        ctx.shadowBlur = 20;
+        // Dynamic sizes based on scroll state
+        const outerRadius = isScrolling ? 32 : 22;
+        const middleRadius = isScrolling ? 20 : 14;
+        const innerRadius = isScrolling ? 10 : 6;
+        const outerOpacity = isScrolling ? 0.6 : 0.35;
+        const shadowBlur = isScrolling ? 28 : 20;
+
+        // Outer blurry glow (bigger & brighter when scrolling)
+        ctx.shadowBlur = shadowBlur;
         ctx.shadowColor = "#3b82f6";
         ctx.beginPath();
-        ctx.arc(mousePos.current.x, mousePos.current.y, 22, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(59, 130, 246, 0.35)";
+        ctx.arc(mousePos.current.x, mousePos.current.y, outerRadius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(59, 130, 246, ${outerOpacity})`;
         ctx.fill();
 
+        // Middle solid ball
         ctx.shadowBlur = 12;
         ctx.beginPath();
-        ctx.arc(mousePos.current.x, mousePos.current.y, 14, 0, Math.PI * 2);
+        ctx.arc(mousePos.current.x, mousePos.current.y, middleRadius, 0, Math.PI * 2);
         ctx.fillStyle = "#3b82f6";
         ctx.fill();
 
+        // Inner bright core
         ctx.shadowBlur = 6;
         ctx.beginPath();
-        ctx.arc(mousePos.current.x, mousePos.current.y, 6, 0, Math.PI * 2);
+        ctx.arc(mousePos.current.x, mousePos.current.y, innerRadius, 0, Math.PI * 2);
         ctx.fillStyle = "#60a5fa";
         ctx.fill();
 
+        // Tiny white highlight (also slightly larger when scrolling)
         ctx.shadowBlur = 0;
+        const highlightOffset = isScrolling ? 4 : 3;
+        const highlightSize = isScrolling ? 3.5 : 2.5;
         ctx.beginPath();
-        ctx.arc(mousePos.current.x - 3, mousePos.current.y - 3, 2.5, 0, Math.PI * 2);
+        ctx.arc(mousePos.current.x - highlightOffset, mousePos.current.y - highlightOffset, highlightSize, 0, Math.PI * 2);
         ctx.fillStyle = "#ffffff";
         ctx.fill();
+
+        // ── SCROLL‑SPECIAL FX: extra particles / sparks ─────────────────────
+        if (isScrolling) {
+          // Draw a few random sparks around the cursor
+          for (let i = 0; i < 6; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 15 + Math.random() * 20;
+            const xOffset = Math.cos(angle) * dist;
+            const yOffset = Math.sin(angle) * dist;
+            ctx.beginPath();
+            ctx.arc(mousePos.current.x + xOffset, mousePos.current.y + yOffset, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(96, 165, 250, ${Math.random() * 0.6})`;
+            ctx.fill();
+          }
+        }
       }
 
       animationId.current = requestAnimationFrame(draw);
@@ -133,11 +168,12 @@ const CustomCursor = () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseleave", onMouseLeave);
       window.removeEventListener("scroll", onScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       if (animationId.current) cancelAnimationFrame(animationId.current);
       document.body.style.cursor = "";
       document.documentElement.style.cursor = "";
     };
-  }, [dimensions]);
+  }, [dimensions, isScrolling]);
 
   // Keep pointer cursor on interactive elements
   useEffect(() => {
@@ -167,4 +203,4 @@ const CustomCursor = () => {
   );
 };
 
-export default CustomCursor;
+export default TargetCursor;
