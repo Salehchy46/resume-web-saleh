@@ -1,7 +1,7 @@
 // src/pages/About.jsx
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -23,7 +23,192 @@ import {
   Sparkles,
 } from "lucide-react";
 import Lottie from "lottie-react";
-import CodeDarkLottie from "../../assets/lotties/code-dark.json"; 
+import CodeDarkLottie from "../../assets/lotties/code-dark.json";
+
+
+const LifeTimeline = () => {
+  const events = [
+    {
+      year: "2002",
+      title: "Born in Satkania",
+      description:
+        "Born in Satkania, Chattogram, Bangladesh – the start of an incredible journey.",
+    },
+    {
+      year: "2007 – 2012",
+      title: "Primary Education",
+      description:
+        "Studied at Barodona Al-Amin Ideal Madrasha. Completed primary education here.",
+    },
+    {
+      year: "2013 – 2018",
+      title: "Secondary (Dakhil) & First Computer Course",
+      description:
+        "Joined Adhunagar Islamia Kamil Madrasha in Lohagara. Completed Dakhil in 2018. That same year, I finished my first computer course: Microsoft Office (Word, PowerPoint, Excel).",
+    },
+    {
+      year: "2020",
+      title: "Higher Secondary (Alim) & COVID Skills",
+      description:
+        "Completed Alim from the same madrasha. During the pandemic lockdown, I learned Canva, Figma design, and other soft skills from home.",
+    },
+    {
+      year: "2022",
+      title: "University & German Language",
+      description:
+        "Started Honours in English Language and Literature at the University of Chittagong. In 2023, I completed A1 level German.",
+    },
+    {
+      year: "2023 – 2024",
+      title: "Web Development Foundations",
+      description:
+        "Influenced by Affan, I dived into Wix, WordPress, HTML, CSS, and JavaScript. Built my first websites and discovered my passion for coding.",
+    },
+    {
+      year: "2024",
+      title: "React & Spanish",
+      description:
+        "My friend Saif introduced me to frontend frameworks. Started learning React and JavaScript seriously. Also began daily Spanish practice (3–5 min/day).",
+    },
+    {
+      year: "2025",
+      title: "Japanese & Continuous Growth",
+      description:
+        "Started learning Japanese (Hiragana/Katakana) toward the end of 2025. Still exploring new technologies and building modern web apps.",
+    },
+    {
+      year: "Today",
+      title: "Always Learning, Always Building",
+      description:
+        "Currently improving my React skills, expanding into full‑stack, and helping others achieve their web development goals.",
+    },
+  ];
+
+  const [completedSteps, setCompletedSteps] = useState({});
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(entry.target.getAttribute("data-idx"));
+            if (!completedSteps[idx]) {
+              setCompletedSteps((prev) => ({ ...prev, [idx]: true }));
+            }
+          }
+        });
+      },
+      { threshold: 0.5, rootMargin: "0px 0px 500px 0px" }
+    );
+
+    cardRefs.current.forEach((ref) => ref && observer.observe(ref));
+    return () => observer.disconnect();
+  }, [completedSteps]);
+
+  return (
+    <div className="py-12">
+      {/* Section header */}
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-white">My Journey</h2>
+        <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+          From a small town in Chattogram to becoming a web developer – the road so far.
+        </p>
+      </div>
+
+      {/* Timeline container */}
+      <div className="relative">
+        {/* Vertical line (hidden on mobile, visible from md) */}
+        <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blue-500 to-cyan-400 opacity-30" />
+
+        {events.map((event, idx) => {
+          const isCompleted = completedSteps[idx];
+          // Alternate sides: even index => left, odd => right
+          const isLeft = idx % 2 === 0;
+
+          return (
+            <div
+              key={idx}
+              ref={(el) => (cardRefs.current[idx] = el)}
+              data-idx={idx}
+              className={`relative flex flex-col md:flex-row items-start md:items-center mb-12 md:mb-16 transition-all duration-500 ${isLeft ? "md:justify-start" : "md:justify-end"
+                }`}
+            >
+              {/* Timeline marker (circle with checkmark) */}
+              <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center z-10">
+                <div
+                  className={`
+                    relative flex items-center justify-center w-10 h-10 rounded-full 
+                    transition-all duration-500 shadow-lg
+                    ${isCompleted
+                      ? "bg-green-500/20 ring-4 ring-green-400/50 scale-110"
+                      : "bg-gray-800 ring-2 ring-gray-600"
+                    }
+                  `}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className={`w-5 h-5 transition-colors ${isCompleted ? "text-green-400" : "text-blue-400"
+                      }`}
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {isCompleted && (
+                    <span className="absolute inset-0 rounded-full animate-ping bg-green-400/40" />
+                  )}
+                </div>
+              </div>
+
+              {/* Card content */}
+              <div
+                className={`
+                  w-full md:w-[calc(50%-3rem)] ml-12 md:ml-0 transition-all duration-700
+                  ${isLeft ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"}
+                  ${isCompleted ? "translate-x-0 opacity-100" : "translate-x-4 opacity-70"}
+                `}
+              >
+                <div className="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-5 shadow-lg border border-gray-700 hover:border-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 group">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-blue-400 font-mono text-sm font-bold">
+                      {event.year}
+                    </span>
+                    <span className="h-px flex-1 bg-gradient-to-r from-blue-500/50 to-transparent" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    {event.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                    {event.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Additional styles for mobile adjustments */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .timeline-marker {
+            left: 1rem;
+          }
+          .timeline-card {
+            margin-left: 3rem;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
 
 const About = () => {
   // For scroll animations
@@ -78,15 +263,6 @@ const About = () => {
     { icon: <Heart size={20} />, text: "Open‑source contributor" },
   ];
 
-  // Timeline data
-  const timeline = [
-    { year: "2019", title: "Started with basics", desc: "Microsoft Office, Graphic Design (Photoshop/Illustrator)" },
-    { year: "2020", title: "Discovered Web Development", desc: "HTML, CSS, JavaScript – built my first static sites" },
-    { year: "2021", title: "WordPress Developer", desc: "Custom themes, plugins, and client projects" },
-    { year: "2023", title: "React Journey", desc: "Building modern SPAs with React, Tailwind, and Firebase" },
-    { year: "2025", title: "App Development", desc: "Exploring React Native and full‑stack MERN" },
-  ];
-
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Hero Section */}
@@ -98,7 +274,7 @@ const About = () => {
               About Me
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-               Web creator | Lifelong learner
+              Web creator | Lifelong learner
             </p>
           </div>
         </div>
@@ -157,27 +333,10 @@ const About = () => {
           </div>
         </div>
       </section>
-
       {/* My Journey Timeline */}
       <section className="py-16 md:py-20 bg-gray-800">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center mb-12 animate-on-scroll">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">My Journey</h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {timeline.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02] animate-on-scroll"
-                style={{ transitionDelay: `${idx * 100}ms` }}
-              >
-                <div className="text-blue-400 font-mono text-lg mb-2">{item.year}</div>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-400">{item.desc}</p>
-              </div>
-            ))}
-          </div>
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <LifeTimeline></LifeTimeline>
         </div>
       </section>
 
@@ -204,7 +363,7 @@ const About = () => {
 
       {/* What I Do (Services) */}
       <section className="py-16 md:py-20 bg-gray-800">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-12 animate-on-scroll">
             <h2 className="text-3xl md:text-4xl font-bold text-white">What I Do</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
