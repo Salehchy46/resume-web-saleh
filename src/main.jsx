@@ -7,6 +7,7 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './routes/Router.jsx'
 import CustomCursor from './components/CustomCursor.jsx'
 import TargetCursor from './components/TargetCursor.jsx'
+import ScrollToTop from './components/ScrolToTop.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
