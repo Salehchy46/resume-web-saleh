@@ -12,7 +12,6 @@ import ScrollToTop from './components/ScrolToTop.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <TargetCursor></TargetCursor>
-    <CustomCursor></CustomCursor>
     <RouterProvider router={router}></RouterProvider>
   </StrictMode>,
 )

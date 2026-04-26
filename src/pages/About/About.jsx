@@ -207,7 +207,7 @@ const LifeTimeline = () => {
 
               {/* Mobile layout */}
               <div className="md:hidden flex items-start gap-4">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className={`flex items-center justify-center w-10 h-10 rounded-full shadow-lg transition-all duration-500 ${isCompleted ? "bg-green-500/20 ring-4 ring-green-400/50 scale-110" : "bg-gray-800 ring-2 ring-gray-600"}`}>
                     <CheckIcon completed={isCompleted} />
                     {isCompleted && <span className="absolute inset-0 rounded-full animate-ping bg-green-400/40" />}
@@ -272,7 +272,7 @@ const SkillsSection = () => {
           <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             Skills & <span className="bg-linear-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">Technologies</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mt-5 rounded-full" />
+          <div className="w-24 h-1 bg-linear-to-r from-blue-500 to-cyan-400 mx-auto mt-5 rounded-full" />
           <p className="text-gray-400 mt-5 max-w-2xl mx-auto text-lg">Tools and frameworks I work with to bring ideas to life.</p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8">
@@ -282,13 +282,13 @@ const SkillsSection = () => {
               style={{ transitionDelay: `${idx * 50}ms` }}
               className={`group relative bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-700 hover:border-blue-500/50 shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-600/0 via-transparent to-cyan-600/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-blue-600/0 via-transparent to-cyan-600/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className={`flex justify-center mb-4 transform transition-transform duration-300 group-hover:scale-110 ${skill.color}`}>
                 {skill.icon}
               </div>
               <h3 className="font-semibold text-gray-200 text-lg mb-2 group-hover:text-white transition-colors">{skill.name}</h3>
               <div className="w-full bg-gray-700 rounded-full h-1.5 mt-3 overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full rounded-full transition-all duration-1000 ease-out" style={{ width: isVisible ? `${skill.level}%` : "0%", transitionDelay: `${idx * 50 + 200}ms` }} />
+                <div className="bg-linear-to-r from-blue-500 to-cyan-400 h-full rounded-full transition-all duration-1000 ease-out" style={{ width: isVisible ? `${skill.level}%` : "0%", transitionDelay: `${idx * 50 + 200}ms` }} />
               </div>
               <span className="text-xs text-gray-400 mt-1 inline-block">{skill.level}% proficient</span>
             </div>
@@ -351,11 +351,11 @@ const About = () => {
       <AnimatedBackground />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-blue-500/5 blur-3xl" />
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <div className="text-center reveal-fade-up">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               About Me
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">Web creator | Lifelong learner</p>
@@ -365,11 +365,11 @@ const About = () => {
 
       {/* Profile Section */}
       <section className="py-16 md:py-20 bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div className="shrink-0 reveal-scale">
               <div className="rounded-full w-64 h-64 md:w-80 md:h-80">
-                <div className="rounded-full relative w-full h-full bg-gradient-to-br from-blue-500 to-cyan-500 p-1">
+                <div className="rounded-full relative w-full h-full bg-linear-to-br from-blue-500 to-cyan-500 p-1">
                   <div className="rounded-full w-full h-full overflow-hidden bg-gray-800">
                     <img src="https://i.ibb.co.com/BVCWm6zh/saleh.jpg" alt="Mohammad Saleh" className="w-full h-full object-cover" />
                   </div>
@@ -411,50 +411,160 @@ const About = () => {
       {/* Skills & Technologies Grid */}
       <SkillsSection />
 
-      {/* What I Do (Services) */}
+      {/* What I Do (Services) – Sophisticated Version */}
       <section className="py-16 md:py-20 bg-gray-800">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center mb-12 reveal-fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">What I Do</h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full" />
+        {/* Optional: soft background decoration */}
+        <div className="absolute inset-0 bg-linear-to-br from-blue-900/10 via-transparent to-cyan-900/10" />
+
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          {/* Section header with refined typography */}
+          <div className="text-center mb-16 reveal-fade-up">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              What <span className="bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">I Do</span>
+            </h2>
+            <div className="w-24 h-1 bg-linear-to-r from-blue-500 to-cyan-400 mx-auto mt-5 rounded-full" />
+            <p className="text-gray-400 mt-5 max-w-2xl mx-auto text-lg">
+              Crafting digital experiences that blend creativity with performance.
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {/* Services Grid – improved cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {services.map((service, idx) => (
-              <div key={idx} className="bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-xl transition-all group reveal-fade-up">
-                <div className="text-blue-400 mb-4 group-hover:scale-110 transition-transform">{service.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
-                <p className="text-gray-400 text-sm">{service.desc}</p>
+              <div
+                key={idx}
+                className="group relative bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 text-center
+                     border border-gray-700 hover:border-blue-500/50
+                     shadow-lg hover:shadow-2xl hover:shadow-blue-500/20
+                     transition-all duration-500 ease-out hover:-translate-y-2
+                     reveal-fade-up"
+                style={{ transitionDelay: `${idx * 100}ms` }}
+              >
+                {/* Animated gradient overlay on hover */}
+                <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-blue-600/0 via-transparent to-cyan-600/0 
+                          opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                {/* Icon container with circular background and floating animation */}
+                <div className="relative mb-5 inline-flex items-center justify-center">
+                  <div className="absolute inset-0 bg-linear-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl blur-xl 
+                            opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative bg-gray-900/80 rounded-2xl p-3 backdrop-blur-sm border border-gray-700
+                            group-hover:border-blue-500/30 transition-all duration-300
+                            group-hover:scale-110 group-hover:rotate-3">
+                    <div className="text-blue-400 transition-colors group-hover:text-cyan-400">
+                      {service.icon}
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {service.desc}
+                </p>
+
+                {/* Decorative underline that appears on hover */}
+                <div className="w-12 h-0.5 bg-linear-to-r from-blue-500 to-cyan-400 mx-auto mt-4 
+                          opacity-0 group-hover:opacity-100 transition-all duration-300 scale-x-0 group-hover:scale-x-100" />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* What I'm Learning */}
-      <section className="py-16 md:py-20 bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center mb-12 reveal-fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">What I'm Learning</h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full" />
-            <p className="mt-4 text-gray-400 max-w-2xl mx-auto">Always growing, always improving – my current focus areas.</p>
+      {/* What I'm Learning – Sophisticated Version */}
+      <section className="py-20 md:py-28 bg-gray-900 relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/5 via-transparent to-cyan-900/5" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          {/* Refined section header */}
+          <div className="text-center mb-16 reveal-fade-up">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              What I'm <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Learning</span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mt-5 rounded-full" />
+            <p className="text-gray-400 mt-5 max-w-2xl mx-auto text-lg">
+              Always growing, always improving – my current focus areas.
+            </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+
+          {/* Learning cards grid */}
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {learning.map((item, idx) => (
-              <div key={idx} className="bg-gray-800 p-6 rounded-xl reveal-fade-up">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-blue-400">{item.icon}</div>
-                  <h3 className="text-xl font-bold text-white">{item.name}</h3>
+              <div
+                key={idx}
+                className="group relative bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6
+                     border border-gray-700 hover:border-blue-500/50
+                     shadow-lg hover:shadow-2xl hover:shadow-blue-500/20
+                     transition-all duration-500 ease-out hover:-translate-y-2
+                     reveal-fade-up"
+                style={{ transitionDelay: `${idx * 100}ms` }}
+              >
+                {/* Glowing gradient overlay on hover */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-600/0 via-transparent to-cyan-600/0 
+                          opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                {/* Header with icon and title */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-xl blur-md 
+                              opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative bg-gray-900/80 rounded-xl p-2.5 backdrop-blur-sm border border-gray-700
+                              group-hover:border-blue-500/30 transition-all duration-300
+                              group-hover:scale-110 group-hover:rotate-3">
+                      <div className="text-blue-400 transition-colors group-hover:text-cyan-400">
+                        {item.icon}
+                      </div>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                    {item.name}
+                  </h3>
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-2.5">
-                  <div className="bg-gradient-to-r from-blue-500 to-cyan-400 h-2.5 rounded-full transition-all duration-1000" style={{ width: `${item.progress}%` }} />
+
+                {/* Animated progress bar */}
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Progress</span>
+                    <span className="text-blue-400 font-mono">{item.progress}%</span>
+                  </div>
+                  <div className="relative w-full bg-gray-700/50 rounded-full h-2 overflow-hidden backdrop-blur-sm">
+                    <div
+                      className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full rounded-full 
+                           transition-all duration-1000 ease-out relative"
+                      style={{ width: `${item.progress}%` }}
+                    >
+                      {/* Shimmer effect on hover */}
+                      <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent 
+                                -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-400 text-sm mt-2">{item.progress}% mastered</p>
+
+                {/* Decorative footer line */}
+                <div className="mt-5 pt-3 border-t border-gray-700/50 flex items-center justify-between">
+                  <span className="text-xs text-gray-500">Mastery level</span>
+                  <span className="text-xs font-medium text-cyan-400">
+                    {item.progress >= 80 ? 'Advanced' : item.progress >= 50 ? 'Intermediate' : 'Beginner'}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
+
+          {/* Optional: Motivational note */}
+          <div className="text-center mt-16 reveal-fade-up">
+            <div className="inline-flex items-center gap-2 px-5 py-2 bg-gray-800/50 backdrop-blur-sm rounded-full border border-gray-700">
+              <span className="text-yellow-400">⚡</span>
+              <span className="text-gray-300 text-sm">Daily practice • 2+ hours of coding • Never stop learning</span>
+            </div>
+          </div>
         </div>
       </section>
-
       {/* Fun Facts */}
       <section className="py-16 md:py-20 bg-gray-800">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
