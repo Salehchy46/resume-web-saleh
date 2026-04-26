@@ -1,3 +1,4 @@
+// Navbar.jsx – fixed version with solid background (no blur)
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -7,6 +8,7 @@ import './shared.css';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -35,10 +37,8 @@ const Navbar = () => {
     ];
 
     return (
-        <header className={`w-full transition-all duration-300 ${isScrolled
-            ? 'bg-gray-900/95 backdrop-blur-lg shadow-lg'
-            : 'bg-gray-900/80 backdrop-blur-md'
-            } border-b border-gray-800`}>
+        <header className={`w-full bg-gray-900 border-b border-gray-800 relative z-50`}>
+            {/* No backdrop‑blur, no transparency – solid color */}
             <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-350">
                 <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
                     {/* Logo */}
@@ -79,7 +79,7 @@ const Navbar = () => {
                         </a>
                         <Link
                             className="relative inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium overflow-hidden group transition-all duration-300 shadow-md hover:shadow-xl
-                                border border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white/15"
+                                border border-white/30 text-white bg-white/10 hover:bg-white/15"
                             to="/contact"
                         >
                             <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -132,7 +132,7 @@ const Navbar = () => {
                                     <ExternalLink className="h-4 w-4" />
                                 </a>
                                 <Link
-                                    className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+                                    className="relative inline-flex items-center justify-center px-6 py-3 bg-white/10 border border-white/30 text-white font-medium rounded-lg shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
                                     to="/contact"
                                 >
                                     <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

@@ -23,7 +23,7 @@ const LinkedInIcon = ({ size = 24, className = "" }) => (
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-gray-900 border-t border-gray-800">
+    <footer className="w-full bg-gray-900 border-t border-gray-800 relative z-10">
       {/* Container with max width 1400px and padding matching the navbar */}
       <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-350 py-12 font-inter">
         {/* Grid layout – responsive columns */}
