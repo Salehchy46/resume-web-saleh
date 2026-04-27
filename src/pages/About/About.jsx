@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // src/pages/About.jsx
 "use client";
 
@@ -21,6 +22,22 @@ import {
   Database,
   Server,
   Sparkles,
+  Music,
+  Camera,
+  BookMarked,
+  Video,
+  Smile,
+  Github,
+  Plane,
+  Gamepad2,
+  Pizza,
+  Brain,
+  Cat,
+  Leaf,
+  Moon,
+  Sun,
+  MessageCircle,
+  Medal,
 } from "lucide-react";
 
 // ---------- Animated Background Component ----------
@@ -168,7 +185,7 @@ const LifeTimeline = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-white">My Journey</h2>
         <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full" />
         <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-          From a small town in Chattogram to becoming a web developer – the road so far.
+          Becoming a web developer – the road so far.
         </p>
       </div>
 
@@ -308,6 +325,217 @@ const SkillsSection = () => {
   );
 };
 
+
+const BeyondTheCode = () => {
+  const [selectedFact, setSelectedFact] = useState(null);
+
+  const openModal = (fact) => {
+    setSelectedFact(fact);
+    // eslint-disable-next-line react-hooks/immutability
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setSelectedFact(null);
+    // eslint-disable-next-line react-hooks/immutability
+    document.body.style.overflow = "unset";
+  };
+
+  const funFacts = [
+    {
+      icon: <BookOpen size={20} />,
+      text: "Teach English to beginners",
+      detail: "Volunteer teacher for 2+ years · helped 30+ students gain confidence"
+    },
+    {
+      icon: <Coffee size={20} />,
+      text: "Coffee addict ☕",
+      detail: "Minimum 4 cups per day – espresso lover · own pour‑over setup"
+    },
+    {
+      icon: <Music size={20} />,
+      text: "Lo‑fi & jazz lover 🎧",
+      detail: "Coding soundtrack · playlists on Spotify (10k+ followers)"
+    },
+    {
+      icon: <Camera size={20} />,
+      text: "Street photography enthusiast",
+      detail: "Capturing raw moments · Fujifilm X100V · featured in local zine"
+    },
+    {
+      icon: <Code size={20} />,
+      text: "Late‑night coder (12 AM – 5 AM) 🌙",
+      detail: "Most productive when the world sleeps · built 3 side projects at night"
+    },
+    {
+      icon: <BookMarked size={20} />,
+      text: "Read 24 books in 2024",
+      detail: "Mix of fiction, tech, and self‑improvement · current read: ‘Atomic Habits’"
+    },
+    {
+      icon: <Video size={20} />,
+      text: "Watched 100+ coding tutorials",
+      detail: "YouTube University graduate · recommend FrontendMasters and freeCodeCamp"
+    },
+    {
+      icon: <Brain size={20} />,
+      text: "Solve LeetCode before breakfast",
+      detail: "Daily ritual since 2023 · solved 300+ problems, focused on medium/hard"
+    },
+    {
+      icon: <Cat size={20} />,
+      text: "Foster stray cats 🐱",
+      detail: "Found homes for 8 cats · currently fostering ‘Luna’ and ‘Mochi’"
+    },
+    {
+      icon: <Moon size={20} />,
+      text: "Night owl – most creative after 11 PM",
+      detail: "Deep work hours: 11 PM – 3 AM · morning meetings are optional 😴"
+    },
+    {
+      icon: <MessageCircle size={20} />,
+      text: "Reply to DMs within 2 hours",
+      detail: "Active on Twitter & LinkedIn · love mentoring and discussing tech"
+    },
+    {
+      icon: <Sparkles size={20} />,
+      text: "Learned 5 frameworks last year",
+      detail: "React, Next.js, Vue, Svelte, Angular – each taught me unique lessons"
+    },
+  ];
+
+  return (
+    <>
+      <section className="py-20 md:py-28 bg-gray-800">
+        {/* Background decorations unchanged */}
+        <div className="absolute inset-0 bg-linear-to-tl from-blue-900/5 via-transparent to-cyan-900/5" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
+
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          {/* Section header – same as before */}
+          <div className="text-center mb-16 reveal-fade-up">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              Beyond the <span className="bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Code</span>
+            </h2>
+            <div className="w-24 h-1 bg-linear-to-r from-blue-500 to-cyan-400 mx-auto mt-5 rounded-full" />
+            <p className="text-gray-400 mt-5 max-w-2xl mx-auto text-lg">
+              A glimpse into the person behind the developer – passions, quirks, and daily joys.
+            </p>
+          </div>
+
+          {/* Grid – clickable cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {funFacts.map((fact, idx) => (
+              <div
+                key={idx}
+                className="group relative bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6
+                           border border-gray-700 hover:border-blue-500/50
+                           shadow-lg hover:shadow-2xl hover:shadow-blue-500/20
+                           transition-all duration-500 ease-out hover:-translate-y-2
+                           cursor-pointer reveal-fade-up"
+                style={{ transitionDelay: `${idx * 80}ms` }}
+                onClick={() => openModal(fact)}
+              >
+                {/* Hover gradient overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-blue-600/0 via-transparent to-cyan-600/0 
+                                opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                {/* Icon container */}
+                <div className="relative mb-5 flex justify-center">
+                  <div className="absolute inset-0 bg-linear-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-xl 
+                                  opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative bg-gray-900/80 rounded-full p-3 backdrop-blur-sm border border-gray-700
+                                  group-hover:border-blue-500/30 transition-all duration-300
+                                  group-hover:scale-110 group-hover:rotate-6">
+                    <div className="text-blue-400 transition-colors group-hover:text-cyan-400 text-2xl">
+                      {fact.icon}
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="text-center text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
+                  {fact.text}
+                </h3>
+                <div className="mt-3 text-center text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Click to explore ✨
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {selectedFact && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md bg-black/60"
+          onClick={closeModal}
+        >
+          <div
+            className="relative bg-gray-800/90 rounded-2xl max-w-md w-full p-6 border border-blue-500/30 shadow-2xl animate-modal-popup"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button – simple SVG, no external icon */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              aria-label="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            {/* Modal content */}
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-4 p-4 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full">
+                <div className="text-blue-400 text-4xl">{selectedFact.icon}</div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">{selectedFact.text}</h3>
+              <p className="text-gray-300 mb-4">{selectedFact.detail || "No additional detail."}</p>
+              <button
+                onClick={closeModal}
+                className="mt-2 px-5 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes modalPopup {
+          0% {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+        .animate-modal-popup {
+          animation: modalPopup 0.3s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+        }
+      `}</style>
+
+    </>
+  );
+};
+
+
 // ---------- Main About Component ----------
 const About = () => {
   // Services
@@ -322,13 +550,6 @@ const About = () => {
     { name: "React", progress: 70, icon: <Sparkles size={24} /> },
     { name: "Advanced JavaScript", progress: 85, icon: <Code size={24} /> },
     { name: "Mobile App Development", progress: 25, icon: <Smartphone size={24} /> },
-  ];
-
-  const funFacts = [
-    { icon: <BookOpen size={20} />, text: "Teach English to beginners" },
-    { icon: <Users size={20} />, text: "Mentored 20+ aspiring devs" },
-    { icon: <Coffee size={20} />, text: "Coffee addict ☕" },
-    { icon: <Heart size={20} />, text: "Open‑source contributor" },
   ];
 
   // Scroll reveal observer
@@ -412,7 +633,8 @@ const About = () => {
       <SkillsSection />
 
       {/* What I Do (Services) – Sophisticated Version */}
-      <section className="py-16 md:py-20 bg-gray-800">
+      <section className="py-16 md:py-20 bg-gray-800
+      ">
         {/* Optional: soft background decoration */}
         <div className="absolute inset-0 bg-linear-to-br from-blue-900/10 via-transparent to-cyan-900/10" />
 
@@ -476,17 +698,17 @@ const About = () => {
       {/* What I'm Learning – Sophisticated Version */}
       <section className="py-20 md:py-28 bg-gray-900 relative overflow-hidden">
         {/* Subtle background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/5 via-transparent to-cyan-900/5" />
+        <div className="absolute inset-0 bg-linear-to-tr from-blue-900/5 via-transparent to-cyan-900/5" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
 
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           {/* Refined section header */}
           <div className="text-center mb-16 reveal-fade-up">
             <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-              What I'm <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Learning</span>
+              What I'm <span className="bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Learning</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mt-5 rounded-full" />
+            <div className="w-24 h-1 bg-linear-to-r from-blue-500 to-cyan-400 mx-auto mt-5 rounded-full" />
             <p className="text-gray-400 mt-5 max-w-2xl mx-auto text-lg">
               Always growing, always improving – my current focus areas.
             </p>
@@ -505,13 +727,13 @@ const About = () => {
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
                 {/* Glowing gradient overlay on hover */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-600/0 via-transparent to-cyan-600/0 
+                <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-blue-600/0 via-transparent to-cyan-600/0 
                           opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* Header with icon and title */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-xl blur-md 
+                    <div className="absolute inset-0 bg-linear-to-br from-blue-500/30 to-cyan-500/30 rounded-xl blur-md 
                               opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="relative bg-gray-900/80 rounded-xl p-2.5 backdrop-blur-sm border border-gray-700
                               group-hover:border-blue-500/30 transition-all duration-300
@@ -534,12 +756,12 @@ const About = () => {
                   </div>
                   <div className="relative w-full bg-gray-700/50 rounded-full h-2 overflow-hidden backdrop-blur-sm">
                     <div
-                      className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full rounded-full 
+                      className="bg-linear-to-r from-blue-500 to-cyan-400 h-full rounded-full 
                            transition-all duration-1000 ease-out relative"
                       style={{ width: `${item.progress}%` }}
                     >
                       {/* Shimmer effect on hover */}
-                      <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent 
+                      <div className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent 
                                 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     </div>
                   </div>
@@ -565,26 +787,18 @@ const About = () => {
           </div>
         </div>
       </section>
-      {/* Fun Facts */}
-      <section className="py-16 md:py-20 bg-gray-800">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center mb-12 reveal-fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">Beyond the Code</h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full" />
-          </div>
-          <div className="flex flex-wrap justify-center gap-6">
-            {funFacts.map((fact, idx) => (
-              <div key={idx} className="flex items-center gap-3 bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-full px-5 py-2 reveal-fade-up">
-                <span className="text-blue-400">{fact.icon}</span>
-                <span className="text-gray-300">{fact.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Beyond the Code – Interactive Fun Facts */}
+      <section className="py-20 md:py-28 bg-gray-800">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-linear-to-tl from-blue-900/5 via-transparent to-cyan-900/5" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
+
+        <BeyondTheCode />
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 md:py-28 bg-gradient-to-r from-gray-900 to-gray-800 text-center">
+      <section className="py-20 md:py-28 bg-linear-to-r from-gray-900 to-gray-800 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4">
           <div className="reveal-fade-up">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
