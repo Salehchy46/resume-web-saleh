@@ -1,20 +1,17 @@
 // src/pages/Projects.jsx
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   X,
   ExternalLink,
   Github,
-  Filter,
-  ChevronRight,
-  Star,
   Eye,
   ArrowRight,
 } from "lucide-react";
 
-// Sample project data
+// Project data – only 3 projects
 const projectsData = [
   {
     id: 1,
@@ -22,16 +19,12 @@ const projectsData = [
     category: "react",
     tech: ["React", "Tailwind CSS", "MongoDB"],
     image: "https://i.ibb.co.com/7d28nBhP/khela.webp",
-    logo: "https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png", // hexagon logo
+    logo: "https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png",
     description:
       "Full‑featured e‑commerce platform for sports gear with cart, checkout, and user authentication.",
     liveLink: "https://sports-equipment99.netlify.app/",
     codeLink: "https://github.com/Salehchy46/equipment-management-client",
     featured: true,
-    detailedImages: [
-      "https://i.ibb.co.com/7d28nBhP/khela.webp",
-      "https://i.ibb.co.com/7d28nBhP/khela.webp",
-    ],
     fullDescription:
       "A complete online store built with React and Tailwind CSS. Users can browse products, add to cart, and complete orders. The backend uses MongoDB and Express.",
   },
@@ -65,66 +58,19 @@ const projectsData = [
     fullDescription:
       "Built with React and Tailwind, this game demonstrates state management and responsive design.",
   },
-  {
-    id: 4,
-    title: "Portfolio Dashboard",
-    category: "uiux",
-    tech: ["Figma", "React", "Tailwind"],
-    image: "https://i.ibb.co.com/MDdQR89t/download-1.png",
-    logo: "https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png",
-    description:
-      "Analytics dashboard design with dark mode and interactive charts.",
-    liveLink: "#",
-    codeLink: "#",
-    featured: false,
-    fullDescription: "A concept design for a modern analytics dashboard.",
-  },
-  {
-    id: 5,
-    title: "E‑Learning Platform",
-    category: "fullstack",
-    tech: ["React", "Node.js", "MongoDB"],
-    image: "https://i.ibb.co.com/7d28nBhP/khela.webp",
-    logo: "https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png",
-    description: "Online course platform with video streaming and quizzes.",
-    liveLink: "#",
-    codeLink: "#",
-    featured: false,
-    fullDescription: "Full‑stack MERN application for online education.",
-  },
-  {
-    id: 6,
-    title: "Restaurant Website",
-    category: "wordpress",
-    tech: ["WordPress", "ACF", "SCSS"],
-    image: "https://i.ibb.co.com/vxj8w9bV/download.png",
-    logo: "https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png",
-    description:
-      "Modern restaurant site with online reservation system and menu.",
-    liveLink: "#",
-    codeLink: "#",
-    featured: false,
-    fullDescription:
-      "Built with WordPress and Advanced Custom Fields for easy menu management.",
-  },
 ];
 
 const categories = [
   { id: "all", label: "All" },
   { id: "wordpress", label: "WordPress" },
   { id: "react", label: "React" },
-  { id: "uiux", label: "UI/UX" },
-  { id: "fullstack", label: "Full Stack" },
 ];
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
   const [filteredProjects, setFilteredProjects] = useState(projectsData);
-  // eslint-disable-next-line no-unused-vars
-  const observerRef = useRef(null);
 
-  // Filter projects based on category
   useEffect(() => {
     if (activeCategory === "all") {
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -136,7 +82,7 @@ const Projects = () => {
     }
   }, [activeCategory]);
 
-  // Intersection Observer for scroll animations
+  // Scroll animations (fade-up)
   useEffect(() => {
     const options = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
     const observer = new IntersectionObserver((entries) => {
@@ -152,14 +98,28 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Featured project (first in list)
-  const featuredProject = projectsData.find((p) => p.featured) || projectsData[0];
-
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-transparent text-white relative">
+      {/* ========== ANIMATED BACKGROUND ========== */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        {/* Main gradient background – slow shift */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900/20 to-gray-900 animate-gradient-xy" />
+        
+        {/* Floating soft blobs – create depth */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-float-slower" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl animate-pulse-slow" />
+        
+        {/* Extra subtle floating particles (small circles) */}
+        <div className="absolute top-[15%] left-[10%] w-2 h-2 bg-blue-400/30 rounded-full animate-particle-1" />
+        <div className="absolute top-[70%] left-[85%] w-3 h-3 bg-cyan-400/20 rounded-full animate-particle-2" />
+        <div className="absolute top-[40%] left-[20%] w-1.5 h-1.5 bg-blue-300/20 rounded-full animate-particle-3" />
+        <div className="absolute top-[80%] left-[30%] w-2 h-2 bg-cyan-300/25 rounded-full animate-particle-4" />
+        <div className="absolute top-[25%] left-[75%] w-2.5 h-2.5 bg-blue-400/20 rounded-full animate-particle-5" />
+      </div>
+
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-blue-500/5 blur-3xl" />
+      <section className="relative bg-transparent py-20 md:py-28 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             My Work
@@ -170,62 +130,8 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* Featured Project (Optional) */}
-      <section className="py-12 md:py-16 bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-2xl animate-on-scroll">
-            <div className="grid md:grid-cols-2 gap-6 p-6 md:p-8">
-              <div>
-                <img
-                  src={featuredProject.image}
-                  alt={featuredProject.title}
-                  className="w-full h-64 object-cover rounded-xl"
-                />
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <span className="text-blue-400 text-sm uppercase tracking-wider">
-                  Featured Project
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-white">
-                  {featuredProject.title}
-                </h2>
-                <p className="text-gray-300">{featuredProject.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {featuredProject.tech.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 bg-gray-700 rounded-full text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4 pt-2">
-                  <a
-                    href={featuredProject.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
-                  >
-                    Live Demo <ExternalLink size={16} />
-                  </a>
-                  <a
-                    href={featuredProject.codeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-800 transition"
-                  >
-                    View Code <Github size={16} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Filter Bar */}
-      <section className="py-8 bg-gray-800">
+      <section className="py-8 bg-gray-800/50 backdrop-blur-sm border-y border-gray-700/50">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
@@ -246,7 +152,7 @@ const Projects = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16 md:py-24 bg-gray-900">
+      <section className="py-16 md:py-24 bg-transparent">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, idx) => (
@@ -256,8 +162,7 @@ const Projects = () => {
                 onClick={() => setSelectedProject(project)}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="relative bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  {/* Image with overlay on hover */}
+                <div className="relative bg-gray-800/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-700/50">
                   <div className="relative overflow-hidden h-48">
                     <img
                       src={project.image}
@@ -270,35 +175,30 @@ const Projects = () => {
                       </button>
                     </div>
                   </div>
-
                   <div className="p-5">
-                    {/* Hexagon logo + title */}
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="hexagon-small w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                      <div className="rounded-full w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
                         <img
                           src={project.logo}
                           alt="logo"
-                          className="w-7 h-7 object-contain"
+                          className="w-9 h-9 object-contain rounded-full"
                         />
                       </div>
                       <h3 className="text-xl font-bold text-white">{project.title}</h3>
                     </div>
-
-                    <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                    <p className="text-gray-300 text-sm mb-3 line-clamp-2">
                       {project.description}
                     </p>
-
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tech.slice(0, 3).map((tech, i) => (
                         <span
                           key={i}
-                          className="px-2 py-1 bg-gray-700 text-gray-300 text-xs rounded-md"
+                          className="px-2 py-1 bg-gray-700/70 text-gray-300 text-xs rounded-md"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
-
                     <div className="flex gap-3">
                       <a
                         href={project.liveLink}
@@ -328,7 +228,7 @@ const Projects = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 md:py-28 bg-gradient-to-r from-gray-800 to-gray-900 text-center">
+      <section className="py-20 md:py-28 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm text-center">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Have a project in mind?
@@ -352,7 +252,7 @@ const Projects = () => {
           onClick={() => setSelectedProject(null)}
         >
           <div
-            className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative"
+            className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative border border-blue-500/30"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -408,8 +308,64 @@ const Projects = () => {
         </div>
       )}
 
-      {/* Custom CSS for hexagon shape and animations */}
+      {/* Global Animations & Utility Styles */}
       <style jsx>{`
+        @keyframes gradient-xy {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        @keyframes float-slow {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          50% { transform: translate(20px, 30px) rotate(5deg); }
+        }
+        @keyframes float-slower {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          50% { transform: translate(-30px, 20px) rotate(-3deg); }
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        @keyframes particleFloat1 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+          50% { transform: translate(40px, -20px); opacity: 0.5; }
+        }
+        @keyframes particleFloat2 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.15; }
+          50% { transform: translate(-30px, 40px); opacity: 0.4; }
+        }
+        @keyframes particleFloat3 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+          50% { transform: translate(20px, -35px); opacity: 0.45; }
+        }
+        .animate-gradient-xy {
+          background-size: 200% 200%;
+          animation: gradient-xy 15s ease infinite;
+        }
+        .animate-float-slow {
+          animation: float-slow 20s ease-in-out infinite;
+        }
+        .animate-float-slower {
+          animation: float-slower 25s ease-in-out infinite;
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 8s ease-in-out infinite;
+        }
+        .animate-particle-1 {
+          animation: particleFloat1 14s ease-in-out infinite;
+        }
+        .animate-particle-2 {
+          animation: particleFloat2 18s ease-in-out infinite;
+        }
+        .animate-particle-3 {
+          animation: particleFloat3 12s ease-in-out infinite;
+        }
+        .animate-particle-4 {
+          animation: particleFloat2 16s ease-in-out infinite;
+        }
+        .animate-particle-5 {
+          animation: particleFloat1 20s ease-in-out infinite;
+        }
         .hexagon-small {
           clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }

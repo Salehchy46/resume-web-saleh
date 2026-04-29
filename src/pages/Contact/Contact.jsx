@@ -166,7 +166,7 @@ Your style:
   return { messages, isTyping, send };
 }
 
-// ── CHATBOT COMPONENT ────────────────────────────────────────────────────────
+// ── CHATBOT COMPONENT (auto‑scroll removed) ─────────────────────────────────
 const SUGGESTIONS = [
   "I need a landing page",
   "I have a Figma design",
@@ -178,11 +178,9 @@ function ChatBot() {
   const { messages, isTyping, send } = useChat();
   const [input, setInput] = useState("");
   const [suggestionsVisible, setSuggestionsVisible] = useState(true);
-  const bottomRef = useRef(null);
+  // const bottomRef = useRef(null); // REMOVED auto‑scroll
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping]);
+  // REMOVED the useEffect that scrolled to bottom
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -197,9 +195,7 @@ function ChatBot() {
   };
 
   return (
-    <div className=" rounded-2xl shadow-xl overflow-hidden">
-
-      {/* ── LEFT: Chatbot ── */}
+    <div className="rounded-2xl shadow-xl overflow-hidden">
       <div className="flex-1 min-w-0 flex flex-col p-2 bg-gray-800">
         {/* Chat header */}
         <div className="flex items-center gap-3 px-5 py-4 bg-gray-900 border-b border-gray-700">
@@ -217,7 +213,7 @@ function ChatBot() {
           </div>
         </div>
 
-        {/* Messages */}
+        {/* Messages – no auto‑scroll, user scrolls manually */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-80 max-h-96">
           {messages.map((m) => (
             <div
@@ -261,7 +257,7 @@ function ChatBot() {
               </div>
             </div>
           )}
-          <div ref={bottomRef} />
+          {/* Removed the bottomRef div */}
         </div>
 
         {/* Quick replies */}
@@ -301,9 +297,6 @@ function ChatBot() {
           </button>
         </div>
       </div>
-
-
-
 
       <style jsx>{`
         @keyframes fadeUp {
@@ -374,12 +367,29 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-white relative">
+      {/* ========== ANIMATED BACKGROUND ========== */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        {/* Main gradient – slow shift */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900/20 to-gray-900 animate-gradient-xy" />
+
+        {/* Floating soft blobs */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-float-slower" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl animate-pulse-slow" />
+
+        {/* Subtle floating particles */}
+        <div className="absolute top-[15%] left-[10%] w-2 h-2 bg-blue-400/30 rounded-full animate-particle-1" />
+        <div className="absolute top-[70%] left-[85%] w-3 h-3 bg-cyan-400/20 rounded-full animate-particle-2" />
+        <div className="absolute top-[40%] left-[20%] w-1.5 h-1.5 bg-blue-300/20 rounded-full animate-particle-3" />
+        <div className="absolute top-[80%] left-[30%] w-2 h-2 bg-cyan-300/25 rounded-full animate-particle-4" />
+        <div className="absolute top-[25%] left-[75%] w-2.5 h-2.5 bg-blue-400/20 rounded-full animate-particle-5" />
+      </div>
+
       {/* Hero */}
-      <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-blue-500/5 blur-3xl" />
-        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+      <section className="relative bg-transparent py-20 md:py-28 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             Get In Touch
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -388,9 +398,9 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* ── AI CHATBOT BANNER ── */}
-      <section className="py-12 bg-gray-900 border-b border-gray-800">
-        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      {/* AI CHATBOT BANNER */}
+      <section className="py-12 bg-gray-900/50 backdrop-blur-sm border-y border-gray-700/50">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="animate-on-scroll">
             <div className="flex items-center gap-2 mb-3">
               <Bot size={18} className="text-blue-400" />
@@ -404,8 +414,7 @@ const Contact = () => {
             <p className="text-gray-400 mb-6 max-w-xl">
               Chat with my AI assistant to scope your project. I'll follow up within 24 hours.
             </p>
-            {/*FIXED: w-full instead of max-w-2xl */}
-            <div className="w-full flex flex-col md:flex-row bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+            <div className="w-full flex flex-col md:flex-row bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-700/50">
               <div className="flex-1">
                 <ChatBot />
               </div>
@@ -423,13 +432,12 @@ const Contact = () => {
       </section>
 
       {/* Main Contact Section */}
-      <section className="py-16 md:py-24 bg-gray-900">
-        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <section className="py-16 md:py-24 bg-transparent">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-
             {/* Left: Contact Form */}
             <div className="animate-on-scroll">
-              <div className="bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8">
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-gray-700/50">
                 <h2 className="text-2xl font-bold text-white mb-6">Send Me a Message</h2>
 
                 {submitStatus === "success" && (
@@ -450,7 +458,7 @@ const Contact = () => {
                     <input
                       type="text" name="name" value={formData.name}
                       onChange={handleChange} required
-                      className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition text-white"
+                      className="w-full px-4 py-2 bg-gray-900/70 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition text-white"
                     />
                   </div>
                   <div>
@@ -458,7 +466,7 @@ const Contact = () => {
                     <input
                       type="email" name="email" value={formData.email}
                       onChange={handleChange} required
-                      className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition text-white"
+                      className="w-full px-4 py-2 bg-gray-900/70 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition text-white"
                     />
                   </div>
                   <div>
@@ -466,7 +474,7 @@ const Contact = () => {
                     <input
                       type="text" name="subject" value={formData.subject}
                       onChange={handleChange} required
-                      className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition text-white"
+                      className="w-full px-4 py-2 bg-gray-900/70 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition text-white"
                     />
                   </div>
                   <div>
@@ -474,14 +482,14 @@ const Contact = () => {
                     <textarea
                       name="message" rows="5" value={formData.message}
                       onChange={handleChange} required
-                      className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition text-white resize-none"
+                      className="w-full px-4 py-2 bg-gray-900/70 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition text-white resize-none"
                     />
                   </div>
                   <button
                     type="submit" disabled={isSubmitting}
                     className="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 group overflow-hidden"
                   >
-                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                     <span className="relative z-10 flex items-center gap-2">
                       {isSubmitting ? "Sending..." : "Send Message"}
                       <Send size={18} className="group-hover:translate-x-1 transition" />
@@ -494,7 +502,7 @@ const Contact = () => {
             {/* Right: Info + Social + WhatsApp */}
             <div className="space-y-8 animate-on-scroll">
               {/* Contact Info */}
-              <div className="bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8">
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-gray-700/50">
                 <h2 className="text-2xl font-bold text-white mb-6">Contact Info</h2>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 text-gray-300">
@@ -517,7 +525,7 @@ const Contact = () => {
               </div>
 
               {/* Social */}
-              <div className="bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8">
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-gray-700/50">
                 <h2 className="text-2xl font-bold text-white mb-6">Connect With Me</h2>
                 <div className="flex gap-6">
                   <a href="https://github.com/Salehchy46" target="_blank" rel="noopener noreferrer"
@@ -536,7 +544,7 @@ const Contact = () => {
               </div>
 
               {/* WhatsApp */}
-              <div className="bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8 text-center">
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-700/50">
                 <h2 className="text-2xl font-bold text-white mb-4">Prefer WhatsApp?</h2>
                 <p className="text-gray-300 mb-6">I reply faster on WhatsApp.</p>
                 <a
@@ -552,8 +560,66 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Animations */}
-      <style>{`
+      {/* Global Animation Keyframes */}
+      <style jsx>{`
+        /* Background animations */
+        @keyframes gradient-xy {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        @keyframes float-slow {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          50% { transform: translate(20px, 30px) rotate(5deg); }
+        }
+        @keyframes float-slower {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          50% { transform: translate(-30px, 20px) rotate(-3deg); }
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        @keyframes particleFloat1 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+          50% { transform: translate(40px, -20px); opacity: 0.5; }
+        }
+        @keyframes particleFloat2 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.15; }
+          50% { transform: translate(-30px, 40px); opacity: 0.4; }
+        }
+        @keyframes particleFloat3 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+          50% { transform: translate(20px, -35px); opacity: 0.45; }
+        }
+        .animate-gradient-xy {
+          background-size: 200% 200%;
+          animation: gradient-xy 15s ease infinite;
+        }
+        .animate-float-slow {
+          animation: float-slow 20s ease-in-out infinite;
+        }
+        .animate-float-slower {
+          animation: float-slower 25s ease-in-out infinite;
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 8s ease-in-out infinite;
+        }
+        .animate-particle-1 {
+          animation: particleFloat1 14s ease-in-out infinite;
+        }
+        .animate-particle-2 {
+          animation: particleFloat2 18s ease-in-out infinite;
+        }
+        .animate-particle-3 {
+          animation: particleFloat3 12s ease-in-out infinite;
+        }
+        .animate-particle-4 {
+          animation: particleFloat2 16s ease-in-out infinite;
+        }
+        .animate-particle-5 {
+          animation: particleFloat1 20s ease-in-out infinite;
+        }
+        /* Scroll reveal */
         .animate-on-scroll {
           opacity: 0;
           transform: translateY(30px);
@@ -563,13 +629,14 @@ const Contact = () => {
           opacity: 1 !important;
           transform: translateY(0) !important;
         }
+        /* Chatbot animations */
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(8px); }
-          to   { opacity: 1; transform: translateY(0); }
+          to { opacity: 1; transform: translateY(0); }
         }
         @keyframes typingBounce {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
-          30%            { transform: translateY(-5px); opacity: 1; }
+          30% { transform: translateY(-5px); opacity: 1; }
         }
       `}</style>
     </div>
