@@ -1,17 +1,16 @@
-import React from 'react'
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { RouterProvider } from 'react-router-dom'
-import { router } from './routes/Router.jsx'
-import CustomCursor from './components/CustomCursor.jsx'
-import TargetCursor from './components/TargetCursor.jsx'
-import ScrollToTop from './components/ScrolToTop.jsx'
+import React from 'react';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/Router.jsx';
+import { CursorProvider } from './context/CursorProvider.jsx';
+import ScrollToTop from './components/ScrolToTop.jsx';
+import TargetCursor from './components/TargetCursor.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CustomCursor />
-    <RouterProvider router={router}></RouterProvider>
-  </StrictMode>,
-)
+    <TargetCursor></TargetCursor>
+    <RouterProvider router={router} />
+  </StrictMode>
+);

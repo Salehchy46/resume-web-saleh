@@ -206,11 +206,11 @@ const Hero = () => {
   }, [displayText, isDeleting, wordIndex, phase, words]);
 
   return (
-    <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 md:py-24 lg:py-32">
 
 
       {/* Animated Blue Blurry Balls */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl opacity-30 animate-float1" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-25 animate-float2" />
         <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-20 animate-float3" />

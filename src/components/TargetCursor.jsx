@@ -1,43 +1,31 @@
 // src/components/TargetCursor.jsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 const TargetCursor = () => {
   const cursorRef = useRef(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const mousePosition = useRef({ x: 0, y: 0 });
+  const rafId = useRef(null);
 
   useEffect(() => {
-    const isTouch = window.matchMedia("(pointer: coarse)").matches ||
-                    "ontouchstart" in window ||
-                    navigator.maxTouchPoints > 0;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsTouchDevice(isTouch);
-  }, []);
+    const updatePosition = () => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${mousePosition.current.x}px, ${mousePosition.current.y}px, 0)`;
+      }
+      rafId.current = requestAnimationFrame(updatePosition);
+    };
 
-  useEffect(() => {
-    if (isTouchDevice) return;
-
-    const cursor = cursorRef.current;
-    if (!cursor) return;
+    const onMouseMove = (e) => {
+      mousePosition.current = { x: e.clientX, y: e.clientY };
+    };
 
     // Hide default cursor
     document.body.style.cursor = "none";
     document.documentElement.style.cursor = "none";
 
-    const onMouseMove = (e) => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-    };
-
     window.addEventListener("mousemove", onMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      document.body.style.cursor = "";
-      document.documentElement.style.cursor = "";
-    };
-  }, [isTouchDevice]);
+    rafId.current = requestAnimationFrame(updatePosition);
 
-  // Pointer cursor for interactive elements
-  useEffect(() => {
-    if (isTouchDevice) return;
+    // Force pointer cursor on interactive elements
     const style = document.createElement("style");
     style.textContent = `
       button, a, input, textarea, select, [role="button"], .btn, [tabindex]:not([tabindex="-1"]) {
@@ -45,10 +33,15 @@ const TargetCursor = () => {
       }
     `;
     document.head.appendChild(style);
-    return () => style.remove();
-  }, [isTouchDevice]);
 
-  if (isTouchDevice) return null;
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      document.body.style.cursor = "";
+      document.documentElement.style.cursor = "";
+      style.remove();
+    };
+  }, []);
 
   return (
     <div
@@ -57,63 +50,19 @@ const TargetCursor = () => {
         position: "fixed",
         top: 0,
         left: 0,
-        width: "28px",
-        height: "28px",
-        marginLeft: "-14px",
-        marginTop: "-14px",
+        width: "24px",
+        height: "24px",
+        marginLeft: "-12px",
+        marginTop: "-12px",
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(59,130,246,0.8), rgba(96,165,250,0.4))",
+        filter: "blur(4px)",
         pointerEvents: "none",
         zIndex: 9999,
+        transition: "transform 0.05s linear", // ultra‑smooth follow
         willChange: "transform",
       }}
-    >
-      {/* Outer ring */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          borderRadius: "50%",
-          border: "2px solid #3b82f6",
-          boxSizing: "border-box",
-        }}
-      />
-      {/* Inner dot */}
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          width: "4px",
-          height: "4px",
-          marginLeft: "-2px",
-          marginTop: "-2px",
-          borderRadius: "50%",
-          backgroundColor: "#3b82f6",
-        }}
-      />
-      {/* Optional crosshair lines (small) */}
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: 0,
-          right: 0,
-          height: "1px",
-          background: "#3b82f680",
-          transform: "translateY(-50%)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: 0,
-          bottom: 0,
-          width: "1px",
-          background: "#3b82f680",
-          transform: "translateX(-50%)",
-        }}
-      />
-    </div>
+    />
   );
 };
 
