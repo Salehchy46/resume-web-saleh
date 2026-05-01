@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+ 
 // src/pages/About.jsx
 "use client";
 

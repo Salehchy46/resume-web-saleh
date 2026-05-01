@@ -76,19 +76,19 @@ const Footer = () => {
                 </NavLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/services" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Services
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/work" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Portfolio
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/blog" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Blog
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

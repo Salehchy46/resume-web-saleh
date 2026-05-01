@@ -6,6 +6,7 @@ import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import Work from "../pages/Work/Work";
 import VoiceAndSupport from "../pages/VoiceAndSupport/VoiceAndSupport";
+import Services from "../pages/Services/Services";
 
 export const router = createBrowserRouter([
     {
@@ -31,7 +32,11 @@ export const router = createBrowserRouter([
             {
                 path: '/voiceAndSupport',
                 element: <VoiceAndSupport></VoiceAndSupport>
-            }
+            },
+            {
+                path: '/services',
+                element: <Services></Services>
+            },
         ]
     }
 ])

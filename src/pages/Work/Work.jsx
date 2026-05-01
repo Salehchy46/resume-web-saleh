@@ -58,12 +58,28 @@ const projectsData = [
     fullDescription:
       "Built with React and Tailwind, this game demonstrates state management and responsive design.",
   },
+  {
+    id: 4,
+    title: "Roshgolla – Restaurant Site",
+    category: "html",
+    tech: ["HTML", "CSS", "JavaScript"],
+    image: "https://i.etsystatic.com/24762720/r/il/d1ace7/4418170622/il_fullxfull.4418170622_cf16.jpg",
+    logo: "https://i.etsystatic.com/24762720/r/il/d1ace7/4418170622/il_fullxfull.4418170622_cf16.jpg",
+    description:
+      "Classic Restraunt Website with modern UI.",
+    liveLink: "https://salehchy46.github.io/Roshgolla/",
+    codeLink: "https://github.com/Salehchy46/Roshgolla",
+    featured: false,
+    fullDescription:
+      "This website features a responsive design that works on all devices.",
+  },
 ];
 
 const categories = [
   { id: "all", label: "All" },
   { id: "wordpress", label: "WordPress" },
   { id: "react", label: "React" },
+  { id: "html", label: "HTML" },
 ];
 
 const Projects = () => {
@@ -103,12 +119,12 @@ const Projects = () => {
       {/* ========== ANIMATED BACKGROUND ========== */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         {/* Main gradient background – slow shift */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900/20 to-gray-900 animate-gradient-xy" />
+        <div className="absolute inset-0 bg-linear-to-br from-gray-900 via-blue-900/20 to-gray-900 animate-gradient-xy" />
         
         {/* Floating soft blobs – create depth */}
         <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float-slow" />
         <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-float-slower" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-indigo-500/5 rounded-full blur-3xl animate-pulse-slow" />
         
         {/* Extra subtle floating particles (small circles) */}
         <div className="absolute top-[15%] left-[10%] w-2 h-2 bg-blue-400/30 rounded-full animate-particle-1" />
@@ -120,8 +136,8 @@ const Projects = () => {
 
       {/* Hero Section */}
       <section className="relative bg-transparent py-20 md:py-28 overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             My Work
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -132,7 +148,7 @@ const Projects = () => {
 
       {/* Filter Bar */}
       <section className="py-8 bg-gray-800/50 backdrop-blur-sm border-y border-gray-700/50">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
               <button
@@ -153,7 +169,7 @@ const Projects = () => {
 
       {/* Projects Grid */}
       <section className="py-16 md:py-24 bg-transparent">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, idx) => (
               <div
@@ -177,7 +193,7 @@ const Projects = () => {
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="rounded-full w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                      <div className="rounded-full w-10 h-10 bg-linear-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
                         <img
                           src={project.logo}
                           alt="logo"
@@ -228,7 +244,7 @@ const Projects = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 md:py-28 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm text-center">
+      <section className="py-20 md:py-28 bg-linear-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm text-center">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Have a project in mind?
@@ -268,7 +284,7 @@ const Projects = () => {
             />
             <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="rounded-full w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                <div className="rounded-full w-12 h-12 bg-linear-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
                   <img
                     src={selectedProject.logo}
                     alt="logo"

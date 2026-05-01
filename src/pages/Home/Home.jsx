@@ -289,6 +289,7 @@ const Hero = () => {
               <a href="https://www.instagram.com/mdsalehchy/" target="_blank" rel="noopener noreferrer" className="border-2 p-2 rounded-4xl text-gray-400 hover:text-pink-400 transition">
                 <Instagram size={24} />
               </a>
+              
             </div>
           </div>
 
