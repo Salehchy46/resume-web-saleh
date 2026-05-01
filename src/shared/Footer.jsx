@@ -1,5 +1,7 @@
+// src/shared/Footer.jsx
 "use client";
 
+import { Github, Linkedin, Facebook, Instagram, Mail } from "lucide-react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -24,11 +26,9 @@ const LinkedInIcon = ({ size = 24, className = "" }) => (
 const Footer = () => {
   return (
     <footer className="w-full bg-gray-900 border-t border-gray-800 relative z-10">
-      {/* Container with max width 1400px and padding matching the navbar */}
       <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-350 py-12 font-inter">
-        {/* Grid layout – responsive columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand column */}
+          {/* Brand column (unchanged) */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <h3 className="text-3xl font-bold text-white">Saleh</h3>
@@ -37,20 +37,26 @@ const Footer = () => {
               Innovating for a better tomorrow. We are committed to delivering
               high-quality solutions that empower businesses and individuals.
             </p>
-            <div className="flex space-x-5 pt-2">
-              <a href="#" className="text-gray-400 hover:text-teal-400 transition-transform transform hover:scale-110">
-                <GitHubIcon size={28} />
+            <div className="flex space-x-2 pt-2">
+              <a href="https://github.com/Salehchy46" target="_blank" rel="noopener noreferrer" className="border-2 p-2 rounded-4xl text-gray-400 hover:text-white transition">
+                <Github size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-teal-400 transition-transform transform hover:scale-110">
-                <TwitterIcon size={28} />
+              <a href="https://www.linkedin.com/in/mohammad-saleh-830389226/" target="_blank" rel="noopener noreferrer" className="border-2 p-2 rounded-4xl text-gray-400 hover:text-blue-400 transition">
+                <Linkedin size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-teal-400 transition-transform transform hover:scale-110">
-                <LinkedInIcon size={28} />
+              <a href="mailto:Salehchyctg@gmail.com" className="border-2 p-2 rounded-4xl text-gray-400 hover:text-red-400 transition">
+                <Mail size={24} />
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=100007219425976" target="_blank" rel="noopener noreferrer" className="border-2 p-2 rounded-4xl text-gray-400 hover:text-blue-600 transition">
+                <Facebook size={24} />
+              </a>
+              <a href="https://www.instagram.com/mdsalehchy/" target="_blank" rel="noopener noreferrer" className="border-2 p-2 rounded-4xl text-gray-400 hover:text-pink-400 transition">
+                <Instagram size={24} />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links – added Voices & Support */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-gray-100">Quick Links</h3>
             <ul className="space-y-3">
@@ -62,6 +68,11 @@ const Footer = () => {
               <li>
                 <NavLink to="/about" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/voiceAndSupport" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                  Voices & Support
                 </NavLink>
               </li>
               <li>
@@ -82,7 +93,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Resources (unchanged) */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-gray-100">Resources</h3>
             <ul className="space-y-3">
@@ -114,7 +125,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info (unchanged) */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-gray-100">Contact Us</h3>
             <p className="text-gray-300">
@@ -129,10 +140,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright section */}
         <div className="text-center text-gray-400 text-sm pt-10 mt-10 border-t border-gray-800">
           <p>All rights reserved &copy; {new Date().getFullYear()}</p>
-          <p className="mt-1">Designed by Mohammad Saleh</p>
+          <p className="mt-1">Designed & Developed by Mohammad Saleh</p>
         </div>
       </div>
     </footer>
