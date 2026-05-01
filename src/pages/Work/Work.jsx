@@ -162,12 +162,12 @@ const Projects = () => {
                 onClick={() => setSelectedProject(project)}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="relative bg-gray-800/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-700/50">
+                <div className=" bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-700/50">
                   <div className="relative overflow-hidden h-48">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 hover:rounded-xl rounded-xl"
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                       <button className="px-4 py-2 bg-blue-600 rounded-lg text-sm font-medium flex items-center gap-2">
@@ -268,11 +268,11 @@ const Projects = () => {
             />
             <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="hexagon-small w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                <div className="rounded-full w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
                   <img
                     src={selectedProject.logo}
                     alt="logo"
-                    className="w-8 h-8 object-contain"
+                    className="w-11 h-11 object-contain rounded-full"
                   />
                 </div>
                 <h2 className="text-2xl font-bold text-white">{selectedProject.title}</h2>

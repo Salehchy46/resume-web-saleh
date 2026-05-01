@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import Work from "../pages/Work/Work";
+import VoiceAndSupport from "../pages/VoiceAndSupport/VoiceAndSupport";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: '/work',
                 element: <Work></Work>,
+            }, 
+            {
+                path: '/voiceAndSupport',
+                element: <VoiceAndSupport></VoiceAndSupport>
             }
         ]
     }

@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ExternalLink, ArrowRight } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 import './shared.css';
+// eslint-disable-next-line no-unused-vars
+import { text } from 'framer-motion/client';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,7 +35,8 @@ const Navbar = () => {
         { text: "Home", to: "/" },
         { text: "About", to: "/about" },
         { text: "Work", to: "/work" },
-        { text: "Contact", to: "/contact" }
+        { text: "Contact", to: "/contact" },
+        { text: "Voices", to: "/voiceAndSupport" }
     ];
 
     return (
