@@ -98,29 +98,29 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-gray-100">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/support" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Support
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/faqs" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   FAQs
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/privacyPolicy" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Privacy Policy
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/termsOfService" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Terms of Service
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
+                <NavLink to="/careers" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">
                   Careers
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

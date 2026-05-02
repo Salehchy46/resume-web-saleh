@@ -1,0 +1,32 @@
+[
+  {
+    "id": "why-react-2025",
+    "title": "Why React Remains My Top Choice in 2025",
+    "date": "2025-04-15",
+    "author": "Mohammad Saleh",
+    "readTime": "4 min read",
+    "excerpt": "React continues to dominate frontend development. Here’s why I choose it for most of my projects...",
+    "content": "<p><strong>React</strong> is still the most productive frontend library I've used. With the introduction of Server Components and improved performance, it's a no-brainer for modern web apps.</p><p>In 2025, the ecosystem is richer than ever: Next.js, Remix, and Tailwind work seamlessly. The component model keeps my code organized, and the developer experience is unmatched.</p><p>If you're starting web development, learn React. It opens doors to freelancing, full-time jobs, and your own projects.</p>",
+    "tags": ["React", "Frontend", "JavaScript"]
+  },
+  {
+    "id": "tailwind-tips",
+    "title": "5 Tailwind CSS Tips for Faster Development",
+    "date": "2025-03-22",
+    "author": "Mohammad Saleh",
+    "readTime": "3 min read",
+    "excerpt": "Tailwind CSS has changed how I style websites. These tips will help you build UIs faster and keep code clean...",
+    "content": "<p>Tailwind CSS utility classes are powerful, but here are a few tricks I've learned:</p><ul><li>Use <code>@apply</code> sparingly – only for repeating complex patterns.</li><li>Leverage arbitrary values for one-off designs.</li><li>Configure your theme wisely – add custom colors, fonts, and screens.</li><li>Use `group` and `peer` for complex interactions.</li><li>Combine with `clsx` or `class-variance-authority` for dynamic classes.</li></ul><p>With these, you'll ship responsive, consistent UIs in half the time.</p>",
+    "tags": ["Tailwind CSS", "CSS", "UI/UX"]
+  },
+  {
+    "id": "from-madrasha-to-developer",
+    "title": "From Madrasha Student to Self‑Taught Developer",
+    "date": "2025-02-10",
+    "author": "Mohammad Saleh",
+    "readTime": "5 min read",
+    "excerpt": "My journey from studying in a religious institution to becoming a web developer. Resources and mindset that helped me...",
+    "content": "<p>It wasn't an easy path. I studied Dakhil (secondary) and Alim (higher secondary) from a madrasha. While I learned discipline and values, there was no computer science. So I taught myself.</p><p>Here's what worked:</p><ol><li>freeCodeCamp – foundation of HTML/CSS/JS.</li><li>Building projects – I built 10+ small websites before taking clients.</li><li>WordPress first – easy way to earn while learning React.</li><li>Joining developer communities – Twitter, Discord, LinkedIn.</li><li>Consistency – 2 hours daily, no excuses.</li></ol><p>Today, I earn as a freelance developer and mentor others. Your background doesn't limit you – your effort does.</p>",
+    "tags": ["Career", "Motivation", "Self-Taught"]
+  }
+]

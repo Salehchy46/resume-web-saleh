@@ -456,7 +456,7 @@ const Exploration = () => {
               <img
                 src={src}
                 alt={`Tech ${idx + 1}`}
-                className="h-24 md:h-28 lg:h-36 w-auto rounded-xl shadow-lg border border-gray-700 transition-transform hover:scale-105 duration-300"
+                className="border-4 h-24 md:h-28 lg:h-36 w-auto rounded-xl shadow-lg border-white transition-transform hover:scale-105 duration-300"
               />
             </div>
           ))}
@@ -469,7 +469,7 @@ const Exploration = () => {
               <img
                 src={src}
                 alt={`Tech ${idx + 1}`}
-                className="h-24 md:h-28 lg:h-36 w-auto rounded-xl shadow-lg border border-gray-700 transition-transform hover:scale-105 duration-300"
+                className="border-4 h-24 md:h-28 lg:h-36 w-auto rounded-xl shadow-lg border-white transition-transform hover:scale-105 duration-300"
               />
             </div>
           ))}

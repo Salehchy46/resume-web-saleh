@@ -7,6 +7,11 @@ import Contact from "../pages/Contact/Contact";
 import Work from "../pages/Work/Work";
 import VoiceAndSupport from "../pages/VoiceAndSupport/VoiceAndSupport";
 import Services from "../pages/Services/Services";
+import Blog from "../pages/Blog/Blog";
+import BlogPost from "../pages/Blog/BlogPost";
+import Support from "../pages/Support/Support";
+import FAQs from "../pages/FAQs/FAQs";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +42,26 @@ export const router = createBrowserRouter([
                 path: '/services',
                 element: <Services></Services>
             },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
+            },
+            {
+                path: '/blog/:id',
+                element: <BlogPost></BlogPost>
+            },
+            {
+                path: '/support',
+                element: <Support></Support>
+            },
+            {
+                path: '/faqs',
+                element: <FAQs></FAQs>,
+            },
+            {
+                path: '/privacyPolicy',
+                element: <PrivacyPolicy></PrivacyPolicy>
+            }
         ]
     }
 ])
