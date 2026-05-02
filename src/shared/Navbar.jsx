@@ -46,12 +46,12 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
                     {/* Logo */}
                     <div className="flex items-center">
-                        <a href="/" className="flex items-center group">
+                        <NavLink to="/" className="flex items-center group">
                             <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 hexagon bg-gray-800 flex items-center justify-center transition-transform group-hover:scale-110">
                                 <img className="w-full h-full object-contain" src="https://i.ibb.co.com/FLFLk2T1/image-5c7ee4da.png" alt="Logo" />
                             </div>
                             <span className="font-bold text-lg sm:text-xl lg:text-3xl text-white ml-5">Saleh</span>
-                        </a>
+                        </NavLink>
                     </div>
 
                     {/* Desktop Navigation */}

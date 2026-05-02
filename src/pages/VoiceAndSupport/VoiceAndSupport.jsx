@@ -182,7 +182,7 @@ const VoicesAndSupport = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-12">
+        <div className="min-h-screen bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <motion.div
@@ -191,7 +191,7 @@ const VoicesAndSupport = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12"
                 >
-                    <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                    <h1 className="text-4xl md:text-5xl font-extrabold bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                         Voices & Support
                     </h1>
                     <p className="text-gray-300 mt-3 max-w-2xl mx-auto">
@@ -214,7 +214,7 @@ const VoicesAndSupport = () => {
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Star Rating */}
                         <div>
-                            <label className="block text-gray-300 mb-2 flex items-center gap-2">
+                            <label className="block text-gray-300 mb-2 items-center gap-2">
                                 <Star size={18} className="text-yellow-400" /> Your Rating
                             </label>
                             {renderStars(formData.rating, true, null, hoverRating)}
@@ -230,7 +230,7 @@ const VoicesAndSupport = () => {
 
                         {/* Email */}
                         <div>
-                            <label className="block text-gray-300 mb-2 flex items-center gap-2">
+                            <label className="block text-gray-300 mb-2 items-center gap-2">
                                 <Mail size={18} /> Email (optional)
                             </label>
                             <input

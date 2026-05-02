@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // src/pages/Careers/Careers.jsx
 import React, { useState, useEffect } from 'react';
-// eslint-disable-next-line no-unused-vars
+ 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -50,14 +50,14 @@ const Careers = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-linear-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-blue-500/5 blur-3xl" />
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+            className="text-5xl md:text-6xl font-bold bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
           >
             Certifications & Achievements
           </motion.h1>
@@ -74,8 +74,8 @@ const Careers = () => {
 
       {/* Stats Bar */}
       <section className="py-8 bg-gray-800/30 border-b border-gray-700">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="grid grid-cols-2 md:grid-cols- gap-4 text-center">
             <div className="bg-gray-800/50 rounded-xl p-4">
               <Award className="w-8 h-8 text-blue-400 mx-auto mb-2" />
               <div className="text-2xl font-bold text-white">{certificates.length}+</div>
@@ -131,7 +131,7 @@ const Careers = () => {
 
       {/* Certificates Grid */}
       <section className="py-16 md:py-24 bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           {filteredCertificates.length === 0 ? (
             <div className="text-center py-16 text-gray-400">
               <p className="text-lg">No certificates found. Try a different search or filter.</p>
@@ -154,7 +154,7 @@ const Careers = () => {
                       alt={cert.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-transparent to-transparent" />
                   </div>
                   
                   {/* Content */}
@@ -191,7 +191,7 @@ const Careers = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-gray-800 to-gray-900 text-center">
+      <section className="py-20 bg-linear-to-r from-gray-800 to-gray-900 text-center">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to work together?

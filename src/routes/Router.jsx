@@ -14,6 +14,8 @@ import FAQs from "../pages/FAQs/FAQs";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "../pages/TermsOfService/TermsOfService";
 import Careers from "../pages/Careers/Careers";
+import Dashboard from "../layouts/Dashboard";
+import Orders from "../pages/Dashboard/Orders/Orders";
 
 export const router = createBrowserRouter([
     {
@@ -71,6 +73,17 @@ export const router = createBrowserRouter([
             {
                 path: '/careers',
                 element: <Careers></Careers>
+            }
+        ]
+    },
+    {
+        path: '/personalDashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            // Future nested routes for dashboard can be added here
+            {
+                path: '/personalDashboard/orders',
+                element: <Orders></Orders>,
             }
         ]
     }

@@ -104,7 +104,7 @@ const FAQs = () => {
                             <span className="text-xs font-medium text-blue-400 uppercase tracking-wider">Knowledge Base</span>
                         </motion.div>
                         <h2 className="text-3xl md:text-4xl font-bold text-white">Frequently Asked Questions</h2>
-                        <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mt-4 rounded-full" />
+                        <div className="w-20 h-1 bg-linear-to-r from-blue-500 to-cyan-400 mx-auto mt-4 rounded-full" />
                         <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
                             Everything you need to know about working with me
                         </p>
@@ -131,14 +131,14 @@ const FAQs = () => {
                                         className="w-full flex justify-between items-center p-5 text-left"
                                     >
                                         <div className="flex items-center gap-3">
-                                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                                            <div className="shrink-0 w-8 h-8 rounded-full bg-linear-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
                                                 <HelpCircle size={16} className="text-blue-400" />
                                             </div>
                                             <span className="text-base md:text-lg font-medium text-white group-hover:text-blue-400 transition-colors">
                                                 {faq.question}
                                             </span>
                                         </div>
-                                        <div className="flex-shrink-0 ml-4 text-gray-400 group-hover:text-blue-400 transition-colors">
+                                        <div className="shrink-0 ml-4 text-gray-400 group-hover:text-blue-400 transition-colors">
                                             {openFaq === idx ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                                         </div>
                                     </button>
@@ -180,7 +180,7 @@ const FAQs = () => {
                         className="bg-gray-800/40 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-gray-700/50 shadow-2xl overflow-hidden"
                     >
                         {/* Gradient top bar */}
-                        <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500" />
+                        <div className="h-1 w-full bg-linear-to-r from-blue-500 via-cyan-400 to-purple-500" />
 
                         <div className="p-6 md:p-10">
                             <div className="text-center mb-8">
@@ -263,9 +263,9 @@ const FAQs = () => {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="group relative px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
+                                        className="group relative px-8 py-3 bg-linear-to-r from-blue-600 to-cyan-600 rounded-xl text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
                                     >
-                                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-700 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <span className="absolute inset-0 w-full h-full bg-linear-to-r from-blue-700 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                         <span className="relative flex items-center gap-2">
                                             {isSubmitting ? (
                                                 <>
