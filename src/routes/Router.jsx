@@ -14,8 +14,12 @@ import FAQs from "../pages/FAQs/FAQs";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "../pages/TermsOfService/TermsOfService";
 import Careers from "../pages/Careers/Careers";
-import Dashboard from "../layouts/Dashboard";
 import Orders from "../pages/Dashboard/Orders/Orders";
+import Overview from "../pages/Dashboard/Overview/Overview";
+import Dashboard from "../layouts/Dashboard";
+import Projects from "../pages/Dashboard/Projects/Projects";
+import Reviews from "../pages/Dashboard/Reviews/Reviews";
+import SharedProjects from "../pages/Dashboard/SharedProject/SharedProject";
 
 export const router = createBrowserRouter([
     {
@@ -80,10 +84,25 @@ export const router = createBrowserRouter([
         path: '/personalDashboard',
         element: <Dashboard></Dashboard>,
         children: [
-            // Future nested routes for dashboard can be added here
+            {
+                path: '/personalDashboard/overview',
+                element: <Overview></Overview>,
+            },
             {
                 path: '/personalDashboard/orders',
-                element: <Orders></Orders>,
+                element: <Orders></Orders>
+            },
+            {
+                path: '/personalDashboard/projects',
+                element: <Projects></Projects>
+            },
+            {
+                path: '/personalDashboard/reviews',
+                element: <Reviews></Reviews>
+            },
+            {
+                path: '/personalDashboard/sharedProjects',
+                element: <SharedProjects></SharedProjects>
             }
         ]
     }

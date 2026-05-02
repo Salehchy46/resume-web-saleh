@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+ 
 // src/pages/Contact.jsx
 "use client";
 
@@ -536,7 +536,7 @@ const Contact = () => {
                     className="p-3 bg-gray-700 rounded-full hover:bg-gray-600 transition-transform hover:scale-110">
                     <Linkedin size={24} />
                   </a>
-                  <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer"
+                  <a href="https://www.facebook.com/profile.php?id=100007219425976" target="_blank" rel="noopener noreferrer"
                     className="p-3 bg-gray-700 rounded-full hover:bg-gray-600 transition-transform hover:scale-110">
                     <Facebook size={24} />
                   </a>
