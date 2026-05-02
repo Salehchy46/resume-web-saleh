@@ -75,7 +75,7 @@ const Careers = () => {
       {/* Stats Bar */}
       <section className="py-8 bg-gray-800/30 border-b border-gray-700">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
             <div className="bg-gray-800/50 rounded-xl p-4">
               <Award className="w-8 h-8 text-blue-400 mx-auto mb-2" />
               <div className="text-2xl font-bold text-white">{certificates.length}+</div>
@@ -91,18 +91,13 @@ const Careers = () => {
               <div className="text-2xl font-bold text-white">2022–2025</div>
               <div className="text-xs text-gray-400">Active Learning</div>
             </div>
-            <div className="bg-gray-800/50 rounded-xl p-4">
-              <CheckCircle className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-white">100%</div>
-              <div className="text-xs text-gray-400">Verified</div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Search & Filter */}
       <section className="py-8 bg-gray-900">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
             <div className="relative w-full md:w-96">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />

@@ -14,6 +14,7 @@ const CursorManager = () => {
   if (pathname === '/work') return <NeuralGlow />;
   if (pathname === '/about') return <FluidCursor />;
   if (pathname === '/contact') return <TextFlagCursor />;
+  if (pathname === '/careers') return <SpotlightCursor />
   return <CanvasCursor />; 
 };
 

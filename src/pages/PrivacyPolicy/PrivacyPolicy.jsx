@@ -163,7 +163,7 @@ const PrivacyPolicy = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-center">
+      <section className="py-16 bg-linear-to-r from-gray-800 to-gray-900 text-center">
         <div className="max-w-330 mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Questions?</h2>
           <p className="text-gray-300 mb-6">If you have any concerns about your privacy, feel free to reach out.</p>

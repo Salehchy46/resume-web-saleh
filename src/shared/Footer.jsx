@@ -34,7 +34,7 @@ const Footer = () => {
               <h3 className="text-3xl font-bold text-white">Saleh</h3>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Innovating for a better tomorrow. We are committed to delivering
+              Innovating for a better tomorrow. I am committed to delivering
               high-quality solutions that empower businesses and individuals.
             </p>
             <div className="flex space-x-2 pt-2">
