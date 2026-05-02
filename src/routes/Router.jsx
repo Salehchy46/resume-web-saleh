@@ -20,6 +20,8 @@ import Dashboard from "../layouts/Dashboard";
 import Projects from "../pages/Dashboard/Projects/Projects";
 import Reviews from "../pages/Dashboard/Reviews/Reviews";
 import SharedProjects from "../pages/Dashboard/SharedProject/SharedProject";
+import BotData from "../pages/Dashboard/BotData/BotData";
+import Settings from "../pages/Dashboard/Settings/Settings";
 
 export const router = createBrowserRouter([
     {
@@ -103,6 +105,14 @@ export const router = createBrowserRouter([
             {
                 path: '/personalDashboard/sharedProjects',
                 element: <SharedProjects></SharedProjects>
+            },
+            {
+                path: '/personalDashboard/botdata',
+                element: <BotData></BotData>
+            },
+            {
+                path: '/personalDashboard/settings',
+                element: <Settings></Settings>,
             }
         ]
     }

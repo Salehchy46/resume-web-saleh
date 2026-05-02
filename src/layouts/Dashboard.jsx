@@ -27,6 +27,7 @@ const Dashboard = () => {
     { path: '/personalDashboard/sharedProjects', label: 'Shared Projects', icon: <BarChart3 size={20} />, adminOnly: true },
     { path: '/personalDashboard/projects', label: 'Projects', icon: <FolderGit2 size={20} />, adminOnly: true },
     { path: '/personalDashboard/reviews', label: 'Reviews', icon: <MessageSquare size={20} />, adminOnly: true },
+    { path: '/personalDashboard/botdata', label: 'Bot Data', icon: <MessageSquare size={20} />, adminOnly: true },
     { path: '/personalDashboard/settings', label: 'Settings', icon: <Settings size={20} />, adminOnly: false },
   ];
 

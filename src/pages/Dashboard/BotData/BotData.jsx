@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { MessageSquare, Eye, Mail, User, Calendar, ChevronRight } from 'lucide-react';
-import { fetchChatConversations, fetchConversationById } from '../../services/chatMessageService';
+import { fetchChatConversations, fetchConversationById } from './aiService';
 
 const BotData = () => {
   const [conversations, setConversations] = useState([]);
@@ -39,8 +39,8 @@ const BotData = () => {
   );
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
+    <div className='relative right-25 max-w-7xl'>
+      <div className=" flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-white">AI Assistant Conversations</h1>
         <div className="relative">
           <input

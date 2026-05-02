@@ -33,7 +33,7 @@ const SharedProjects = () => {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="relative right-25 max-w-7xl overflow-x-auto">
       <table className="w-full text-left">
         <thead className="border-b border-gray-700">
           <tr className="text-gray-400 text-sm">

@@ -20,50 +20,23 @@ import {
 } from "lucide-react";
 import SupportLottie from "../../assets/lotties/Support.json";
 import Lottie from "lottie-react";
+// eslint-disable-next-line no-unused-vars
+import { saveChatMessage, endConversation } from '../Dashboard/BotData/aiService';
 
-// ── AI CHATBOT HOOK ─────────────────────────────────────────────────────────
+// ── AI CHATBOT HOOK (with message saving) ───────────────────────────────────
 function useChat() {
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
   const [conversationId, setConversationId] = useState(null);
   const historyRef = useRef([]);
+  const sessionIdRef = useRef(null);          // store the unique session ID for saving messages
 
   const BACKEND = import.meta.env.VITE_BACKEND_URL || "";
 
-  const SYSTEM = `You are Saleh's warm and professional AI assistant on his frontend developer portfolio contact page. Your role is to chat with potential clients, understand their project, and encourage them to work with Saleh.
-
-Saleh's expertise:
-- React, TypeScript — scalable, production-grade apps
-- Tailwind CSS — utility-first, beautiful, responsive UIs
-- Animations — Framer Motion, GSAP, CSS transitions and keyframes
-- Landing pages — high-converting, cinematic, pixel-perfect
-- Figma to code — faithful, animated, responsive implementation
-- Performance — Lighthouse 95+, Core Web Vitals, lazy loading
-- UI revamps — modernizing legacy frontend products
-
-Contact info:
-- Email: Salehchyctg@gmail.com
-- Phone/WhatsApp: +8801835069946
-- Location: Chattogram, Bangladesh
-
-Pricing (share approximate ranges freely):
-- Landing page: $900 – $2,000
-- Multi-page marketing site: $2,000 – $4,500
-- React / Next.js web app: $3,500 – $10,000+
-- Figma-to-code (per screen): $150 – $450
-- Rush delivery under 5 days: +25%
-- Typical turnaround: landing pages 5–7 days, apps 2–6 weeks
-
-Your style:
-- Warm, confident, concise — 2–4 sentences max per reply
-- Ask one clarifying question at a time (project type, designs ready, timeline, budget)
-- Try to collect the visitor's email or name naturally in conversation
-- Get excited about the project
-- Encourage them to fill the contact form above or message on WhatsApp
-- Never invent specific project details
-- Use plain conversational text — no markdown, no asterisks, no bullets, no headers`;
+  const SYSTEM = `...`; // (keep your existing SYSTEM prompt unchanged)
 
   useEffect(() => {
+    // Get or create a session ID (same as before)
     const sessionId =
       sessionStorage.getItem("chat_sid") ||
       (() => {
@@ -71,6 +44,7 @@ Your style:
         sessionStorage.setItem("chat_sid", id);
         return id;
       })();
+    sessionIdRef.current = sessionId;         // store for later use
 
     const init = async () => {
       try {
@@ -109,14 +83,27 @@ Your style:
     const greeting = "Hi there! 👋 I'm Saleh's assistant. Tell me about your project — what kind of website are you looking to build?";
     setMessages([{ role: "bot", text: greeting, id: Date.now() }]);
     historyRef.current = [{ role: "assistant", content: greeting }];
+    // Also save this initial greeting to the dashboard
+    saveChatMessage(sessionIdRef.current, {
+      role: 'assistant',
+      content: greeting,
+      timestamp: new Date().toISOString(),
+    }).catch(console.error);
   };
 
   const send = async (text) => {
     if (!text.trim() || isTyping) return;
 
+    // ---- USER MESSAGE ----
     const userMsg = { role: "user", text, id: Date.now() };
     setMessages((prev) => [...prev, userMsg]);
     historyRef.current.push({ role: "user", content: text });
+    // Save user message to dashboard
+    await saveChatMessage(sessionIdRef.current, {
+      role: "user",
+      content: text,
+      timestamp: new Date().toISOString(),
+    }).catch(console.error);
     setIsTyping(true);
 
     try {
@@ -152,12 +139,25 @@ Your style:
 
       reply = reply || "Sorry, something went wrong — please try again!";
       historyRef.current.push({ role: "assistant", content: reply });
-      setMessages((prev) => [...prev, { role: "bot", text: reply, id: Date.now() }]);
+      const botMsg = { role: "bot", text: reply, id: Date.now() };
+      setMessages((prev) => [...prev, botMsg]);
+      // Save assistant reply to dashboard
+      await saveChatMessage(sessionIdRef.current, {
+        role: "assistant",
+        content: reply,
+        timestamp: new Date().toISOString(),
+      }).catch(console.error);
     } catch {
+      const errorMsg = "Hmm, something went wrong on my end — please try again!";
       setMessages((prev) => [
         ...prev,
-        { role: "bot", text: "Hmm, something went wrong on my end — please try again!", id: Date.now() },
+        { role: "bot", text: errorMsg, id: Date.now() },
       ]);
+      await saveChatMessage(sessionIdRef.current, {
+        role: "assistant",
+        content: errorMsg,
+        timestamp: new Date().toISOString(),
+      }).catch(console.error);
     } finally {
       setIsTyping(false);
     }

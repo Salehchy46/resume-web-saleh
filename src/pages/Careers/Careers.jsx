@@ -75,7 +75,7 @@ const Careers = () => {
       {/* Stats Bar */}
       <section className="py-8 bg-gray-800/30 border-b border-gray-700">
         <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="grid grid-cols-2 md:grid-cols- gap-4 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-center">
             <div className="bg-gray-800/50 rounded-xl p-4">
               <Award className="w-8 h-8 text-blue-400 mx-auto mb-2" />
               <div className="text-2xl font-bold text-white">{certificates.length}+</div>
