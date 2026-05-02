@@ -12,6 +12,8 @@ import BlogPost from "../pages/Blog/BlogPost";
 import Support from "../pages/Support/Support";
 import FAQs from "../pages/FAQs/FAQs";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import TermsOfService from "../pages/TermsOfService/TermsOfService";
+import Careers from "../pages/Careers/Careers";
 
 export const router = createBrowserRouter([
     {
@@ -60,7 +62,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/privacyPolicy',
-                element: <PrivacyPolicy></PrivacyPolicy>
+                element: <PrivacyPolicy></PrivacyPolicy>,
+            },
+            {
+                path: '/termsOfService',
+                element: <TermsOfService></TermsOfService>,
+            },
+            {
+                path: '/careers',
+                element: <Careers></Careers>
             }
         ]
     }

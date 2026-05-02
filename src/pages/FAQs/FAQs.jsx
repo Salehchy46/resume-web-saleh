@@ -92,7 +92,7 @@ const FAQs = () => {
                     <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500/20 rounded-full blur-3xl animate-pulse-slow delay-1000" />
                 </div>
 
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="max-w-330 mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center mb-12">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -172,7 +172,7 @@ const FAQs = () => {
                     <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-float-slower" />
                 </div>
 
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="max-w-330 mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}

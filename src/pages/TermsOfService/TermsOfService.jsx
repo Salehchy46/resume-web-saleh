@@ -1,10 +1,13 @@
-// src/pages/PrivacyPolicy/PrivacyPolicy.jsx
+// src/pages/TermsOfService/TermsOfService.jsx
 import React, { useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { Shield, Lock, Cookie, Eye, Database, Mail } from 'lucide-react';
+import { 
+  FileText, CheckSquare, Scale, Lock, AlertTriangle, 
+  Globe, Mail, Shield, BookOpen 
+} from 'lucide-react';
 
-const PrivacyPolicy = () => {
+const TermsOfService = () => {
   // Scroll reveal animation
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,59 +27,74 @@ const PrivacyPolicy = () => {
 
   const sections = [
     {
-      icon: <Shield size={24} />,
-      title: 'Information I Collect',
+      icon: <FileText size={24} />,
+      title: 'Acceptance of Terms',
       content: [
-        'Personal data you provide voluntarily (name, email address) when contacting me via forms or email.',
-        'Usage data such as pages visited, time spent, and referral sources (via analytics).',
-        'Cookies and similar technologies to improve your browsing experience.',
+        'By accessing and using this website, you accept and agree to be bound by these Terms & Conditions.',
+        'If you do not agree with any part of these terms, please do not use this website.',
+        'I reserve the right to update or modify these terms at any time without prior notice.',
       ],
     },
     {
-      icon: <Database size={24} />,
-      title: 'How I Use Your Information',
+      icon: <CheckSquare size={24} />,
+      title: 'Use of the Website',
       content: [
-        'To respond to your inquiries and provide customer support.',
-        'To improve and personalize your experience on this website.',
-        'To send occasional updates or newsletters (only if you opt in).',
-        'To analyze website traffic and usage patterns.',
+        'You agree to use this website only for lawful purposes and in a way that does not infringe the rights of others.',
+        'You may not use this website to distribute malicious software, spam, or harass others.',
+        'Unauthorized use of this website may give rise to a claim for damages.',
       ],
     },
     {
-      icon: <Cookie size={24} />,
-      title: 'Cookies & Tracking',
+      icon: <Scale size={24} />,
+      title: 'Intellectual Property',
       content: [
-        'This website uses essential cookies for functionality and analytics cookies (e.g., Google Analytics) to understand visitor behavior.',
-        'You can disable cookies in your browser settings, but some features may not work properly.',
-        'Third-party services (like hosting, analytics) may also use cookies.',
+        'All content on this website (text, graphics, logos, images, code) is my property or licensed to me.',
+        'You may not reproduce, duplicate, copy, sell, or exploit any portion of this website without written permission.',
+        'You may download or print content for personal, non-commercial use only.',
       ],
     },
     {
       icon: <Lock size={24} />,
-      title: 'Data Security',
+      title: 'User Conduct',
       content: [
-        'I take reasonable precautions to protect your personal information from unauthorized access, alteration, or disclosure.',
-        'However, no method of transmission over the internet is 100% secure.',
-        'Your data is stored securely and only accessed when necessary.',
+        'You agree not to upload or transmit any viruses, malware, or harmful code.',
+        'You agree not to attempt to gain unauthorized access to any part of the website or its servers.',
+        'You agree not to interfere with the proper working of the website.',
       ],
     },
     {
-      icon: <Eye size={24} />,
-      title: 'Your Rights',
+      icon: <AlertTriangle size={24} />,
+      title: 'Limitation of Liability',
       content: [
-        'You have the right to access, correct, or delete your personal data.',
-        'You can opt out of marketing communications at any time.',
-        'Request a copy of the data I hold about you by contacting me.',
+        'This website is provided "as is" without any warranties, express or implied.',
+        'I am not liable for any direct, indirect, incidental, or consequential damages arising from your use of this website.',
+        'I do not warrant that the website will be uninterrupted, error-free, or secure.',
       ],
     },
     {
-      icon: <Mail size={24} />,
-      title: 'Contact Me',
+      icon: <Globe size={24} />,
+      title: 'Third-Party Links',
       content: [
-        'If you have any questions about this Privacy Policy, please reach out:',
-        'Email: Salehchyctg@gmail.com',
-        'Phone: +880 1835-069946',
-        'Address: Chattogram, Bangladesh',
+        'This website may contain links to external sites that are not controlled or endorsed by me.',
+        'I am not responsible for the content, privacy policies, or practices of any third-party websites.',
+        'You access third-party links at your own risk.',
+      ],
+    },
+    {
+      icon: <BookOpen size={24} />,
+      title: 'Governing Law',
+      content: [
+        'These Terms shall be governed by and construed in accordance with the laws of Bangladesh.',
+        'Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts in Chattogram, Bangladesh.',
+      ],
+    },
+    {
+      icon: <Shield size={24} />,
+      title: 'Changes to Terms',
+      content: [
+        'I reserve the right to revise these Terms & Conditions at any time without notice.',
+        'By continuing to use this website after changes are posted, you agree to the revised terms.',
+        'It is your responsibility to review these terms periodically.',
       ],
     },
   ];
@@ -88,14 +106,14 @@ const PrivacyPolicy = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-blue-500/5 blur-3xl" />
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
           >
-            Privacy Policy
+            Terms & Conditions
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -103,7 +121,7 @@ const PrivacyPolicy = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-gray-300 mt-4 max-w-2xl mx-auto"
           >
-            Your privacy matters. This policy explains how I collect, use, and protect your information.
+            Please read these terms carefully before using this website.
           </motion.p>
           <motion.div
             initial={{ opacity: 0 }}
@@ -116,10 +134,10 @@ const PrivacyPolicy = () => {
         </div>
       </section>
 
-      {/* Policy Content */}
+      {/* Terms Content */}
       <section className="py-16 md:py-24 bg-gray-900">
         <div className="max-w-330 mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
+          <div className="space-y-6">
             {sections.map((section, idx) => (
               <motion.div
                 key={idx}
@@ -138,7 +156,7 @@ const PrivacyPolicy = () => {
                 <div className="space-y-2 text-gray-300 leading-relaxed ml-4 md:ml-16">
                   {section.content.map((item, i) => (
                     <p key={i} className="text-sm md:text-base">
-                      {item}
+                      • {item}
                     </p>
                   ))}
                 </div>
@@ -155,8 +173,8 @@ const PrivacyPolicy = () => {
             className="mt-12 p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50 text-center"
           >
             <p className="text-gray-400 text-sm">
-              By using this website, you consent to this Privacy Policy. I reserve the right to update this policy at any time.
-              Changes will be posted on this page with an updated revision date.
+              By using this website, you acknowledge that you have read, understood, and agree to be bound by these Terms & Conditions.
+              If you have any questions, please contact me.
             </p>
           </motion.div>
         </div>
@@ -166,7 +184,7 @@ const PrivacyPolicy = () => {
       <section className="py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-center">
         <div className="max-w-330 mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Questions?</h2>
-          <p className="text-gray-300 mb-6">If you have any concerns about your privacy, feel free to reach out.</p>
+          <p className="text-gray-300 mb-6">If you need clarification about these terms, feel free to reach out.</p>
           <a
             href="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition shadow-lg"
@@ -191,4 +209,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default TermsOfService;
