@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { MessageSquare, Eye, Mail, User, Calendar, ChevronRight } from 'lucide-react';
-import { fetchChatConversations, fetchConversationById } from './aiService';
+import { fetchConversations, fetchConversation } from '../../../apis/chatConversation';
 
 const BotData = () => {
   const [conversations, setConversations] = useState([]);
@@ -18,7 +18,7 @@ const BotData = () => {
   const loadConversations = async () => {
     setLoading(true);
     try {
-      const res = await fetchChatConversations();
+      const res = await fetchConversations();
       if (res.success) setConversations(res.data);
     } catch (error) {
       console.error('Failed to load', error);
@@ -28,7 +28,7 @@ const BotData = () => {
   };
 
   const viewConversation = async (id) => {
-    const res = await fetchConversationById(id);
+    const res = await fetchConversation(id);
     if (res.success) setSelectedConv(res.data);
   };
 

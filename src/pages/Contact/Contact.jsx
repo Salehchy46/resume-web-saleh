@@ -21,7 +21,7 @@ import {
 import SupportLottie from "../../assets/lotties/Support.json";
 import Lottie from "lottie-react";
 // eslint-disable-next-line no-unused-vars
-import { saveChatMessage, endConversation } from '../Dashboard/BotData/aiService';
+import { saveChatMessage, endConversation } from '../../apis/chatConversation';
 
 // ── AI CHATBOT HOOK (with message saving) ───────────────────────────────────
 function useChat() {
