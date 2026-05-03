@@ -20,7 +20,7 @@ import {
   Calendar,
   Loader2,
 } from 'lucide-react';
-import { fetchOrders, updateOrderStatus, deleteOrder } from './orderServices';
+import { fetchOrders, updateOrderStatus, deleteOrder } from '../../../apis/orderService';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
