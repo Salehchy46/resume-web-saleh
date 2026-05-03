@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
  
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Trash2, Eye, CheckCircle, XCircle, Mail, Calendar, ThumbsUp } from 'lucide-react';
-import { fetchReviews, deleteReview, updateReviewStatus } from './reviewsService';
+import { fetchReviews, deleteReview, updateReview } from '../../../apis/reviewsService';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -47,7 +47,7 @@ const Reviews = () => {
   const handleVisibilityToggle = async (id, currentVisible) => {
     // You can add a 'visible' field to reviews if not present; here we'll just delete or we can add a soft delete.
     // For demo, we'll update a 'hidden' flag.
-    await updateReviewStatus(id, { hidden: !currentVisible });
+    await updateReview(id, { hidden: !currentVisible });
     await loadReviews();
   };
 
