@@ -7,10 +7,13 @@ import { router } from './routes/Router.jsx';
 import { CursorProvider } from './context/CursorProvider.jsx';
 import ScrollToTop from './components/ScrolToTop.jsx';
 import TargetCursor from './components/TargetCursor.jsx';
+import AuthProvider from './context/AuthContext/AuthProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <TargetCursor></TargetCursor>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <TargetCursor></TargetCursor>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );
