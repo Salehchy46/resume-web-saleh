@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // src/pages/Home.jsx or src/components/Home.jsx
 "use client";
 
@@ -719,8 +720,41 @@ const Projects = () => {
 };
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState({ type: '', text: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: '', text: '' });
+
+    try {
+      const res = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setStatus({ type: 'success', text: 'Message sent! I’ll get back to you soon.' });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus({ type: 'error', text: data.error || 'Something went wrong. Please try again.' });
+      }
+    } catch (err) {
+      setStatus({ type: 'error', text: 'Network error. Please check your connection.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <section id="contact" className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 lg:py-32 overflow-hiddenpy-16 md:py-24 bg-gray-900">
+    <section id="contact" className="relative bg-linear-to-br from-gray-900 to-gray-800 py-16 lg:py-32 overflow-hidden md:py-24 bg-gray-900">
       <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Let's Work Together</h2>
@@ -729,42 +763,69 @@ const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Lottie Animation */}
           <div className="flex justify-center">
             <Lottie animationData={CodeDarkLottie} loop={true} className="w-full max-w-md h-auto" />
           </div>
-          {/* Contact Form with glass reflection on hover */}
+
           <div className="group/form-card relative max-w-3xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 overflow-hidden transition-all duration-300 hover:shadow-xl">
-            {/* Shimmer overlay that sweeps on hover */}
             <div className="absolute inset-0 -translate-x-full group-hover/form-card:translate-x-full transition-transform duration-1000 ease-out pointer-events-none">
               <div className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12" />
             </div>
 
-            <form action="https://formspree.io/f/yourformid" method="POST" className="space-y-6 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-gray-300 mb-2">Name</label>
-                  <input type="text" name="name" required className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition"
+                  />
                 </div>
                 <div>
                   <label className="block text-gray-300 mb-2">Email</label>
-                  <input type="email" name="email" required className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition"
+                  />
                 </div>
               </div>
               <div>
                 <label className="block text-gray-300 mb-2">Message</label>
-                <textarea name="message" rows="5" required className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition"></textarea>
+                <textarea
+                  name="message"
+                  rows="5"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:outline-none focus:border-blue-500 transition"
+                />
               </div>
 
-              {/* Glassy submit button with its own shimmer */}
+              {status.text && (
+                <div className={`text-sm p-2 rounded ${status.type === 'success' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+                  {status.text}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="relative w-full bg-blue-600 text-white py-3 rounded-lg font-medium shadow-md hover:shadow-lg overflow-hidden group/btn transition-all duration-300"
+                disabled={isSubmitting}
+                className="relative w-full bg-blue-600 text-white py-3 rounded-lg font-medium shadow-md hover:shadow-lg overflow-hidden group/btn transition-all duration-300 disabled:opacity-50"
               >
                 <span className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-out">
                   <span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/40 to-transparent skew-x-12" />
                 </span>
-                <span className="relative z-10">Send Message</span>
+                <span className="relative z-10">
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </span>
               </button>
             </form>
 
@@ -772,8 +833,6 @@ const Contact = () => {
               <p>Or reach me directly: <a href="mailto:Salehchyctg@gmail.com" className="text-blue-400 hover:text-blue-300 transition">Salehchyctg@gmail.com</a> | +88 01835‑069946</p>
             </div>
           </div>
-
-
         </div>
       </div>
     </section>
